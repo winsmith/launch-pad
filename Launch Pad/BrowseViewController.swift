@@ -1,4 +1,4 @@
-        //
+//
 //  BrowseViewController.swift
 //  Launch Pad
 //
@@ -12,11 +12,15 @@ import WebKit
 class BrowseViewController: NSViewController {
     @IBOutlet weak var webView: WKWebView!
 
+    let ckanClient = CKANClient()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            let modules_list = self.ckanClient.listModules().reduce("", +)
+            self.webView.loadHTMLString(modules_list, baseURL: nil)
 
-        debugPrint("loading")
-        webView.loadHTMLString("hello", baseURL: nil)
+        }
     }
 }
 

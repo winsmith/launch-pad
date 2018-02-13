@@ -10,6 +10,8 @@
 		DC654993203326C50023111E /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654992203326C50023111E /* BrowseViewController.swift */; };
 		DC6549952033279B0023111E /* browse_list.html in Resources */ = {isa = PBXBuildFile; fileRef = DC6549942033279B0023111E /* browse_list.html */; };
 		DC654999203338820023111E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC654998203338820023111E /* WebKit.framework */; };
+		DC65499E20333B9B0023111E /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65499D20333B9B0023111E /* CKANClient.swift */; };
+		DC6549A120333D120023111E /* pyKAN in Resources */ = {isa = PBXBuildFile; fileRef = DC6549A020333D120023111E /* pyKAN */; };
 		DCF093A120309F04003224AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093A020309F04003224AC /* AppDelegate.swift */; };
 		DCF093A320309F04003224AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093A220309F04003224AC /* ViewController.swift */; };
 		DCF093A520309F04003224AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A420309F04003224AC /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 		DC6549942033279B0023111E /* browse_list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = browse_list.html; sourceTree = "<group>"; };
 		DC654998203338820023111E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DC65499A203338B80023111E /* Launch Pad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Launch Pad.entitlements"; sourceTree = "<group>"; };
+		DC65499D20333B9B0023111E /* CKANClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClient.swift; sourceTree = "<group>"; };
+		DC6549A020333D120023111E /* pyKAN */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pyKAN; sourceTree = "<group>"; };
 		DCF0939D20309F04003224AC /* Launch Pad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Launch Pad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF093A020309F04003224AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF093A220309F04003224AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,9 +83,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DC65499B203339A00023111E /* CKANClient */ = {
+			isa = PBXGroup;
+			children = (
+				DC65499D20333B9B0023111E /* CKANClient.swift */,
+			);
+			path = CKANClient;
+			sourceTree = "<group>";
+		};
+		DC65499C203339B50023111E /* HTMLRenderer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HTMLRenderer;
+			sourceTree = "<group>";
+		};
+		DC65499F20333D040023111E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DC6549A020333D120023111E /* pyKAN */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		DCF0939420309F04003224AC = {
 			isa = PBXGroup;
 			children = (
+				DC65499F20333D040023111E /* Resources */,
 				DC654996203327DF0023111E /* Assets */,
 				DCF0939F20309F04003224AC /* Launch Pad */,
 				DCF093B220309F05003224AC /* Launch PadTests */,
@@ -102,6 +130,8 @@
 		DCF0939F20309F04003224AC /* Launch Pad */ = {
 			isa = PBXGroup;
 			children = (
+				DC65499C203339B50023111E /* HTMLRenderer */,
+				DC65499B203339A00023111E /* CKANClient */,
 				DC65499A203338B80023111E /* Launch Pad.entitlements */,
 				DCF093A020309F04003224AC /* AppDelegate.swift */,
 				DCF093A220309F04003224AC /* ViewController.swift */,
@@ -174,6 +204,11 @@
 					DCF0939C20309F04003224AC = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					DCF093AE20309F05003224AC = {
 						CreatedOnToolsVersion = 9.2;
@@ -206,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC6549A120333D120023111E /* pyKAN in Resources */,
 				DCF093A520309F04003224AC /* Assets.xcassets in Resources */,
 				DCF093A820309F04003224AC /* Main.storyboard in Resources */,
 				DC6549952033279B0023111E /* browse_list.html in Resources */,
@@ -227,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC654993203326C50023111E /* BrowseViewController.swift in Sources */,
+				DC65499E20333B9B0023111E /* CKANClient.swift in Sources */,
 				DCF093A320309F04003224AC /* ViewController.swift in Sources */,
 				DCF093A120309F04003224AC /* AppDelegate.swift in Sources */,
 			);
@@ -372,7 +409,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Launch Pad/Launch Pad.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Launch Pad/Info.plist";
@@ -387,7 +423,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Launch Pad/Launch Pad.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Launch Pad/Info.plist";

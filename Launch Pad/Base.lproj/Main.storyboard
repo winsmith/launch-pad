@@ -774,6 +774,10 @@
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
+                                <connections>
+                                    <outlet property="UIDelegate" destination="zM7-yp-aT5" id="D6Z-dY-HTB"/>
+                                    <outlet property="navigationDelegate" destination="zM7-yp-aT5" id="2fZ-h4-3TU"/>
+                                </connections>
                             </wkWebView>
                         </subviews>
                         <constraints>

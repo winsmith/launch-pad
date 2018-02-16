@@ -24,7 +24,7 @@ class CKANClient {
     public func listKSPDirs() -> [KSPDir] {
         let source = pykan(["listkspdirs"])
         let pattern = "\\d+: (.*)"
-        let formatter = try! NSRegularExpression(pattern: pattern, options: [])
+        guard let formatter = try? NSRegularExpression(pattern: pattern, options: []) else { return [] }
         let range = NSRange(location: 0, length: source.utf16.count)
         let matches = formatter.matches(in: source, options: [], range: range)
 

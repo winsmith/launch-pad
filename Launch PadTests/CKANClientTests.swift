@@ -26,14 +26,13 @@ class CKANClientTests: XCTestCase {
 
     func testListKSPDirs() {
         fakePyKanAdapter.cannedResponse = "Using KSP Directory:  /Applications/Kerbal Space Program\n0: /Applications/Kerbal Space Program"
-
         let expected = [KSPDir(path: "/Applications/Kerbal Space Program")]
-
         XCTAssertEqual(ckanClient.listKSPDirs(), expected)
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCurrentKSPDir() {
+        fakePyKanAdapter.cannedResponse = "Using KSP Directory:  /Applications/Kerbal Space Program\n0: /Applications/Kerbal Space Program"
+        let expected = KSPDir(path: "/Applications/Kerbal Space Program")
+        XCTAssertEqual(ckanClient.currentKSPDir(), expected)
     }
 }

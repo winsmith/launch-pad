@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC1E78592036208F00343507 /* PyKanAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E78582036208F00343507 /* PyKanAdapter.swift */; };
+		DC1E786720363B5F00343507 /* CKANClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786620363B5F00343507 /* CKANClientTests.swift */; };
+		DC1E786920363BD300343507 /* FakePyKanAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786820363BD300343507 /* FakePyKanAdapter.swift */; };
+		DC1E786A20363BEE00343507 /* PyKanAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E78582036208F00343507 /* PyKanAdapter.swift */; };
+		DC1E786B20363DF900343507 /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65499D20333B9B0023111E /* CKANClient.swift */; };
+		DC1E786E20363F9F00343507 /* CKANTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786D20363F9F00343507 /* CKANTypes.swift */; };
+		DC1E786F20363FE200343507 /* CKANTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786D20363F9F00343507 /* CKANTypes.swift */; };
 		DC654993203326C50023111E /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654992203326C50023111E /* BrowseViewController.swift */; };
 		DC6549952033279B0023111E /* browse_list.html in Resources */ = {isa = PBXBuildFile; fileRef = DC6549942033279B0023111E /* browse_list.html */; };
 		DC654999203338820023111E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC654998203338820023111E /* WebKit.framework */; };
@@ -16,7 +23,6 @@
 		DCF093A320309F04003224AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093A220309F04003224AC /* ViewController.swift */; };
 		DCF093A520309F04003224AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A420309F04003224AC /* Assets.xcassets */; };
 		DCF093A820309F04003224AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A620309F04003224AC /* Main.storyboard */; };
-		DCF093B420309F05003224AC /* Launch_PadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093B320309F05003224AC /* Launch_PadTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +36,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC1E78582036208F00343507 /* PyKanAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyKanAdapter.swift; sourceTree = "<group>"; };
+		DC1E786620363B5F00343507 /* CKANClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClientTests.swift; sourceTree = "<group>"; };
+		DC1E786820363BD300343507 /* FakePyKanAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakePyKanAdapter.swift; sourceTree = "<group>"; };
+		DC1E786D20363F9F00343507 /* CKANTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANTypes.swift; sourceTree = "<group>"; };
 		DC654992203326C50023111E /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		DC6549942033279B0023111E /* browse_list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = browse_list.html; sourceTree = "<group>"; };
 		DC654998203338820023111E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DC65499A203338B80023111E /* Launch Pad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Launch Pad.entitlements"; sourceTree = "<group>"; };
 		DC65499D20333B9B0023111E /* CKANClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClient.swift; sourceTree = "<group>"; };
 		DC6549A020333D120023111E /* pyKAN */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pyKAN; sourceTree = "<group>"; };
+		DCADA390203786DB00C1E7BA /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		DCF0939D20309F04003224AC /* Launch Pad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Launch Pad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF093A020309F04003224AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF093A220309F04003224AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,7 +55,6 @@
 		DCF093A920309F05003224AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCF093AA20309F05003224AC /* Launch_Pad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Launch_Pad.entitlements; sourceTree = "<group>"; };
 		DCF093AF20309F05003224AC /* Launch PadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Launch PadTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DCF093B320309F05003224AC /* Launch_PadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch_PadTests.swift; sourceTree = "<group>"; };
 		DCF093B520309F05003224AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				DC65499D20333B9B0023111E /* CKANClient.swift */,
+				DC1E786D20363F9F00343507 /* CKANTypes.swift */,
+				DC1E78582036208F00343507 /* PyKanAdapter.swift */,
 			);
 			path = CKANClient;
 			sourceTree = "<group>";
@@ -109,6 +121,7 @@
 		DCF0939420309F04003224AC = {
 			isa = PBXGroup;
 			children = (
+				DCADA390203786DB00C1E7BA /* Readme.md */,
 				DC65499F20333D040023111E /* Resources */,
 				DC654996203327DF0023111E /* Assets */,
 				DCF0939F20309F04003224AC /* Launch Pad */,
@@ -147,8 +160,9 @@
 		DCF093B220309F05003224AC /* Launch PadTests */ = {
 			isa = PBXGroup;
 			children = (
-				DCF093B320309F05003224AC /* Launch_PadTests.swift */,
 				DCF093B520309F05003224AC /* Info.plist */,
+				DC1E786620363B5F00343507 /* CKANClientTests.swift */,
+				DC1E786820363BD300343507 /* FakePyKanAdapter.swift */,
 			);
 			path = "Launch PadTests";
 			sourceTree = "<group>";
@@ -264,7 +278,9 @@
 			files = (
 				DC654993203326C50023111E /* BrowseViewController.swift in Sources */,
 				DC65499E20333B9B0023111E /* CKANClient.swift in Sources */,
+				DC1E78592036208F00343507 /* PyKanAdapter.swift in Sources */,
 				DCF093A320309F04003224AC /* ViewController.swift in Sources */,
+				DC1E786E20363F9F00343507 /* CKANTypes.swift in Sources */,
 				DCF093A120309F04003224AC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +289,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCF093B420309F05003224AC /* Launch_PadTests.swift in Sources */,
+				DC1E786B20363DF900343507 /* CKANClient.swift in Sources */,
+				DC1E786A20363BEE00343507 /* PyKanAdapter.swift in Sources */,
+				DC1E786920363BD300343507 /* FakePyKanAdapter.swift in Sources */,
+				DC1E786F20363FE200343507 /* CKANTypes.swift in Sources */,
+				DC1E786720363B5F00343507 /* CKANClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

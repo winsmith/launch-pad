@@ -729,10 +729,34 @@
             </objects>
             <point key="canvasLocation" x="-35" y="558"/>
         </scene>
-        <!--Tab View Controller-->
+        <!--View Controller-->
+        <scene sceneID="4jw-Dr-tzq">
+            <objects>
+                <viewController storyboardIdentifier="WelcomeSheetViewController" id="Sv3-nk-xKZ" sceneMemberID="viewController">
+                    <view key="view" id="72u-oX-wqS">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-oR-z6L">
+                                <rect key="frame" x="157" y="138" width="136" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Hi! KSP Dir Plz!" id="6Aq-A0-4Ck">
+                                    <font key="font" size="20" name=".AppleSystemUIFont"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="1YM-QB-act" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="588" y="66"/>
+        </scene>
+        <!--Main View Controller-->
         <scene sceneID="eBe-1M-9VG">
             <objects>
-                <tabViewController id="Vpq-Jf-SGX" sceneMemberID="viewController">
+                <tabViewController id="Vpq-Jf-SGX" customClass="MainViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="ey1-pX-3VV"/>
                         <tabViewItem identifier="" id="g6M-8F-hUP"/>

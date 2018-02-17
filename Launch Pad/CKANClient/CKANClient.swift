@@ -20,6 +20,11 @@ class CKANClient {
         return pyKanAdapter.pykan(arguments)
     }
 
+    // MARK: - Ready
+    public func isFullyInitialized() -> Bool {
+        return self.currentKSPDir() != nil 
+    }
+
     // MARK: - KSP Dirs
     public func listKSPDirs() -> [KSPDir] {
         let source = pykan(["listkspdirs"])

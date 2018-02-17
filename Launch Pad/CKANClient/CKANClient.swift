@@ -40,17 +40,17 @@ class CKANClient {
     }
 
     public func currentKSPDir() -> KSPDir? {
-        do {
-            let text = pykan(["listkspdirs"])
-            let regex = try NSRegularExpression(pattern: "Using KSP Directory:  (.+)", options: [])
-            let matches = regex.matches(in: text, options: [], range: NSRange(location: 0, length: text.count))
+        let source = pykan(["listkspdirs"])
+        let pattern = "Using KSP Directory:  (.+)"
+        guard let formatter = try? NSRegularExpression(pattern: pattern, options: []) else { return nil }
+        let range = NSRange(location: 0, length: source.utf16.count)
+        let matches = formatter.matches(in: source, options: [], range: range)
 
-            return matches.map { KSPDir(path: String(text[Range($0.range, in: text)!])) }.first
-        } catch {
-            debugPrint("Exception during Regex. Regexception.")
-        }
-
-        return nil
+        guard let match = matches.first else { return nil }
+        let matchedNSRange = match.range(at: 1) // 0 seems to be the entire string, 1 the first capture group
+        guard let matchedRange = Range(matchedNSRange, in: source) else { return nil }
+        let matchedSubString = source[matchedRange]
+        return KSPDir(path: String(matchedSubString))
     }
 
 

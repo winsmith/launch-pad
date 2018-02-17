@@ -32,7 +32,7 @@ class CKANClientTests: XCTestCase {
 
     func testCurrentKSPDir() {
         fakePyKanAdapter.cannedResponse = "Using KSP Directory:  /Applications/Kerbal Space Program\n0: /Applications/Kerbal Space Program"
-        let expected = KSPDir(path: "/Applications/Kerbal Space Program")
+        let expected: KSPDir? = KSPDir(path: "/Applications/Kerbal Space Program")
         XCTAssertEqual(ckanClient.currentKSPDir(), expected)
     }
 }

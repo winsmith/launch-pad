@@ -30,6 +30,8 @@ class PyKanAdapter {
         }
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        return String(data: data, encoding: .utf8)!
+        let returnString = String(data: data, encoding: .utf8)!
+        debugPrint(returnString)
+        return returnString
     }
 }

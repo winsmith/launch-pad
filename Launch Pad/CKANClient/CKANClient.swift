@@ -58,6 +58,11 @@ class CKANClient {
         return KSPDir(path: String(matchedSubString))
     }
 
+    public func addKSPDir(url: URL) -> Bool {
+        let source = pykan(["addkspdir", url.path])
+        return source.starts(with: "Using KSP Directory")
+    }
+
 
     // MARK: - Modules
     public func listModules() -> [String] {

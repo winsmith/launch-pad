@@ -20,6 +20,7 @@
 		DC65499E20333B9B0023111E /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65499D20333B9B0023111E /* CKANClient.swift */; };
 		DC6549A120333D120023111E /* pyKAN in Resources */ = {isa = PBXBuildFile; fileRef = DC6549A020333D120023111E /* pyKAN */; };
 		DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA392203865EB00C1E7BA /* MainViewController.swift */; };
+		DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */; };
 		DCF093A120309F04003224AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093A020309F04003224AC /* AppDelegate.swift */; };
 		DCF093A520309F04003224AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A420309F04003224AC /* Assets.xcassets */; };
 		DCF093A820309F04003224AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A620309F04003224AC /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		DC6549A020333D120023111E /* pyKAN */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pyKAN; sourceTree = "<group>"; };
 		DCADA390203786DB00C1E7BA /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		DCADA392203865EB00C1E7BA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSheetViewController.swift; sourceTree = "<group>"; };
 		DCF0939D20309F04003224AC /* Launch Pad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Launch Pad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF093A020309F04003224AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF093A420309F04003224AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				DCADA392203865EB00C1E7BA /* MainViewController.swift */,
+				DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC654993203326C50023111E /* BrowseViewController.swift in Sources */,
+				DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */,
 				DC65499E20333B9B0023111E /* CKANClient.swift in Sources */,
 				DC1E78592036208F00343507 /* PyKanAdapter.swift in Sources */,
 				DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */,

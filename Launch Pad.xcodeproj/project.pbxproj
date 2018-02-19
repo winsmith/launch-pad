@@ -105,13 +105,6 @@
 			path = CKANClient;
 			sourceTree = "<group>";
 		};
-		DC65499C203339B50023111E /* HTMLRenderer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HTMLRenderer;
-			sourceTree = "<group>";
-		};
 		DC65499F20333D040023111E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				DCADA391203865BC00C1E7BA /* UI */,
-				DC65499C203339B50023111E /* HTMLRenderer */,
 				DC65499B203339A00023111E /* CKANClient */,
 				DC65499A203338B80023111E /* Launch Pad.entitlements */,
 				DCF093A020309F04003224AC /* AppDelegate.swift */,

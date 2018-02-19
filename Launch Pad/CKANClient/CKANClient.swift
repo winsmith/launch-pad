@@ -65,8 +65,40 @@ class CKANClient {
 
 
     // MARK: - Modules
-    public func listModules() -> [String] {
-        let output = pykan(["list_modules"])
-        return [output]
+    public func listModules(filter: String? = nil) -> [Module] {
+        let source = pykan(["list_modules"])
+        let pattern = "(\\w+) :  (.+) \\| (.+) \\((.*)\\)"
+        guard let formatter = try? NSRegularExpression(pattern: pattern, options: []) else { return [] }
+        let range = NSRange(location: 0, length: source.utf16.count)
+        let matches = formatter.matches(in: source, options: [], range: range)
+
+        var modules = [Module]()
+
+        enum ModuleMatchedRange: Int {
+            case key = 1
+            case title = 2
+            case version = 3
+            case installed = 4
+        }
+
+        for match in matches {
+            guard let keyRange = Range(match.range(at: 1), in: source) else { continue }
+            let keyMatch = String(source[keyRange])
+
+            guard let titleRange = Range(match.range(at: 2), in: source) else { continue }
+            let titleMatch = String(source[titleRange])
+
+            guard let versionRange = Range(match.range(at: 3), in: source) else { continue }
+            let versionMatch = String(source[versionRange])
+
+            guard let installedRange = Range(match.range(at: 4), in: source) else { continue }
+            let installedMatch = String(source[installedRange])
+
+            let isInstalled = installedMatch != "Not Installed"
+            let module = Module(key: keyMatch, name: titleMatch, version: versionMatch, installed: isInstalled)
+            modules.append(module)
+        }
+
+        return modules
     }
 }

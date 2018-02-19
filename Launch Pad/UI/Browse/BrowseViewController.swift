@@ -17,8 +17,8 @@ class BrowseViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
-            let modules_list = self.ckanClient.listModules().reduce("", +)
-            self.webView.loadHTMLString(modules_list, baseURL: nil)
+            let modules_list = self.ckanClient.listModules()
+
         }
     }
 }

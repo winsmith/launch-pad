@@ -21,6 +21,8 @@
 		DC6549A120333D120023111E /* pyKAN in Resources */ = {isa = PBXBuildFile; fileRef = DC6549A020333D120023111E /* pyKAN */; };
 		DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA392203865EB00C1E7BA /* MainViewController.swift */; };
 		DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */; };
+		DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */; };
+		DCADA3A7203B297400C1E7BA /* ModuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */; };
 		DCF093A120309F04003224AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093A020309F04003224AC /* AppDelegate.swift */; };
 		DCF093A520309F04003224AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A420309F04003224AC /* Assets.xcassets */; };
 		DCF093A820309F04003224AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A620309F04003224AC /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 		DCADA390203786DB00C1E7BA /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		DCADA392203865EB00C1E7BA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSheetViewController.swift; sourceTree = "<group>"; };
+		DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleCollectionViewItem.swift; sourceTree = "<group>"; };
+		DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleCollectionViewItem.xib; sourceTree = "<group>"; };
 		DCF0939D20309F04003224AC /* Launch Pad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Launch Pad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF093A020309F04003224AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF093A420309F04003224AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				DC654992203326C50023111E /* BrowseViewController.swift */,
+				DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */,
+				DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -275,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6549A120333D120023111E /* pyKAN in Resources */,
+				DCADA3A7203B297400C1E7BA /* ModuleCollectionViewItem.xib in Resources */,
 				DCF093A520309F04003224AC /* Assets.xcassets in Resources */,
 				DCF093A820309F04003224AC /* Main.storyboard in Resources */,
 				DC6549952033279B0023111E /* browse_list.html in Resources */,
@@ -295,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */,
 				DC654993203326C50023111E /* BrowseViewController.swift in Sources */,
 				DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */,
 				DC65499E20333B9B0023111E /* CKANClient.swift in Sources */,

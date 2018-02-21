@@ -10,29 +10,53 @@ import AppKit
 import WebKit
 
 class BrowseViewController: NSViewController {
-    @IBOutlet weak var webView: WKWebView!
-
+    @IBOutlet weak var collectionView: NSCollectionView!
     let ckanClient = CKANClient(pyKanAdapter: PyKanAdapter())
+    var modules_list = [Module]() {
+        didSet {
+            guard modules_list != oldValue else { return }
+            collectionView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureCollectionView()
         DispatchQueue.main.async {
-            let modules_list = self.ckanClient.listModules()
-
+            self.modules_list = self.ckanClient.listModules()
         }
     }
-}
 
-extension BrowseViewController: WKUIDelegate {
-
-}
-
-extension BrowseViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        debugPrint("Web view finished loading")
+    override func viewDidAppear() {
+        super.viewDidAppear()
     }
 
-    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        debugPrint("Web View did terminate")
+    private func configureCollectionView() {
+        view.wantsLayer = true
+        collectionView.layer?.backgroundColor = NSColor.black.cgColor
+
+        let flowLayout = NSCollectionViewFlowLayout()
+        flowLayout.itemSize = NSSize(width: 160.0, height: 140.0)
+        flowLayout.sectionInset = NSEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
+        flowLayout.minimumInteritemSpacing = 20.0
+        flowLayout.minimumLineSpacing = 20.0
+        collectionView.collectionViewLayout = flowLayout
+    }
+}
+
+extension BrowseViewController: NSCollectionViewDataSource {
+    func numberOfSections(in collectionView: NSCollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        return modules_list.count
+    }
+
+    func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ModuleCollectionViewItem"), for: indexPath)
+        guard let moduleCollectionViewItem = item as? ModuleCollectionViewItem else { return item }
+        moduleCollectionViewItem.module = modules_list[indexPath.item]
+        return moduleCollectionViewItem
     }
 }

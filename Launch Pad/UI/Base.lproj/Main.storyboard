@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
@@ -880,27 +879,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <wkWebView wantsLayer="YES" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36u-oo-NcU">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                                <connections>
-                                    <outlet property="UIDelegate" destination="zM7-yp-aT5" id="D6Z-dY-HTB"/>
-                                    <outlet property="navigationDelegate" destination="zM7-yp-aT5" id="2fZ-h4-3TU"/>
-                                </connections>
-                            </wkWebView>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gp0-oR-bPN">
+                                <rect key="frame" x="20" y="20" width="410" height="260"/>
+                                <clipView key="contentView" drawsBackground="NO" id="iIO-m8-vfi">
+                                    <rect key="frame" x="1" y="1" width="408" height="258"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="jFa-TI-5m5">
+                                            <rect key="frame" x="0.0" y="0.0" width="408" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="ZiM-ip-iuV">
+                                                <size key="itemSize" width="50" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="zM7-yp-aT5" id="EBC-1M-9ix"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="g9d-7i-gjN">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="PHE-yN-84f">
+                                    <rect key="frame" x="-100" y="-100" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="36u-oo-NcU" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" id="7vh-Eg-sbV"/>
-                            <constraint firstAttribute="trailing" secondItem="36u-oo-NcU" secondAttribute="trailing" id="9yk-f5-IQu"/>
-                            <constraint firstItem="36u-oo-NcU" firstAttribute="leading" secondItem="WgU-1d-pbv" secondAttribute="leading" id="k6K-gE-Qb4"/>
-                            <constraint firstAttribute="bottom" secondItem="36u-oo-NcU" secondAttribute="bottom" id="v7i-eE-SYJ"/>
+                            <constraint firstItem="gp0-oR-bPN" firstAttribute="leading" secondItem="WgU-1d-pbv" secondAttribute="leading" constant="20" id="KS7-7V-5Y9"/>
+                            <constraint firstAttribute="trailing" secondItem="gp0-oR-bPN" secondAttribute="trailing" constant="20" id="SD5-vS-TfR"/>
+                            <constraint firstAttribute="bottom" secondItem="gp0-oR-bPN" secondAttribute="bottom" constant="20" id="g0b-Wy-e0v"/>
+                            <constraint firstItem="gp0-oR-bPN" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" constant="20" id="tUX-po-xZw"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="36u-oo-NcU" id="c8l-Zt-fIY"/>
+                        <outlet property="collectionView" destination="jFa-TI-5m5" id="ToC-Zk-EFz"/>
                     </connections>
                 </viewController>
                 <customObject id="G44-ql-Kll" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

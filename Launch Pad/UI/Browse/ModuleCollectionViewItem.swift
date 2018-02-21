@@ -11,19 +11,21 @@ import Cocoa
 class ModuleCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var versionLabel: NSTextField!
+    @IBOutlet weak var installedLabel: NSTextField!
 
     var module: Module? {
         didSet {
             guard module != oldValue else { return }
             nameLabel.stringValue = module?.name ?? ""
             versionLabel.stringValue = module?.version ?? ""
+            installedLabel.stringValue = module?.isInstalled == true ? "Installed ✅" : "Not Installed"
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.lightGray.cgColor
+        view.layer?.backgroundColor = NSColor.color(named: .BackgroundColor).cgColor
     }
     
 }

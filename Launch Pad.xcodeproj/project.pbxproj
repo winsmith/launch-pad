@@ -14,6 +14,7 @@
 		DC1E786B20363DF900343507 /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65499D20333B9B0023111E /* CKANClient.swift */; };
 		DC1E786E20363F9F00343507 /* CKANTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786D20363F9F00343507 /* CKANTypes.swift */; };
 		DC1E786F20363FE200343507 /* CKANTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786D20363F9F00343507 /* CKANTypes.swift */; };
+		DC33CFC1203D89140034E465 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC33CFC0203D89140034E465 /* Colors.swift */; };
 		DC654993203326C50023111E /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654992203326C50023111E /* BrowseViewController.swift */; };
 		DC6549952033279B0023111E /* browse_list.html in Resources */ = {isa = PBXBuildFile; fileRef = DC6549942033279B0023111E /* browse_list.html */; };
 		DC654999203338820023111E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC654998203338820023111E /* WebKit.framework */; };
@@ -43,6 +44,7 @@
 		DC1E786620363B5F00343507 /* CKANClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClientTests.swift; sourceTree = "<group>"; };
 		DC1E786820363BD300343507 /* FakePyKanAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakePyKanAdapter.swift; sourceTree = "<group>"; };
 		DC1E786D20363F9F00343507 /* CKANTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANTypes.swift; sourceTree = "<group>"; };
+		DC33CFC0203D89140034E465 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		DC654992203326C50023111E /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		DC6549942033279B0023111E /* browse_list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = browse_list.html; sourceTree = "<group>"; };
 		DC654998203338820023111E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -86,7 +88,9 @@
 		DC654996203327DF0023111E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				DCF093A420309F04003224AC /* Assets.xcassets */,
 				DC6549942033279B0023111E /* browse_list.html */,
+				DC33CFC0203D89140034E465 /* Colors.swift */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -175,7 +179,6 @@
 				DC65499B203339A00023111E /* CKANClient */,
 				DC65499A203338B80023111E /* Launch Pad.entitlements */,
 				DCF093A020309F04003224AC /* AppDelegate.swift */,
-				DCF093A420309F04003224AC /* Assets.xcassets */,
 				DCF093A920309F05003224AC /* Info.plist */,
 				DCF093AA20309F05003224AC /* Launch_Pad.entitlements */,
 			);
@@ -303,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */,
+				DC33CFC1203D89140034E465 /* Colors.swift in Sources */,
 				DC654993203326C50023111E /* BrowseViewController.swift in Sources */,
 				DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */,
 				DC65499E20333B9B0023111E /* CKANClient.swift in Sources */,

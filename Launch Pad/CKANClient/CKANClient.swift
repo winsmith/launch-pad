@@ -94,8 +94,8 @@ class CKANClient {
             guard let installedRange = Range(match.range(at: 4), in: source) else { continue }
             let installedMatch = String(source[installedRange])
 
-            let isInstalled = installedMatch != "Not Installed"
-            let module = Module(key: keyMatch, name: titleMatch, version: versionMatch, installed: isInstalled)
+            let isInstalled = installedMatch != "Not installed"
+            let module = Module(key: keyMatch, name: titleMatch, version: versionMatch, isInstalled: isInstalled)
             modules.append(module)
         }
 

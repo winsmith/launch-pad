@@ -20,7 +20,7 @@ public struct Module: Equatable {
     var key: String
     var name: String
     var version: String
-    var installed: Bool
+    var isInstalled: Bool
 
     public static func ==(lhs: Module, rhs: Module) -> Bool {
         return lhs.key == rhs.key && lhs.version == rhs.version

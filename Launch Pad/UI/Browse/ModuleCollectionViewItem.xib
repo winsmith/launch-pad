@@ -2,12 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ModuleCollectionViewItem" customModule="Launch_Pad" customModuleProvider="target">
             <connections>
+                <outlet property="installedLabel" destination="KUL-6X-e4T" id="iMf-5b-bZJ"/>
                 <outlet property="nameLabel" destination="HSG-nv-4Ve" id="PZT-Ra-aTH"/>
                 <outlet property="versionLabel" destination="WSL-uv-uUz" id="pIv-AZ-1rU"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -16,25 +18,33 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="86"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKo-45-Qfw">
-                    <rect key="frame" x="20" y="102" width="440" height="69"/>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKo-45-Qfw">
+                    <rect key="frame" x="20" y="10" width="440" height="66"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HSG-nv-4Ve">
-                            <rect key="frame" x="-2" y="25" width="96" height="44"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Name" id="KNz-1I-kO6">
-                                <font key="font" size="36" name=".AppleSystemUIFont"/>
+                            <rect key="frame" x="-2" y="42" width="56" height="24"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Name" id="KNz-1I-kO6">
+                                <font key="font" size="20" name=".AppleSystemUIFont"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WSL-uv-uUz">
-                            <rect key="frame" x="-2" y="0.0" width="50" height="17"/>
+                            <rect key="frame" x="-2" y="21" width="50" height="17"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version" id="gCr-Vp-leo">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KUL-6X-e4T">
+                            <rect key="frame" x="-2" y="0.0" width="81" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not Installed" id="aCE-Mx-Q1V">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="MediumGrey"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
@@ -42,19 +52,27 @@
                     <visibilityPriorities>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
             </subviews>
             <constraints>
-                <constraint firstItem="TKo-45-Qfw" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="78m-Kf-KA8"/>
                 <constraint firstAttribute="trailing" secondItem="TKo-45-Qfw" secondAttribute="trailing" constant="20" id="MEC-JB-SqX"/>
                 <constraint firstItem="TKo-45-Qfw" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="dSM-Zr-2tq"/>
+                <constraint firstItem="TKo-45-Qfw" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="ed5-wl-LWP"/>
+                <constraint firstAttribute="bottom" secondItem="TKo-45-Qfw" secondAttribute="bottom" constant="10" id="qvj-5F-VHO"/>
             </constraints>
         </customView>
         <collectionViewItem id="gMr-4B-grd" customClass="ModuleCollectionViewItem" customModule="Launch_Pad" customModuleProvider="target"/>
     </objects>
+    <resources>
+        <namedColor name="MediumGrey">
+            <color red="0.63529411759999999" green="0.66274509800000003" blue="0.67843137249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

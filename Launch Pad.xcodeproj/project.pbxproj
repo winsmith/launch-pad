@@ -175,12 +175,12 @@
 		DCF0939F20309F04003224AC /* Launch Pad */ = {
 			isa = PBXGroup;
 			children = (
-				DCADA391203865BC00C1E7BA /* UI */,
-				DC65499B203339A00023111E /* CKANClient */,
 				DC65499A203338B80023111E /* Launch Pad.entitlements */,
-				DCF093A020309F04003224AC /* AppDelegate.swift */,
 				DCF093A920309F05003224AC /* Info.plist */,
 				DCF093AA20309F05003224AC /* Launch_Pad.entitlements */,
+				DCADA391203865BC00C1E7BA /* UI */,
+				DC65499B203339A00023111E /* CKANClient */,
+				DCF093A020309F04003224AC /* AppDelegate.swift */,
 			);
 			path = "Launch Pad";
 			sourceTree = "<group>";

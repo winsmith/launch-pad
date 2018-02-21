@@ -688,7 +688,7 @@
                     <window key="window" title="Launch Pad" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="550"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="285"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <toolbar key="toolbar" implicitIdentifier="E2C85EC2-A716-487F-925C-9432E9B50A75" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="r7m-F5-MqN">
                             <allowedToolbarItems>
@@ -726,7 +726,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-35" y="558"/>
+            <point key="canvasLocation" x="-35" y="425.5"/>
         </scene>
         <!--Welcome Sheet View Controller-->
         <scene sceneID="4jw-Dr-tzq">
@@ -879,41 +879,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gp0-oR-bPN">
-                                <rect key="frame" x="20" y="20" width="410" height="260"/>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gp0-oR-bPN">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="295"/>
                                 <clipView key="contentView" drawsBackground="NO" id="iIO-m8-vfi">
-                                    <rect key="frame" x="1" y="1" width="408" height="258"/>
+                                    <rect key="frame" x="1" y="1" width="448" height="293"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="jFa-TI-5m5">
-                                            <rect key="frame" x="0.0" y="0.0" width="408" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="293"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="ZiM-ip-iuV">
                                                 <size key="itemSize" width="50" height="50"/>
                                             </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="primaryBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="zM7-yp-aT5" id="EBC-1M-9ix"/>
                                             </connections>
                                         </collectionView>
                                     </subviews>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="g9d-7i-gjN">
-                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="PHE-yN-84f">
-                                    <rect key="frame" x="-100" y="-100" width="15" height="143"/>
+                                    <rect key="frame" x="433" y="1" width="16" height="278"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="gp0-oR-bPN" firstAttribute="leading" secondItem="WgU-1d-pbv" secondAttribute="leading" constant="20" id="KS7-7V-5Y9"/>
-                            <constraint firstAttribute="trailing" secondItem="gp0-oR-bPN" secondAttribute="trailing" constant="20" id="SD5-vS-TfR"/>
-                            <constraint firstAttribute="bottom" secondItem="gp0-oR-bPN" secondAttribute="bottom" constant="20" id="g0b-Wy-e0v"/>
-                            <constraint firstItem="gp0-oR-bPN" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" constant="20" id="tUX-po-xZw"/>
+                            <constraint firstItem="gp0-oR-bPN" firstAttribute="leading" secondItem="WgU-1d-pbv" secondAttribute="leading" id="KS7-7V-5Y9"/>
+                            <constraint firstAttribute="trailing" secondItem="gp0-oR-bPN" secondAttribute="trailing" id="SD5-vS-TfR"/>
+                            <constraint firstAttribute="bottom" secondItem="gp0-oR-bPN" secondAttribute="bottom" id="g0b-Wy-e0v"/>
+                            <constraint firstItem="gp0-oR-bPN" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" constant="5" id="tUX-po-xZw"/>
                         </constraints>
                     </view>
                     <connections>

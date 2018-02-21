@@ -33,10 +33,10 @@ class BrowseViewController: NSViewController {
 
     private func configureCollectionView() {
         view.wantsLayer = true
-        collectionView.layer?.backgroundColor = NSColor.black.cgColor
+        collectionView.enclosingScrollView?.borderType = .noBorder
 
         let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.itemSize = NSSize(width: 160.0, height: 140.0)
+        flowLayout.itemSize = NSSize(width: 280.0, height: 120.0)
         flowLayout.sectionInset = NSEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
         flowLayout.minimumInteritemSpacing = 20.0
         flowLayout.minimumLineSpacing = 20.0

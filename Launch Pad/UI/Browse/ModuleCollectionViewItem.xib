@@ -5,6 +5,7 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ModuleCollectionViewItem" customModule="Launch_Pad" customModuleProvider="target">
@@ -18,16 +19,16 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="86"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="81"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKo-45-Qfw">
-                    <rect key="frame" x="20" y="10" width="440" height="66"/>
+                    <rect key="frame" x="20" y="10" width="440" height="61"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HSG-nv-4Ve">
-                            <rect key="frame" x="-2" y="42" width="56" height="24"/>
+                            <rect key="frame" x="-2" y="42" width="49" height="19"/>
                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Name" id="KNz-1I-kO6">
-                                <font key="font" size="20" name=".AppleSystemUIFont"/>
+                                <font key="font" metaFont="systemSemibold" size="16"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -63,9 +64,10 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="TKo-45-Qfw" secondAttribute="trailing" constant="20" id="MEC-JB-SqX"/>
+                <constraint firstItem="TKo-45-Qfw" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="Tkh-gd-kQx"/>
                 <constraint firstItem="TKo-45-Qfw" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="dSM-Zr-2tq"/>
-                <constraint firstItem="TKo-45-Qfw" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="ed5-wl-LWP"/>
-                <constraint firstAttribute="bottom" secondItem="TKo-45-Qfw" secondAttribute="bottom" constant="10" id="qvj-5F-VHO"/>
+                <constraint firstItem="TKo-45-Qfw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="ed5-wl-LWP"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TKo-45-Qfw" secondAttribute="bottom" constant="10" id="qvj-5F-VHO"/>
             </constraints>
         </customView>
         <collectionViewItem id="gMr-4B-grd" customClass="ModuleCollectionViewItem" customModule="Launch_Pad" customModuleProvider="target"/>

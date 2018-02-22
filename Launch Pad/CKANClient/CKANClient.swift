@@ -65,7 +65,7 @@ class CKANClient {
 
 
     // MARK: - Modules
-    public func listModules(filter: String? = nil) -> [Module] {
+    public func listModules() -> [Module] {
         let source = pykan(["list_modules"])
         let pattern = "(\\w+) :  (.+) \\| (.+) \\((.*)\\)"
         guard let formatter = try? NSRegularExpression(pattern: pattern, options: []) else { return [] }
@@ -100,5 +100,11 @@ class CKANClient {
         }
 
         return modules
+    }
+
+    public func show(module: Module) -> Module {
+        let source = pykan(["show", module.key])
+        // TODO
+        return module
     }
 }

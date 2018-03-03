@@ -14,7 +14,7 @@ class WelcomeSheetViewController: NSViewController {
         resultLabel.isHidden = true
         openLaunchPadButton.isHidden = true
     }
-    var ckanClient: CKANClient?
+    // var ckanClient: CKANClient?
     var delegate: WelcomeSheetViewControllerDelegate?
 
     @IBOutlet weak var kspDirLabel: NSTextField!
@@ -53,7 +53,7 @@ class WelcomeSheetViewController: NSViewController {
                 kspDirLabel.stringValue = path
 
                 DispatchQueue.global().async {
-                    let returnValue = self.ckanClient?.addKSPDir(url: pathURL)
+                    // let returnValue = self.ckanClient?.addKSPDir(url: pathURL)
 
                     DispatchQueue.main.async {
                         NSAnimationContext.runAnimationGroup({context in
@@ -61,7 +61,7 @@ class WelcomeSheetViewController: NSViewController {
                             context.duration = 0.25
                             context.allowsImplicitAnimation = true
 
-                            self.updateUI(isCorrectKSPDirSelected: returnValue)
+                            // self.updateUI(isCorrectKSPDirSelected: returnValue)
                             self.view.layoutSubtreeIfNeeded()
 
                         }, completionHandler: nil)

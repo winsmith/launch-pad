@@ -7,20 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC1E78592036208F00343507 /* PyKanAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E78582036208F00343507 /* PyKanAdapter.swift */; };
-		DC1E786720363B5F00343507 /* CKANClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786620363B5F00343507 /* CKANClientTests.swift */; };
-		DC1E786920363BD300343507 /* FakePyKanAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786820363BD300343507 /* FakePyKanAdapter.swift */; };
-		DC1E786A20363BEE00343507 /* PyKanAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E78582036208F00343507 /* PyKanAdapter.swift */; };
-		DC1E786B20363DF900343507 /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65499D20333B9B0023111E /* CKANClient.swift */; };
 		DC1E786E20363F9F00343507 /* CKANTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786D20363F9F00343507 /* CKANTypes.swift */; };
 		DC1E786F20363FE200343507 /* CKANTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786D20363F9F00343507 /* CKANTypes.swift */; };
 		DC33CFC1203D89140034E465 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC33CFC0203D89140034E465 /* Colors.swift */; };
 		DC33CFC3203EC8010034E465 /* CKANManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC33CFC2203EC8010034E465 /* CKANManager.swift */; };
 		DC654993203326C50023111E /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654992203326C50023111E /* BrowseViewController.swift */; };
-		DC6549952033279B0023111E /* browse_list.html in Resources */ = {isa = PBXBuildFile; fileRef = DC6549942033279B0023111E /* browse_list.html */; };
 		DC654999203338820023111E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC654998203338820023111E /* WebKit.framework */; };
-		DC65499E20333B9B0023111E /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC65499D20333B9B0023111E /* CKANClient.swift */; };
-		DC6549A120333D120023111E /* pyKAN in Resources */ = {isa = PBXBuildFile; fileRef = DC6549A020333D120023111E /* pyKAN */; };
 		DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA392203865EB00C1E7BA /* MainViewController.swift */; };
 		DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */; };
 		DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */; };
@@ -42,18 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DC1E78582036208F00343507 /* PyKanAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyKanAdapter.swift; sourceTree = "<group>"; };
-		DC1E786620363B5F00343507 /* CKANClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClientTests.swift; sourceTree = "<group>"; };
-		DC1E786820363BD300343507 /* FakePyKanAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakePyKanAdapter.swift; sourceTree = "<group>"; };
 		DC1E786D20363F9F00343507 /* CKANTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANTypes.swift; sourceTree = "<group>"; };
 		DC33CFC0203D89140034E465 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		DC33CFC2203EC8010034E465 /* CKANManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANManager.swift; sourceTree = "<group>"; };
 		DC654992203326C50023111E /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
-		DC6549942033279B0023111E /* browse_list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = browse_list.html; sourceTree = "<group>"; };
 		DC654998203338820023111E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DC65499A203338B80023111E /* Launch Pad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Launch Pad.entitlements"; sourceTree = "<group>"; };
-		DC65499D20333B9B0023111E /* CKANClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClient.swift; sourceTree = "<group>"; };
-		DC6549A020333D120023111E /* pyKAN */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pyKAN; sourceTree = "<group>"; };
 		DCADA390203786DB00C1E7BA /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		DCADA392203865EB00C1E7BA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSheetViewController.swift; sourceTree = "<group>"; };
@@ -93,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				DCF093A420309F04003224AC /* Assets.xcassets */,
-				DC6549942033279B0023111E /* browse_list.html */,
 				DC33CFC0203D89140034E465 /* Colors.swift */,
 			);
 			path = Assets;
@@ -111,19 +96,9 @@
 			isa = PBXGroup;
 			children = (
 				DC33CFC2203EC8010034E465 /* CKANManager.swift */,
-				DC65499D20333B9B0023111E /* CKANClient.swift */,
-				DC1E78582036208F00343507 /* PyKanAdapter.swift */,
 				DC1E786D20363F9F00343507 /* CKANTypes.swift */,
 			);
 			path = CKANClient;
-			sourceTree = "<group>";
-		};
-		DC65499F20333D040023111E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				DC6549A020333D120023111E /* pyKAN */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		DCADA391203865BC00C1E7BA /* UI */ = {
@@ -169,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				DCADA390203786DB00C1E7BA /* Readme.md */,
-				DC65499F20333D040023111E /* Resources */,
 				DC654996203327DF0023111E /* Assets */,
 				DCF0939F20309F04003224AC /* Launch Pad */,
 				DCF093B220309F05003224AC /* Launch PadTests */,
@@ -204,8 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				DCF093B520309F05003224AC /* Info.plist */,
-				DC1E786620363B5F00343507 /* CKANClientTests.swift */,
-				DC1E786820363BD300343507 /* FakePyKanAdapter.swift */,
 			);
 			path = "Launch PadTests";
 			sourceTree = "<group>";
@@ -298,11 +270,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6549A120333D120023111E /* pyKAN in Resources */,
 				DCADA3A7203B297400C1E7BA /* ModuleCollectionViewItem.xib in Resources */,
 				DCF093A520309F04003224AC /* Assets.xcassets in Resources */,
 				DCF093A820309F04003224AC /* Main.storyboard in Resources */,
-				DC6549952033279B0023111E /* browse_list.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,8 +296,6 @@
 				DC33CFC1203D89140034E465 /* Colors.swift in Sources */,
 				DC654993203326C50023111E /* BrowseViewController.swift in Sources */,
 				DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */,
-				DC65499E20333B9B0023111E /* CKANClient.swift in Sources */,
-				DC1E78592036208F00343507 /* PyKanAdapter.swift in Sources */,
 				DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */,
 				DC1E786E20363F9F00343507 /* CKANTypes.swift in Sources */,
 				DCF093A120309F04003224AC /* AppDelegate.swift in Sources */,
@@ -338,11 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC1E786B20363DF900343507 /* CKANClient.swift in Sources */,
-				DC1E786A20363BEE00343507 /* PyKanAdapter.swift in Sources */,
-				DC1E786920363BD300343507 /* FakePyKanAdapter.swift in Sources */,
 				DC1E786F20363FE200343507 /* CKANTypes.swift in Sources */,
-				DC1E786720363B5F00343507 /* CKANClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

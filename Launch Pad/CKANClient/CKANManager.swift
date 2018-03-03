@@ -25,32 +25,14 @@ public class CKANManager {
     }
 
     // MARK: Private
-    private let ckanClient: CKANClient
 
     // MARK: - Init
-    init(ckanClient: CKANClient) {
-        self.ckanClient = ckanClient
+    init(baseURL: String) {
         refreshModules()
     }
 
     // MARK: - Refreshments
     public func refreshModules() {
-        DispatchQueue.global().async {
-            let newModules = self.ckanClient.listModules()
-            DispatchQueue.main.async {
-                self.modules = newModules
-            }
-        }
-    }
-
-    public func hydrate(module: Module) {
-        DispatchQueue.global().async {
-            _ = self.ckanClient.show(module: module)
-
-            DispatchQueue.main.async {
-                self.postSingleModuleUpdate(module)
-            }
-        }
     }
 
     // MARK: - Notifications

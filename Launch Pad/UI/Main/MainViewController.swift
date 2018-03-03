@@ -9,21 +9,21 @@
 import AppKit
 
 class MainViewController: NSTabViewController {
-    let ckanClient = CKANClient(pyKanAdapter: PyKanAdapter())
+    // let ckanClient = CKANClient(pyKanAdapter: PyKanAdapter())
 
     lazy var welcomeSheetViewController: WelcomeSheetViewController = {
         let welcomeSheetViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "WelcomeSheetViewController"))
             as! WelcomeSheetViewController
-        welcomeSheetViewController.ckanClient = ckanClient
+//        welcomeSheetViewController.ckanClient = ckanClient
         welcomeSheetViewController.delegate = self
         return welcomeSheetViewController
     }()
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if !ckanClient.isFullyInitialized() {
-            self.presentViewControllerAsSheet(welcomeSheetViewController)
-        }
+//        if !ckanClient.isFullyInitialized() {
+//            self.presentViewControllerAsSheet(welcomeSheetViewController)
+//        }
     }
 }
 

@@ -23,7 +23,7 @@ class BrowseViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        appDelegate?.ckanManager.refreshModules()
+        // appDelegate?.ckanManager.refreshModules()
     }
 
     private func configureCollectionView() {
@@ -61,23 +61,25 @@ extension BrowseViewController: NSCollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return appDelegate?.ckanManager.modules.count ?? 0
+        // return appDelegate?.ckanManager.modules.count ?? 0
+        return 0
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ModuleCollectionViewItem"), for: indexPath)
-        guard let modules_list = appDelegate?.ckanManager.modules else { return item }
+//        guard let modules_list = nil else { return item }
         guard let moduleCollectionViewItem = item as? ModuleCollectionViewItem else { return item }
 
-        moduleCollectionViewItem.module = modules_list[indexPath.item]
+//        moduleCollectionViewItem.module = modules_list[indexPath.item]
         return moduleCollectionViewItem
     }
 }
 
 extension BrowseViewController: NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        let modules = [Module]()
         guard
-            let modules = appDelegate?.ckanManager.modules,
+            // let modules = appDelegate?.ckanManager.modules,
             let indexPath = indexPaths.first,
             modules.count > indexPath.item
         else { return }

@@ -1059,29 +1059,86 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoc-G7-0iT">
-                                <rect key="frame" x="18" y="263" width="88" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Module Name" id="04y-pj-16c">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WrG-Se-Eqg">
-                                <rect key="frame" x="18" y="238" width="98" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WrG-Se-Eqg">
+                                <rect key="frame" x="18" y="238" width="414" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Module Version" id="q8q-Kt-Dyy">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qoc-G7-0iT">
+                                <rect key="frame" x="18" y="263" width="414" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Module Name" id="04y-pj-16c">
+                                    <font key="font" metaFont="titleBar"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FGF-oJ-9A9">
+                                <rect key="frame" x="20" y="151" width="410" height="79"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-JZ-AMf">
+                                        <rect key="frame" x="-6" y="51" width="76" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c5o-Xj-P8N">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="install:" target="3uI-3E-YpQ" id="PRB-i1-3hu"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z67-am-HDN">
+                                        <rect key="frame" x="-6" y="22" width="93" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Uninstall" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PvF-as-xAz">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="uninstall:" target="3uI-3E-YpQ" id="me6-Gj-feI"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vEH-LN-rfl">
+                                        <rect key="frame" x="-6" y="-7" width="93" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Upgrade" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GLf-m2-o8R">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="upgrade:" target="3uI-3E-YpQ" id="KeK-XG-Lcv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="FGF-oJ-9A9" firstAttribute="top" secondItem="WrG-Se-Eqg" secondAttribute="bottom" constant="8" id="5cf-mt-7G7"/>
+                            <constraint firstItem="qoc-G7-0iT" firstAttribute="leading" secondItem="de3-KT-nxP" secondAttribute="leading" constant="20" id="LDg-ft-Yw3"/>
+                            <constraint firstItem="qoc-G7-0iT" firstAttribute="top" secondItem="de3-KT-nxP" secondAttribute="top" constant="20" id="Sxh-BJ-dUt"/>
+                            <constraint firstAttribute="trailing" secondItem="qoc-G7-0iT" secondAttribute="trailing" constant="20" id="UHt-k7-eCq"/>
+                            <constraint firstItem="FGF-oJ-9A9" firstAttribute="leading" secondItem="de3-KT-nxP" secondAttribute="leading" constant="20" id="aeA-Af-uoW"/>
+                            <constraint firstAttribute="trailing" secondItem="WrG-Se-Eqg" secondAttribute="trailing" constant="20" id="eiP-TK-HQz"/>
+                            <constraint firstAttribute="trailing" secondItem="FGF-oJ-9A9" secondAttribute="trailing" constant="20" id="km0-dV-bTv"/>
+                            <constraint firstItem="WrG-Se-Eqg" firstAttribute="top" secondItem="qoc-G7-0iT" secondAttribute="bottom" constant="8" id="tBk-oa-DTL"/>
+                            <constraint firstItem="WrG-Se-Eqg" firstAttribute="leading" secondItem="de3-KT-nxP" secondAttribute="leading" constant="20" id="tBz-m4-TOr"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="installButton" destination="Ube-JZ-AMf" id="ulX-Pe-AjK"/>
                         <outlet property="moduleNameLabel" destination="qoc-G7-0iT" id="g6G-Xs-86E"/>
                         <outlet property="moduleVersionLabel" destination="WrG-Se-Eqg" id="Qs4-w7-zZA"/>
+                        <outlet property="uninstallButton" destination="z67-am-HDN" id="crI-9D-EZv"/>
+                        <outlet property="upgradeButton" destination="vEH-LN-rfl" id="e30-al-TLG"/>
                     </connections>
                 </viewController>
                 <customObject id="rul-UC-Zib" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

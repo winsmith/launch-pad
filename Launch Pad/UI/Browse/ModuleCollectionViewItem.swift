@@ -30,5 +30,10 @@ class ModuleCollectionViewItem: NSCollectionViewItem {
         view.layer?.borderColor = NSColor.color(named: .DarkAccent).cgColor
         view.layer?.borderWidth = 1.0
     }
-    
+
+    override var isSelected: Bool {
+        didSet {
+            nameLabel.textColor = isSelected ? NSColor.blue : NSColor.black
+        }
+    }
 }

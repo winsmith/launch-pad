@@ -11,6 +11,7 @@ import WebKit
 
 class BrowseViewController: NSViewController {
     @IBOutlet private weak var collectionView: NSCollectionView!
+    private var moduleDetailViewController: ModuleDetailViewController?
     private let appDelegate = NSApplication.shared.delegate as? AppDelegate
     private let notificationCenter = NotificationCenter.default
 
@@ -33,7 +34,7 @@ class BrowseViewController: NSViewController {
         flowLayout.itemSize = NSSize(width: 280.0, height: 120.0)
         flowLayout.sectionInset = NSEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
         flowLayout.minimumInteritemSpacing = 20.0
-        flowLayout.minimumLineSpacing = 20.0
+        flowLayout.minimumLineSpacing = 10.0
         collectionView.collectionViewLayout = flowLayout
     }
 
@@ -44,8 +45,16 @@ class BrowseViewController: NSViewController {
     @objc func updateData() {
         self.collectionView.reloadData()
     }
+
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        let destination = segue.destinationController
+        if let moduleDetailViewController = destination as? ModuleDetailViewController {
+            self.moduleDetailViewController = moduleDetailViewController
+        }
+    }
 }
 
+// MARK: - NSCollectionViewDataSource
 extension BrowseViewController: NSCollectionViewDataSource {
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
         return 1
@@ -62,5 +71,30 @@ extension BrowseViewController: NSCollectionViewDataSource {
 
         moduleCollectionViewItem.module = modules_list[indexPath.item]
         return moduleCollectionViewItem
+    }
+}
+
+extension BrowseViewController: NSCollectionViewDelegate {
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        guard
+            let modules = appDelegate?.ckanManager.modules,
+            let indexPath = indexPaths.first,
+            modules.count > indexPath.item
+        else { return }
+
+        let module = modules[indexPath.item]
+        moduleDetailViewController?.module = module
+        deselectAllItems()
+        selectItem(at: indexPath)
+    }
+
+    func deselectAllItems() {
+        collectionView.visibleItems().forEach { item in
+            item.isSelected = false
+        }
+    }
+
+    func selectItem(at indexPath: IndexPath) {
+        collectionView.item(at: indexPath)?.isSelected = true
     }
 }

@@ -25,6 +25,7 @@
 		DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */; };
 		DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */; };
 		DCADA3A7203B297400C1E7BA /* ModuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */; };
+		DCDD1641204AF16100A04672 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */; };
 		DCF093A120309F04003224AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093A020309F04003224AC /* AppDelegate.swift */; };
 		DCF093A520309F04003224AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A420309F04003224AC /* Assets.xcassets */; };
 		DCF093A820309F04003224AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A620309F04003224AC /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 		DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSheetViewController.swift; sourceTree = "<group>"; };
 		DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleCollectionViewItem.swift; sourceTree = "<group>"; };
 		DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleCollectionViewItem.xib; sourceTree = "<group>"; };
+		DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
 		DCF0939D20309F04003224AC /* Launch Pad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Launch Pad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF093A020309F04003224AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF093A420309F04003224AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				DCF093A620309F04003224AC /* Main.storyboard */,
 				DCADA3952038664400C1E7BA /* Main */,
 				DCADA3942038663600C1E7BA /* Browse */,
+				DCDD1643204AF17E00A04672 /* Common */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -151,6 +154,15 @@
 				DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		DCDD1643204AF17E00A04672 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */,
+			);
+			name = Common;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		DCF0939420309F04003224AC = {
@@ -308,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCDD1641204AF16100A04672 /* ModuleDetailViewController.swift in Sources */,
 				DC33CFC3203EC8010034E465 /* CKANManager.swift in Sources */,
 				DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */,
 				DC33CFC1203D89140034E465 /* Colors.swift in Sources */,

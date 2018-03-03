@@ -50,6 +50,9 @@ class ModuleDetailViewController: NSViewController {
 
     // MARK: - Actions
     @IBAction func install(_ sender: Any) {
+        guard module?.isInstalled == false else { return }
+
+        
     }
 
     @IBAction func uninstall(_ sender: Any) {

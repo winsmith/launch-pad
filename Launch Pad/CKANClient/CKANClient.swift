@@ -16,8 +16,8 @@ class CKANClient {
         self.pyKanAdapter = pyKanAdapter
     }
 
-    private func pykan(_ arguments: [String]) -> String {
-        return pyKanAdapter.pykan(arguments)
+    private func pykan(_ arguments: [String], _ inputString: String? = nil) -> String {
+        return pyKanAdapter.pykan(arguments, inputString: inputString)
     }
 
     // MARK: - Ready
@@ -106,5 +106,10 @@ class CKANClient {
         let source = pykan(["show", module.key])
         // TODO
         return module
+    }
+
+    public func install(module: Module) -> String {
+        let source = pykan(["install", module.key], "y\n")
+        return source
     }
 }

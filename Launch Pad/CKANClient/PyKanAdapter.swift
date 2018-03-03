@@ -17,19 +17,26 @@ class PyKanAdapter {
         return process
     }
 
-    public func pykan(_ arguments: [String]) -> String {
+    public func pykan(_ arguments: [String], inputString: String?) -> String {
         let process = newPyKanProcess()
-        let pipe = Pipe()
-        process.standardOutput = pipe
+        let outputPipe = Pipe()
+        let inputPipe = Pipe()
+        process.standardOutput = outputPipe
+        process.standardInput = inputPipe
         process.arguments = arguments
 
         do {
+            if let inputString = inputString {
+                let inputData = inputString.data(using: .utf8)!
+                inputPipe.fileHandleForWriting.write(inputData)
+            }
+
             try process.run()
         } catch {
             debugPrint("Process crashed")
         }
 
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        let data = outputPipe.fileHandleForReading.readDataToEndOfFile()
         let returnString = String(data: data, encoding: .utf8)!
         debugPrint(returnString)
         return returnString

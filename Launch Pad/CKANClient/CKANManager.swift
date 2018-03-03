@@ -53,11 +53,6 @@ public class CKANManager {
         }
     }
 
-    // MARK: - Filtering
-    public func modulesFilteredBy(_ searchString: String) -> [Module] {
-        return modules.filter { $0.name.lowercased().range(of:searchString.lowercased()) != nil }
-    }
-
     // MARK: - Notifications
     private func postAllModulesUpdatedNotification() {
         notificationCenter.post(name: CKANManager.allModulesUpdatedNotification, object: self)
@@ -66,4 +61,12 @@ public class CKANManager {
     private func postSingleModuleUpdate(_ module: Module) {
         notificationCenter.post(name: CKANManager.singleModuleUpdatedNotification, object: self, userInfo: ["key": module.key])
     }
+
+    // MARK: - Filtering
+    public func modulesFilteredBy(_ searchString: String) -> [Module] {
+        return modules.filter { $0.name.lowercased().range(of:searchString.lowercased()) != nil }
+    }
+
+    // MARK: - Installing, Upgrading and Uninstalling
+    
 }

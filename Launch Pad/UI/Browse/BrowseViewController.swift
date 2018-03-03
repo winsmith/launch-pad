@@ -38,9 +38,11 @@ class BrowseViewController: NSViewController {
     }
 
     private func configureNotifications() {
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: CKANManager.Notifications.allModulesUpdated.rawValue), object: self, queue: nil) { notification in
-            self.collectionView.reloadData()
-        }
+        notificationCenter.addObserver(self, selector: #selector(updateData), name: CKANManager.allModulesUpdatedNotification, object: nil)
+    }
+
+    @objc func updateData() {
+        self.collectionView.reloadData()
     }
 }
 

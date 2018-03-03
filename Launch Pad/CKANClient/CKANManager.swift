@@ -9,11 +9,9 @@
 import Foundation
 
 public class CKANManager {
-    // MARK: - Subtypes
-    public enum Notifications: String {
-        case allModulesUpdated = "allModulesUpdated"
-        case singleModuleUpdated = "singleModuleUpdated"
-    }
+    // MARK: - Notifications
+    static let allModulesUpdatedNotification = Notification.Name("allModulesUpdated")
+    static let singleModuleUpdatedNotification = Notification.Name("singleModuleUpdated")
 
     // MARK: - Properties
     // MARK: Public
@@ -62,10 +60,10 @@ public class CKANManager {
 
     // MARK: - Notifications
     private func postAllModulesUpdatedNotification() {
-        notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.allModulesUpdated.rawValue), object: self)
+        notificationCenter.post(name: CKANManager.allModulesUpdatedNotification, object: self)
     }
 
     private func postSingleModuleUpdate(_ module: Module) {
-        notificationCenter.post(name: NSNotification.Name(rawValue: Notifications.singleModuleUpdated.rawValue), object: self, userInfo: ["key": module.key])
+        notificationCenter.post(name: CKANManager.singleModuleUpdatedNotification, object: self, userInfo: ["key": module.key])
     }
 }

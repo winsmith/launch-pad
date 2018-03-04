@@ -18,6 +18,8 @@
 		DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */; };
 		DCADA3A7203B297400C1E7BA /* ModuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */; };
 		DCDD1641204AF16100A04672 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */; };
+		DCDD1648204B0AAC00A04672 /* CKANRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD1647204B0AAC00A04672 /* CKANRepository.swift */; };
+		DCDD164A204B0D5800A04672 /* CKANSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD1649204B0D5800A04672 /* CKANSettings.swift */; };
 		DCF093A120309F04003224AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093A020309F04003224AC /* AppDelegate.swift */; };
 		DCF093A520309F04003224AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A420309F04003224AC /* Assets.xcassets */; };
 		DCF093A820309F04003224AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A620309F04003224AC /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleCollectionViewItem.swift; sourceTree = "<group>"; };
 		DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleCollectionViewItem.xib; sourceTree = "<group>"; };
 		DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
+		DCDD1647204B0AAC00A04672 /* CKANRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANRepository.swift; sourceTree = "<group>"; };
+		DCDD1649204B0D5800A04672 /* CKANSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANSettings.swift; sourceTree = "<group>"; };
 		DCF0939D20309F04003224AC /* Launch Pad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Launch Pad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF093A020309F04003224AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF093A420309F04003224AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,9 +144,19 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		DCDD1644204B09FF00A04672 /* CKAN */ = {
+			isa = PBXGroup;
+			children = (
+				DCDD1647204B0AAC00A04672 /* CKANRepository.swift */,
+				DCDD1649204B0D5800A04672 /* CKANSettings.swift */,
+			);
+			path = CKAN;
+			sourceTree = "<group>";
+		};
 		DCF0939420309F04003224AC = {
 			isa = PBXGroup;
 			children = (
+				DCDD1644204B09FF00A04672 /* CKAN */,
 				DCADA390203786DB00C1E7BA /* Readme.md */,
 				DC654996203327DF0023111E /* Assets */,
 				DCF0939F20309F04003224AC /* Launch Pad */,
@@ -292,12 +306,14 @@
 			files = (
 				DCDD1641204AF16100A04672 /* ModuleDetailViewController.swift in Sources */,
 				DC33CFC3203EC8010034E465 /* CKANManager.swift in Sources */,
+				DCDD1648204B0AAC00A04672 /* CKANRepository.swift in Sources */,
 				DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */,
 				DC33CFC1203D89140034E465 /* Colors.swift in Sources */,
 				DC654993203326C50023111E /* BrowseViewController.swift in Sources */,
 				DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */,
 				DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */,
 				DC1E786E20363F9F00343507 /* CKANTypes.swift in Sources */,
+				DCDD164A204B0D5800A04672 /* CKANSettings.swift in Sources */,
 				DCF093A120309F04003224AC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

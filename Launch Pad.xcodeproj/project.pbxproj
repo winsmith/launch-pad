@@ -20,6 +20,9 @@
 		DCDD1641204AF16100A04672 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */; };
 		DCDD1648204B0AAC00A04672 /* CKANRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD1647204B0AAC00A04672 /* CKANRepository.swift */; };
 		DCDD164A204B0D5800A04672 /* CKANSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD1649204B0D5800A04672 /* CKANSettings.swift */; };
+		DCDD1656204CAD2700A04672 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCDD1655204CAD2600A04672 /* ZIPFoundation.framework */; };
+		DCDD1657204CAD2700A04672 /* ZIPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCDD1655204CAD2600A04672 /* ZIPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DCDD165B204CAD6300A04672 /* ZIPFoundation.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = DCDD165A204CAD6300A04672 /* ZIPFoundation.framework.dSYM */; };
 		DCF093A120309F04003224AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093A020309F04003224AC /* AppDelegate.swift */; };
 		DCF093A520309F04003224AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A420309F04003224AC /* Assets.xcassets */; };
 		DCF093A820309F04003224AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF093A620309F04003224AC /* Main.storyboard */; };
@@ -34,6 +37,30 @@
 			remoteInfo = "Launch Pad";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DCDD1658204CAD2700A04672 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DCDD1657204CAD2700A04672 /* ZIPFoundation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCDD1659204CAD4000A04672 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				DCDD165B204CAD6300A04672 /* ZIPFoundation.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DC1E786D20363F9F00343507 /* CKANTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANTypes.swift; sourceTree = "<group>"; };
@@ -50,6 +77,8 @@
 		DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
 		DCDD1647204B0AAC00A04672 /* CKANRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANRepository.swift; sourceTree = "<group>"; };
 		DCDD1649204B0D5800A04672 /* CKANSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANSettings.swift; sourceTree = "<group>"; };
+		DCDD1655204CAD2600A04672 /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZIPFoundation.framework; path = Carthage/Build/Mac/ZIPFoundation.framework; sourceTree = "<group>"; };
+		DCDD165A204CAD6300A04672 /* ZIPFoundation.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ZIPFoundation.framework.dSYM; path = Carthage/Build/Mac/ZIPFoundation.framework.dSYM; sourceTree = "<group>"; };
 		DCF0939D20309F04003224AC /* Launch Pad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Launch Pad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF093A020309F04003224AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF093A420309F04003224AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC654999203338820023111E /* WebKit.framework in Frameworks */,
+				DCDD1656204CAD2700A04672 /* ZIPFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +186,8 @@
 		DCF0939420309F04003224AC = {
 			isa = PBXGroup;
 			children = (
+				DCDD165A204CAD6300A04672 /* ZIPFoundation.framework.dSYM */,
+				DCDD1655204CAD2600A04672 /* ZIPFoundation.framework */,
 				DCDD1644204B09FF00A04672 /* CKAN */,
 				DCADA390203786DB00C1E7BA /* Readme.md */,
 				DC654996203327DF0023111E /* Assets */,
@@ -206,6 +238,8 @@
 				DCF0939920309F04003224AC /* Sources */,
 				DCF0939A20309F04003224AC /* Frameworks */,
 				DCF0939B20309F04003224AC /* Resources */,
+				DCDD1658204CAD2700A04672 /* Embed Frameworks */,
+				DCDD1659204CAD4000A04672 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -460,6 +494,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "Launch Pad/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.breakthesystem.Launch-Pad";
@@ -474,6 +512,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "Launch Pad/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.breakthesystem.Launch-Pad";

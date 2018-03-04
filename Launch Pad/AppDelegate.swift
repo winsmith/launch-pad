@@ -13,7 +13,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // public let ckanManager = CKANManager(ckanClient: CKANClient(pyKanAdapter: PyKanAdapter()))
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        let repository = CKANRepository(inDirectory: URL.init(fileURLWithPath: "/Applications/Kerbal Space Program/temp"), withDownloadURL: URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!)
+        repository.downloadRepositoryArchive()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

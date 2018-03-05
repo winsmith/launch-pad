@@ -21,7 +21,7 @@ class CKANRepository {
         self.downloadURL = downloadURL
     }
 
-    func downloadRepositoryArchive() {
+    func downloadRepositoryArchive(callback: @escaping () -> ()) {
         let localUrl = workingDirectory.appendingPathComponent(zipFileName)
 
         let sessionConfig = URLSessionConfiguration.default
@@ -37,6 +37,7 @@ class CKANRepository {
 
                 do {
                     try self.fileManager.copyItem(at: tempLocalUrl, to: localUrl)
+                    callback()
                 } catch (let writeError) {
                     print("error writing file \(localUrl) : \(writeError)")
                 }
@@ -50,11 +51,11 @@ class CKANRepository {
 
     func unpackRepositoryArchive(callback: () -> ()) {
         let sourceUrl = workingDirectory.appendingPathComponent(zipFileName)
-        let destinationUrl = workingDirectory.appendingPathComponent("unzip")
+        let destinationUrl = workingDirectory
 
         do {
-            try fileManager.createDirectory(at: destinationUrl, withIntermediateDirectories: true, attributes: nil)
             try fileManager.unzipItem(at: sourceUrl, to: destinationUrl)
+            callback()
         } catch {
             print("Extraction of ZIP archive failed with error:\(error)")
         }

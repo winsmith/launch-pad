@@ -15,13 +15,14 @@ class CKANRepository {
 
     private let fileManager = FileManager.default
     private let zipFileName = "ckan_meta.zip"
+    private let decoder = JSONDecoder()
 
     init(inDirectory workingDirectory: URL, withDownloadURL downloadURL: URL) {
         self.workingDirectory = workingDirectory
         self.downloadURL = downloadURL
     }
 
-    func downloadRepositoryArchive(callback: @escaping () -> ()) {
+    func downloadRepositoryArchive(callback: @escaping (_ localArchiveURL: URL) -> ()) {
         let localUrl = workingDirectory.appendingPathComponent(zipFileName)
 
         let sessionConfig = URLSessionConfiguration.default
@@ -37,7 +38,7 @@ class CKANRepository {
 
                 do {
                     try self.fileManager.copyItem(at: tempLocalUrl, to: localUrl)
-                    callback()
+                    callback(localUrl)
                 } catch (let writeError) {
                     print("error writing file \(localUrl) : \(writeError)")
                 }
@@ -49,20 +50,37 @@ class CKANRepository {
         task.resume()
     }
 
-    func unpackRepositoryArchive(callback: () -> ()) {
+    func unpackRepositoryArchive(callback: (_ unzippedURL: URL) -> ()) {
         let sourceUrl = workingDirectory.appendingPathComponent(zipFileName)
         let destinationUrl = workingDirectory
 
         do {
             try fileManager.unzipItem(at: sourceUrl, to: destinationUrl)
-            callback()
+            callback(destinationUrl)
         } catch {
             print("Extraction of ZIP archive failed with error:\(error)")
         }
     }
 
-    func readUnpackedRepositoryArchive() {
+    func readUnpackedRepositoryArchive(rootDirectoryURL: URL) {
+        let enumerator = fileManager.enumerator(at: rootDirectoryURL, includingPropertiesForKeys: [], options: [.skipsHiddenFiles], errorHandler: { (url, error) -> Bool in
+            print("directoryEnumerator error at \(url): ", error)
+            return true
+        })!
 
+        for case let fileURL as URL in enumerator {
+            if fileURL.pathExtension == "ckan" {
+                print("Decoding", fileURL.path)
+                do {
+                    let fileData = try Data(contentsOf: fileURL)
+                    let ckanFile = try decoder.decode(CKANFile.self, from: fileData)
+                } catch let error {
+                    print(error)
+                    fatalError()
+                }
+
+            }
+        }
     }
 
     func readRepositoryArchiveFromCache() -> Bool {
@@ -70,11 +88,3 @@ class CKANRepository {
     }
 
 }
-
-//extension CKANRepository: URLSessionDownloadDelegate {
-//    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
-//                    didFinishDownloadingTo location: URL) {
-//        print("Finished downloading to \(location).")
-//    }
-//}
-

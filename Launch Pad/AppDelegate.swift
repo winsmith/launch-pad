@@ -14,12 +14,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let repository = CKANRepository(inDirectory: URL.init(fileURLWithPath: "/Applications/Kerbal Space Program/temp"), withDownloadURL: URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!)
-        repository.downloadRepositoryArchive() {
-            print("Download complete")
-            repository.unpackRepositoryArchive {
-                print("unpack complete")
-            }
-        }
+//        repository.downloadRepositoryArchive() {
+//            print("Download complete")
+//            repository.unpackRepositoryArchive {
+//                print("unpack complete")
+//            }
+//        }
+        repository.readUnpackedRepositoryArchive(rootDirectoryURL: URL.init(fileURLWithPath: "/Applications/Kerbal Space Program/temp/CKAN-meta-master"))
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

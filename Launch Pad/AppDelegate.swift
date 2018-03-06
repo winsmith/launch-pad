@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //            }
 //        }
         repository.readUnpackedRepositoryArchive(rootDirectoryURL: URL.init(fileURLWithPath: "/Applications/Kerbal Space Program/temp/CKAN-meta-master"))
+        repository.saveToCache()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -10,21 +10,32 @@ import Foundation
 import ZIPFoundation
 
 class CKANRepository {
-    let workingDirectory: URL
+    // MARK: - Properties
+    // MARK: Configuration
     let downloadURL: URL
+    let workingDirectory: URL
 
-    private let fileManager = FileManager.default
+    // MARK: CKANFiles
+    var ckanFiles: [CKANFile]?
+
+    // MARK: URLs
     private let zipFileName = "ckan_meta.zip"
+    private let cachePlistFileName = "ckan_cache.plist"
+    private var zipFileURL: URL { return workingDirectory.appendingPathComponent(zipFileName) }
+    private var cachePlistURL: URL { return workingDirectory.appendingPathComponent(cachePlistFileName) }
+
+    // MARK: Private
+    private let fileManager = FileManager.default
     private let decoder = JSONDecoder()
 
+    // MARK: - Initialization
     init(inDirectory workingDirectory: URL, withDownloadURL downloadURL: URL) {
         self.workingDirectory = workingDirectory
         self.downloadURL = downloadURL
     }
 
     func downloadRepositoryArchive(callback: @escaping (_ localArchiveURL: URL) -> ()) {
-        let localUrl = workingDirectory.appendingPathComponent(zipFileName)
-
+        let localUrl = zipFileURL
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
         let request = URLRequest(url: downloadURL)
@@ -50,13 +61,12 @@ class CKANRepository {
         task.resume()
     }
 
-    func unpackRepositoryArchive(callback: (_ unzippedURL: URL) -> ()) {
-        let sourceUrl = workingDirectory.appendingPathComponent(zipFileName)
+    func unpackRepositoryArchive() {
+        let sourceUrl = zipFileURL
         let destinationUrl = workingDirectory
 
         do {
             try fileManager.unzipItem(at: sourceUrl, to: destinationUrl)
-            callback(destinationUrl)
         } catch {
             print("Extraction of ZIP archive failed with error:\(error)")
         }
@@ -68,18 +78,32 @@ class CKANRepository {
             return true
         })!
 
+        var newCkanFiles = [CKANFile]()
         for case let fileURL as URL in enumerator {
             if fileURL.pathExtension == "ckan" {
                 print("Decoding", fileURL.path)
                 do {
                     let fileData = try Data(contentsOf: fileURL)
                     let ckanFile = try decoder.decode(CKANFile.self, from: fileData)
+                    newCkanFiles.append(ckanFile)
                 } catch let error {
                     print(error)
                     fatalError()
                 }
-
             }
+        }
+
+        print("Decoding complete! \(newCkanFiles.count) files decoded")
+        ckanFiles = newCkanFiles
+    }
+
+    func saveToCache() {
+        do {
+            let plistData = try PropertyListSerialization.data(fromPropertyList: ckanFiles, format: .binary, options: 0)
+            try plistData.write(to: cachePlistURL)
+        } catch let error {
+            print(error)
+            fatalError()
         }
     }
 

@@ -97,17 +97,18 @@ class CKANRepository {
         ckanFiles = newCkanFiles
     }
 
-    func saveToCache() {
-        do {
-            let plistData = try PropertyListSerialization.data(fromPropertyList: ckanFiles, format: .binary, options: 0)
-            try plistData.write(to: cachePlistURL)
-        } catch let error {
-            print(error)
-            fatalError()
-        }
+    struct FakeCKANFile {
+        let spec_version: Int = 1
     }
 
+    /// Burp the current CKAN Files into a cache file
+    func saveToCache() {
+        // Not implemented
+    }
+
+    /// Unburp the contents of the cache file into the ckanFiles array
     func readRepositoryArchiveFromCache() -> Bool {
+        // Not implemented
         return false
     }
 

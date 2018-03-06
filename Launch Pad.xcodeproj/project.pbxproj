@@ -176,14 +176,14 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
-		DCDD1644204B09FF00A04672 /* CKAN */ = {
+		DCDD1644204B09FF00A04672 /* CKANKit */ = {
 			isa = PBXGroup;
 			children = (
 				DCDD1647204B0AAC00A04672 /* CKANRepository.swift */,
 				DCDD1649204B0D5800A04672 /* CKANSettings.swift */,
 				DC84D02A204DBC65005CBDCD /* CKANFile.swift */,
 			);
-			path = CKAN;
+			path = CKANKit;
 			sourceTree = "<group>";
 		};
 		DCF0939420309F04003224AC = {
@@ -191,7 +191,7 @@
 			children = (
 				DCDD165A204CAD6300A04672 /* ZIPFoundation.framework.dSYM */,
 				DCDD1655204CAD2600A04672 /* ZIPFoundation.framework */,
-				DCDD1644204B09FF00A04672 /* CKAN */,
+				DCDD1644204B09FF00A04672 /* CKANKit */,
 				DCADA390203786DB00C1E7BA /* Readme.md */,
 				DC654996203327DF0023111E /* Assets */,
 				DCF0939F20309F04003224AC /* Launch Pad */,

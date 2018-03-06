@@ -11,6 +11,9 @@ client to the very good [CKAN](https://github.com/KSP-CKAN/CKAN) mod repository.
 While the original CKAN client is very good on Windows, people sometimes have trouble getting it to work on
 macOS. I also want to try my hand at improving the user interface somewhat.
 
+If you want a mac-compatible CKAN client right now and don't mind using the command line, check out
+[pyKAN](https://github.com/ajventer/pyKAN).
+
 ## 🛰 What is the development status?
 
 Generally speaking, **nothing** is even close to finished.

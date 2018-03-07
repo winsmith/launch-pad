@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ZIPFoundation
+// import ZIPFoundation
 
 class CKANRepository {
     // MARK: - Properties
@@ -32,6 +32,10 @@ class CKANRepository {
     init(inDirectory workingDirectory: URL, withDownloadURL downloadURL: URL) {
         self.workingDirectory = workingDirectory
         self.downloadURL = downloadURL
+    }
+
+    func repositoryZIPFileExists() -> Bool {
+        return fileManager.fileExists(atPath: zipFileURL.path)
     }
 
     func downloadRepositoryArchive(callback: @escaping (_ localArchiveURL: URL) -> ()) {

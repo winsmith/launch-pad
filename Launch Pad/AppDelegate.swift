@@ -5,7 +5,6 @@
 //  Created by Daniel Jilg on 11.02.18.
 //  Copyright © 2018 breakthesystem. All rights reserved.
 //
-
 import Cocoa
 
 @NSApplicationMain
@@ -18,18 +17,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let doUnpack = {
             print("Unpacking Repository Zip File to \(downloadPath)... ")
-            let success = repository.unpackRepositoryArchive()
+            // https://developer.apple.com/documentation/foundation/progress
+            let progress = Progress()
+            let success = repository.unpackRepositoryArchive(progress: progress)
             print("Call returned \(success ? "success" : "nothing unpacked")")
+        }
+
+        let doParse = {
+            print("Parsing unpacked Repository...")
+            repository.readUnpackedRepositoryArchive()
+            print("Parsing Done")
         }
 
         if repository.repositoryZIPFileExists() {
             print("Repository ZIP File already exists")
             doUnpack()
+            doParse()
         } else {
             print("Downloading Repository ZIP File to \(downloadPath)...")
-            repository.downloadRepositoryArchive() { _ in
+            repository.downloadRepositoryArchive() {
                 print("Downloading Repository ZIP File Complete")
                 doUnpack()
+                doParse()
             }
         }
 

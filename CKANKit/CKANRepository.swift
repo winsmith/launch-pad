@@ -19,10 +19,12 @@ class CKANRepository {
     var ckanFiles: [CKANFile]?
 
     // MARK: URLs
-    private let zipFileName = "ckan_meta.zip"
-    private let cachePlistFileName = "ckan_cache.plist"
+    private let zipFileName = "ckan_meta_master.zip"
+    private let cachePlistFileName = "ckan_repository_cache.plist"
+    private let unzippedDirectoryName = "ckan_meta_master"
     private var zipFileURL: URL { return workingDirectory.appendingPathComponent(zipFileName) }
     private var cachePlistURL: URL { return workingDirectory.appendingPathComponent(cachePlistFileName) }
+    private var unzippedDirectoryURL: URL { return workingDirectory.appendingPathComponent(unzippedDirectoryName) }
 
     // MARK: Private
     private let fileManager = FileManager.default
@@ -38,7 +40,7 @@ class CKANRepository {
         return fileManager.fileExists(atPath: zipFileURL.path)
     }
 
-    func downloadRepositoryArchive(callback: @escaping (_ localArchiveURL: URL) -> ()) {
+    func downloadRepositoryArchive(callback: @escaping () -> ()) {
         let localUrl = zipFileURL
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
@@ -53,7 +55,7 @@ class CKANRepository {
 
                 do {
                     try self.fileManager.copyItem(at: tempLocalUrl, to: localUrl)
-                    callback(localUrl)
+                    callback()
                 } catch (let writeError) {
                     print("error writing file \(localUrl) : \(writeError)")
                 }
@@ -65,12 +67,12 @@ class CKANRepository {
         task.resume()
     }
 
-    func unpackRepositoryArchive() -> Bool {
+    func unpackRepositoryArchive(progress: Progress? = nil) -> Bool {
         let sourceUrl = zipFileURL
-        let destinationUrl = workingDirectory
+        let destinationUrl = unzippedDirectoryURL
 
         do {
-            try fileManager.unzipItem(at: sourceUrl, to: destinationUrl)
+            try fileManager.unzipItem(at: sourceUrl, to: destinationUrl, progress: progress)
             return true
         } catch CocoaError.fileWriteFileExists {
             // File Exists
@@ -81,8 +83,8 @@ class CKANRepository {
         return false
     }
 
-    func readUnpackedRepositoryArchive(rootDirectoryURL: URL) {
-        let enumerator = fileManager.enumerator(at: rootDirectoryURL, includingPropertiesForKeys: [], options: [.skipsHiddenFiles], errorHandler: { (url, error) -> Bool in
+    func readUnpackedRepositoryArchive() {
+        let enumerator = fileManager.enumerator(at: unzippedDirectoryURL, includingPropertiesForKeys: [], options: [.skipsHiddenFiles], errorHandler: { (url, error) -> Bool in
             print("directoryEnumerator error at \(url): ", error)
             return true
         })!
@@ -90,7 +92,6 @@ class CKANRepository {
         var newCkanFiles = [CKANFile]()
         for case let fileURL as URL in enumerator {
             if fileURL.pathExtension == "ckan" {
-                print("Decoding", fileURL.path)
                 do {
                     let fileData = try Data(contentsOf: fileURL)
                     let ckanFile = try decoder.decode(CKANFile.self, from: fileData)
@@ -104,10 +105,6 @@ class CKANRepository {
 
         print("Decoding complete! \(newCkanFiles.count) files decoded")
         ckanFiles = newCkanFiles
-    }
-
-    struct FakeCKANFile {
-        let spec_version: Int = 1
     }
 
     /// Burp the current CKAN Files into a cache file

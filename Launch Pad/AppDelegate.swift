@@ -21,6 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let progress = Progress()
             let success = repository.unpackRepositoryArchive(progress: progress)
             print("Call returned \(success ? "success" : "nothing unpacked")")
+            repository.deleteZipFile()
+            print("Deleted original zip file")
         }
 
         let doParse = {
@@ -33,12 +35,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print("Repository ZIP File already exists")
             doUnpack()
             doParse()
+            repository.deleteUnzippedDirectory()
         } else {
             print("Downloading Repository ZIP File to \(downloadPath)...")
             repository.downloadRepositoryArchive() {
                 print("Downloading Repository ZIP File Complete")
                 doUnpack()
                 doParse()
+                repository.deleteUnzippedDirectory()
             }
         }
 

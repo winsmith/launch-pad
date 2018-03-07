@@ -107,6 +107,24 @@ class CKANRepository {
         ckanFiles = newCkanFiles
     }
 
+    func deleteZipFile() {
+        do {
+            try fileManager.removeItem(at: zipFileURL)
+        } catch {
+            print("Deleting ZIP archive failed with error:\(error)")
+            fatalError()
+        }
+    }
+
+    func deleteUnzippedDirectory() {
+        do {
+            try fileManager.removeItem(at: unzippedDirectoryURL)
+        } catch {
+            print("Deleting unzipped directory failed with error:\(error)")
+            fatalError()
+        }
+    }
+
     /// Burp the current CKAN Files into a cache file
     func saveToCache() {
         // Not implemented

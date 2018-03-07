@@ -40,7 +40,7 @@ class CKANRepository {
         return fileManager.fileExists(atPath: zipFileURL.path)
     }
 
-    func downloadRepositoryArchive(callback: @escaping () -> ()) {
+    func downloadRepositoryArchive(callback: @escaping () -> ()) -> Progress {
         let localUrl = zipFileURL
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
@@ -65,6 +65,7 @@ class CKANRepository {
             }
         }
         task.resume()
+        return task.progress
     }
 
     func unpackRepositoryArchive(progress: Progress? = nil) -> Bool {
@@ -83,14 +84,21 @@ class CKANRepository {
         return false
     }
 
-    func readUnpackedRepositoryArchive() {
+    func readUnpackedRepositoryArchive(progress: Progress?) {
         let enumerator = fileManager.enumerator(at: unzippedDirectoryURL, includingPropertiesForKeys: [], options: [.skipsHiddenFiles], errorHandler: { (url, error) -> Bool in
             print("directoryEnumerator error at \(url): ", error)
             return true
         })!
 
+        let allFileURLs = enumerator.allObjects as! [URL]
+        print("count: ", allFileURLs.count)
+
+        if let progress = progress {
+            progress.totalUnitCount = Int64(allFileURLs.count)
+        }
+
         var newCkanFiles = [CKANFile]()
-        for case let fileURL as URL in enumerator {
+        for fileURL in allFileURLs {
             if fileURL.pathExtension == "ckan" {
                 do {
                     let fileData = try Data(contentsOf: fileURL)
@@ -101,6 +109,7 @@ class CKANRepository {
                     fatalError()
                 }
             }
+            progress?.completedUnitCount += 1
         }
 
         print("Decoding complete! \(newCkanFiles.count) files decoded")
@@ -121,7 +130,6 @@ class CKANRepository {
             try fileManager.removeItem(at: unzippedDirectoryURL)
         } catch {
             print("Deleting unzipped directory failed with error:\(error)")
-            fatalError()
         }
     }
 

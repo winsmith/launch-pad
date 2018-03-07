@@ -14,46 +14,62 @@ class UpdateRepositoryViewController: NSViewController {
 
     // MARK: Private Properties
     private var repository: CKANRepository?
-    private var progress = Progress()
+    private var progress = Progress(totalUnitCount: 198)
     private var progressKeyValueObservation: NSKeyValueObservation?
+    private var isWorking = false
+    private var bleepBloopTimer: Timer?
 
     // MARK: - Outlets
-    @IBOutlet weak var updateRepositoryButton: NSButton!
     @IBOutlet weak var progressBar: NSProgressIndicator!
     @IBOutlet weak var statusLabel: NSTextField!
-    
+    @IBOutlet weak var bleepBloopLabel: NSTextField!
+
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        progressKeyValueObservation = progress.observe(\.completedUnitCount) { [weak self] _, _ in
+        progressKeyValueObservation = progress.observe(\.fractionCompleted) { [weak self] _, _ in
             self?.updateUI()
+        }
+
+        bleepBloopTimer = Timer.scheduledTimer(withTimeInterval: 0.9, repeats: true) { _ in
+            if self.isWorking {
+                if self.bleepBloopLabel.stringValue == "Bleep" {
+                    self.bleepBloopLabel.stringValue = "Bloop"
+                } else {
+                    self.bleepBloopLabel.stringValue = "Bleep"
+                }
+            }
         }
 
         let downloadPath = "/tmp"
         repository = CKANRepository(inDirectory: URL.init(fileURLWithPath: downloadPath), withDownloadURL: URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!)
     }
 
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        updateRepository()
+    }
+
     private func updateUI() {
         DispatchQueue.main.async {
-            self.progressBar.minValue = 0
-            self.progressBar.maxValue = Double(self.progress.totalUnitCount)
-            self.progressBar.doubleValue = Double(self.progress.completedUnitCount)
+            self.progressBar.doubleValue = self.progress.fractionCompleted * 100
         }
     }
 
     // MARK: - Actions
-    @IBAction func updateRepository(button: NSButton) {
+    func updateRepository() {
+        isWorking = true
         statusLabel.stringValue = "Downloading File..."
 
         if repository?.repositoryZIPFileExists() == true {
             repository?.deleteZipFile()
-            repository?.deleteUnzippedDirectory()
         }
 
-        repository!.downloadRepositoryArchive() {
+        let downloadProgress = repository!.downloadRepositoryArchive() {
             self.processDownloadedFile()
         }
+        progress.addChild(downloadProgress, withPendingUnitCount: 66)
     }
 
     private func updateStatusLabel(_ newStatus: String) {
@@ -62,21 +78,31 @@ class UpdateRepositoryViewController: NSViewController {
         }
     }
 
+    private func updateBleepBloopLabel(_ newStatus: String) {
+        DispatchQueue.main.async {
+            self.bleepBloopLabel.stringValue = newStatus
+        }
+    }
+
     // MARK: - Repository Handling
     private func processDownloadedFile() {
         // unpack
         // https://developer.apple.com/documentation/foundation/progress
         updateStatusLabel("Unpacking File...")
-        let success = repository!.unpackRepositoryArchive(progress: progress)
+        let unpackingProgress = Progress()
+        progress.addChild(unpackingProgress, withPendingUnitCount: 66)
+        let success = repository!.unpackRepositoryArchive(progress: unpackingProgress)
         if success == false {
-            fatalError()
+
         }
-        
-        repository!.deleteZipFile()
+
+        // repository!.deleteZipFile()
 
         // parse
         updateStatusLabel("Parsing unpacked Repository...")
-        repository!.readUnpackedRepositoryArchive()
+        let parsingProgress = Progress()
+        progress.addChild(parsingProgress, withPendingUnitCount: 66)
+        repository!.readUnpackedRepositoryArchive(progress: parsingProgress)
         repository!.deleteUnzippedDirectory()
 
         // save to cache
@@ -87,9 +113,14 @@ class UpdateRepositoryViewController: NSViewController {
         } else {
             updateStatusLabel("Done, but something is fishy")
         }
+
+        DispatchQueue.main.async {
+            self.isWorking = false
+            self.delegate?.didFinishUpdating(self)
+        }
     }
 }
 
 protocol UpdateRepositoryViewControllerDelegate: class {
-    func didDismiss(sender: WelcomeSheetViewController)
+    func didFinishUpdating(_ sender: UpdateRepositoryViewController)
 }

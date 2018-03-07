@@ -42,7 +42,7 @@ extension MainViewController: WelcomeSheetViewControllerDelegate {
 }
 
 extension MainViewController: UpdateRepositoryViewControllerDelegate {
-    func didDismiss(sender: WelcomeSheetViewController) {
+    func didFinishUpdating(_ sender: UpdateRepositoryViewController) {
         dismissViewController(sender)
     }
 

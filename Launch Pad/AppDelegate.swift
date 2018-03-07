@@ -13,17 +13,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // public let ckanManager = CKANManager(ckanClient: CKANClient(pyKanAdapter: PyKanAdapter()))
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let repository = CKANRepository(inDirectory: URL.init(fileURLWithPath: "/tmp"), withDownloadURL: URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!)
+        let downloadPath = "/tmp"
+        let repository = CKANRepository(inDirectory: URL.init(fileURLWithPath: downloadPath), withDownloadURL: URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!)
+
+        let doUnpack = {
+            print("Unpacking Repository Zip File to \(downloadPath)... ")
+            let success = repository.unpackRepositoryArchive()
+            print("Call returned \(success ? "success" : "nothing unpacked")")
+        }
+
         if repository.repositoryZIPFileExists() {
             print("Repository ZIP File already exists")
-            print("Unpacking Repository Zip File...")
-            repository.unpackRepositoryArchive()
+            doUnpack()
         } else {
-            print("Downloading Repository ZIP File...")
-            repository.downloadRepositoryArchive() { localArchiveURL in
+            print("Downloading Repository ZIP File to \(downloadPath)...")
+            repository.downloadRepositoryArchive() { _ in
                 print("Downloading Repository ZIP File Complete")
-                print("Unpacking Repository Zip File...")
-                repository.unpackRepositoryArchive()
+                doUnpack()
             }
         }
 

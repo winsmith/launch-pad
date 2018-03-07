@@ -65,15 +65,20 @@ class CKANRepository {
         task.resume()
     }
 
-    func unpackRepositoryArchive() {
+    func unpackRepositoryArchive() -> Bool {
         let sourceUrl = zipFileURL
         let destinationUrl = workingDirectory
 
         do {
             try fileManager.unzipItem(at: sourceUrl, to: destinationUrl)
+            return true
+        } catch CocoaError.fileWriteFileExists {
+            // File Exists
+            print("Nothing unpacked, file exists")
         } catch {
             print("Extraction of ZIP archive failed with error:\(error)")
         }
+        return false
     }
 
     func readUnpackedRepositoryArchive(rootDirectoryURL: URL) {

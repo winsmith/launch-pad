@@ -729,6 +729,60 @@
             </objects>
             <point key="canvasLocation" x="-35" y="425.5"/>
         </scene>
+        <!--Update Repository View Controller-->
+        <scene sceneID="IcA-xe-MY1">
+            <objects>
+                <viewController storyboardIdentifier="UpdateRepositoryViewController" id="UDK-yN-dcp" customClass="UpdateRepositoryViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="GnQ-WZ-PSU">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Oz-hrt">
+                                <rect key="frame" x="149" y="172" width="153" height="32"/>
+                                <buttonCell key="cell" type="push" title="Update Repository" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Iic-SI-8md">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="updateRepositoryWithButton:" target="UDK-yN-dcp" id="zf0-2u-zOb"/>
+                                </connections>
+                            </button>
+                            <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Qzo-ue-4Ur">
+                                <rect key="frame" x="20" y="140" width="410" height="20"/>
+                            </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wP1-5C-Dzv">
+                                <rect key="frame" x="18" y="104" width="414" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="410" id="nZt-4p-8GV"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Waiting to begin" id="vaX-QF-ry4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Qzo-ue-4Ur" secondAttribute="trailing" constant="20" id="6z1-yV-KL1"/>
+                            <constraint firstItem="Qzo-ue-4Ur" firstAttribute="centerY" secondItem="GnQ-WZ-PSU" secondAttribute="centerY" id="O8h-pf-6BK"/>
+                            <constraint firstItem="Qzo-ue-4Ur" firstAttribute="leading" secondItem="GnQ-WZ-PSU" secondAttribute="leading" constant="20" id="akq-V1-VeY"/>
+                            <constraint firstItem="Baq-Oz-hrt" firstAttribute="centerX" secondItem="GnQ-WZ-PSU" secondAttribute="centerX" id="hLI-rr-ahJ"/>
+                            <constraint firstItem="wP1-5C-Dzv" firstAttribute="leading" secondItem="GnQ-WZ-PSU" secondAttribute="leading" constant="20" id="nUb-xc-as0"/>
+                            <constraint firstItem="Qzo-ue-4Ur" firstAttribute="top" secondItem="Baq-Oz-hrt" secondAttribute="bottom" constant="20" id="qKk-Cd-v9H"/>
+                            <constraint firstAttribute="trailing" secondItem="wP1-5C-Dzv" secondAttribute="trailing" constant="20" id="rMP-fn-pBK"/>
+                            <constraint firstItem="wP1-5C-Dzv" firstAttribute="top" secondItem="Qzo-ue-4Ur" secondAttribute="bottom" constant="20" id="z1D-u0-IRu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressBar" destination="Qzo-ue-4Ur" id="QK0-h0-rTc"/>
+                        <outlet property="statusLabel" destination="wP1-5C-Dzv" id="ifQ-pH-peZ"/>
+                        <outlet property="updateRepositoryButton" destination="Baq-Oz-hrt" id="Di2-df-KmB"/>
+                    </connections>
+                </viewController>
+                <customObject id="zPd-bJ-I5T" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="588" y="-281"/>
+        </scene>
         <!--Welcome Sheet View Controller-->
         <scene sceneID="4jw-Dr-tzq">
             <objects>

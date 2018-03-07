@@ -79,6 +79,6 @@ class WelcomeSheetViewController: NSViewController {
     }
 }
 
-protocol WelcomeSheetViewControllerDelegate {
+protocol WelcomeSheetViewControllerDelegate: class {
     func didFinishSelectingKSPDir(sender: WelcomeSheetViewController)
 }

@@ -19,8 +19,16 @@ class MainViewController: NSTabViewController {
         return welcomeSheetViewController
     }()
 
+    lazy var updateRepositoryViewController: UpdateRepositoryViewController = {
+        let updateRepositoryViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "UpdateRepositoryViewController"))
+            as! UpdateRepositoryViewController
+        updateRepositoryViewController.delegate = self
+        return updateRepositoryViewController
+    }()
+
     override func viewDidAppear() {
         super.viewDidAppear()
+        presentViewControllerAsSheet(updateRepositoryViewController)
 //        if !ckanClient.isFullyInitialized() {
 //            self.presentViewControllerAsSheet(welcomeSheetViewController)
 //        }
@@ -31,4 +39,12 @@ extension MainViewController: WelcomeSheetViewControllerDelegate {
     func didFinishSelectingKSPDir(sender: WelcomeSheetViewController) {
         dismissViewController(sender)
     }
+}
+
+extension MainViewController: UpdateRepositoryViewControllerDelegate {
+    func didDismiss(sender: WelcomeSheetViewController) {
+        dismissViewController(sender)
+    }
+
+
 }

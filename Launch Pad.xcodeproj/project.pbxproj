@@ -25,6 +25,7 @@
 		DCD8A32920502EBC0068CD4F /* Archive+Writing.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A32220502EBC0068CD4F /* Archive+Writing.swift */; };
 		DCD8A32A20502EBC0068CD4F /* Data+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A32320502EBC0068CD4F /* Data+Serialization.swift */; };
 		DCD8A32B20502EBC0068CD4F /* FileManager+ZIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A32420502EBC0068CD4F /* FileManager+ZIP.swift */; };
+		DCD8A32E205067320068CD4F /* UpdateRepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A32D205067320068CD4F /* UpdateRepositoryViewController.swift */; };
 		DCDD1641204AF16100A04672 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */; };
 		DCDD1648204B0AAC00A04672 /* CKANRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD1647204B0AAC00A04672 /* CKANRepository.swift */; };
 		DCDD164A204B0D5800A04672 /* CKANSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD1649204B0D5800A04672 /* CKANSettings.swift */; };
@@ -85,6 +86,7 @@
 		DCD8A32220502EBC0068CD4F /* Archive+Writing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Archive+Writing.swift"; sourceTree = "<group>"; };
 		DCD8A32320502EBC0068CD4F /* Data+Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Serialization.swift"; sourceTree = "<group>"; };
 		DCD8A32420502EBC0068CD4F /* FileManager+ZIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+ZIP.swift"; sourceTree = "<group>"; };
+		DCD8A32D205067320068CD4F /* UpdateRepositoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepositoryViewController.swift; sourceTree = "<group>"; };
 		DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
 		DCDD1647204B0AAC00A04672 /* CKANRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANRepository.swift; sourceTree = "<group>"; };
 		DCDD1649204B0D5800A04672 /* CKANSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANSettings.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				DCF093A620309F04003224AC /* Main.storyboard */,
 				DCADA3952038664400C1E7BA /* Main */,
+				DCD8A32C205067110068CD4F /* UpdateRepository */,
 				DCADA3942038663600C1E7BA /* Browse */,
 				DCDD1643204AF17E00A04672 /* Common */,
 			);
@@ -185,6 +188,15 @@
 				DCD8A32420502EBC0068CD4F /* FileManager+ZIP.swift */,
 			);
 			path = ZIPFoundation;
+			sourceTree = "<group>";
+		};
+		DCD8A32C205067110068CD4F /* UpdateRepository */ = {
+			isa = PBXGroup;
+			children = (
+				DCD8A32D205067320068CD4F /* UpdateRepositoryViewController.swift */,
+			);
+			name = UpdateRepository;
+			path = Main/UpdateRepository;
 			sourceTree = "<group>";
 		};
 		DCDD1643204AF17E00A04672 /* Common */ = {
@@ -373,6 +385,7 @@
 				DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */,
 				DC1E786E20363F9F00343507 /* CKANTypes.swift in Sources */,
 				DCDD164A204B0D5800A04672 /* CKANSettings.swift in Sources */,
+				DCD8A32E205067320068CD4F /* UpdateRepositoryViewController.swift in Sources */,
 				DC84D02B204DBC65005CBDCD /* CKANFile.swift in Sources */,
 				DCD8A32920502EBC0068CD4F /* Archive+Writing.swift in Sources */,
 				DCD8A32520502EBC0068CD4F /* Archive.swift in Sources */,

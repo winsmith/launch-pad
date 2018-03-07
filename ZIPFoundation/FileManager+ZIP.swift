@@ -91,7 +91,7 @@ extension FileManager {
         // This is necessary because we can't create links to files that haven't been created yet.
         let sortedEntries = archive.sorted { (left, right) -> Bool in
             switch (left.type, right.type) {
-            case (.directory, .file): return true
+            case (.file, .directory): return true
             case (.directory, .symlink): return true
             case (.file, .symlink): return true
             default: return false

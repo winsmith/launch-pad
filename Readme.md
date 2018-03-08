@@ -2,7 +2,7 @@
 
 ## 🚀 What is this?
 
-This project is supposed to be a mod manager for [Kerbal Space Program](https://kerbalspaceprogram.com).
+This project is aiming to be a macOS mod manager for [Kerbal Space Program](https://kerbalspaceprogram.com).
 Instead of trying to create a new standard for mod distribution, the aim of this project is to be a more Mac-friendly
 client to the very good [CKAN](https://github.com/KSP-CKAN/CKAN) mod repository.
 

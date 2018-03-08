@@ -34,10 +34,10 @@ class UpdateRepositoryViewController: NSViewController {
 
         bleepBloopTimer = Timer.scheduledTimer(withTimeInterval: 0.9, repeats: true) { _ in
             if self.isWorking {
-                if self.bleepBloopLabel.stringValue == "Bleep" {
-                    self.bleepBloopLabel.stringValue = "Bloop"
+                if self.bleepBloopLabel.stringValue == "Beep" {
+                    self.bleepBloopLabel.stringValue = "Boop"
                 } else {
-                    self.bleepBloopLabel.stringValue = "Bleep"
+                    self.bleepBloopLabel.stringValue = "Beep"
                 }
             }
         }

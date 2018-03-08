@@ -8,21 +8,25 @@
 
 import Foundation
 
-struct CKANSharedSettings {
-    let kspDirectories: [String]
+public struct CKANKitSettings {
+    var installations: [CKANInstallation]
+    var selectedInstallationIndex: Int?
 }
 
-struct CKANInstallationSettings {
+public struct CKANInstallation {
     /// KSP Installation Directory
-    let kspDirectory: String
+    var kspDirectory: String?
 
-    /// List of CKAN Repo URLs that are available for this KSP Install
-    /// Default is "https://github.com/KSP-CKAN/CKAN-meta/archive/master.tar.gz"
-    let ckanRepositories: [URL]
+    /// List of CKAN Repo URLs that are available for this KSP Installation
+    var ckanRepositories: [URL] = [URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.tar.gz")!]
 
     /// Minimum KSP Version detected ("1.3.1")
-    let minKSPVersion: String
+    var minKSPVersion: String?
 
     /// Maximum KSP Version detected ("1.3.1")
-    let maxKSPVersion: String
+    var maxKSPVersion: String?
+
+    var isInitialized: Bool {
+        return kspDirectory != nil
+    }
 }

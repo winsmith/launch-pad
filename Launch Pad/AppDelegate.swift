@@ -9,7 +9,7 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    // public let ckanManager = CKANManager(ckanClient: CKANClient(pyKanAdapter: PyKanAdapter()))
+    public let ckanClient = CKANClient(ckanKitSettings: CKANKitSettings(installations: [], selectedInstallationIndex: nil))
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         

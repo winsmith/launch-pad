@@ -14,7 +14,7 @@ class WelcomeSheetViewController: NSViewController {
         resultLabel.isHidden = true
         openLaunchPadButton.isHidden = true
     }
-    // var ckanClient: CKANClient?
+    var ckanClient: CKANClient?
     var delegate: WelcomeSheetViewControllerDelegate?
 
     @IBOutlet weak var kspDirLabel: NSTextField!

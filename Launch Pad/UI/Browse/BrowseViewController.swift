@@ -14,6 +14,7 @@ class BrowseViewController: NSViewController {
     private var moduleDetailViewController: ModuleDetailViewController?
     private let appDelegate = NSApplication.shared.delegate as? AppDelegate
     private let notificationCenter = NotificationCenter.default
+    private var modules: [CKANModule] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,7 @@ class BrowseViewController: NSViewController {
 
     @objc func updateData() {
         DispatchQueue.main.async {
+            self.modules = self.appDelegate?.ckanClient.compatibleModules ?? []
             self.collectionView.reloadData()
         }
     }
@@ -62,15 +64,14 @@ extension BrowseViewController: NSCollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return appDelegate?.ckanClient.modules?.count ?? 0
+        return modules.count
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ModuleCollectionViewItem"), for: indexPath)
-        guard let modules_list = appDelegate?.ckanClient.modules else { return item }
         guard let moduleCollectionViewItem = item as? ModuleCollectionViewItem else { return item }
 
-        moduleCollectionViewItem.module = modules_list[indexPath.item]
+        moduleCollectionViewItem.module = modules[indexPath.item]
         return moduleCollectionViewItem
     }
 }
@@ -78,7 +79,6 @@ extension BrowseViewController: NSCollectionViewDataSource {
 extension BrowseViewController: NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         guard
-            let modules = appDelegate?.ckanClient.modules,
             let indexPath = indexPaths.first,
             modules.count > indexPath.item
         else { return }

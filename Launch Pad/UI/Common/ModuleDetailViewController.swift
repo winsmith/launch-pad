@@ -41,7 +41,7 @@ class ModuleDetailViewController: NSViewController {
         moduleNameLabel.isHidden = false
         moduleVersionLabel.isHidden = false
         moduleNameLabel.stringValue = module.name
-        moduleVersionLabel.stringValue = module.version
+        moduleVersionLabel.stringValue = module.version?.description ?? ""
 
         installButton.isHidden = module.isInstalled
         uninstallButton.isHidden = !module.isInstalled

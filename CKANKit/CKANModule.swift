@@ -20,9 +20,18 @@ public class CKANModule {
     // MARK: - Properties
     var isInstalled: Bool { return false }
     var name: String { return ckanFile.name }
-    var version: String { return ckanFile.version }
+    var version: String? { return ckanFile.version }
+    var kspVersionMax: Version? { return Version(with: ckanFile.ksp_version_max) }
+    var kspVersionMin: Version? { return Version(with: ckanFile.ksp_version_min) }
 
     // MARK: - Installation, etc
+    public func isCompatible(with installation: KSPInstallation) -> Bool {
+        guard let kspVersionMax = kspVersionMax, let kspVersionMin = kspVersionMin, let installationVersion = installation.kspVersion else { return false }
+        return (
+            kspVersionMax <= installationVersion &&
+            kspVersionMin >= installationVersion
+        )
+    }
 }
 
 // MARK: - Equatable

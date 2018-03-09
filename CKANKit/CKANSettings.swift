@@ -19,13 +19,10 @@ public struct KSPInstallation {
     /// CKAN Repository to use for this installation
     var ckanRepository: CKANRepository?
 
-    /// Minimum KSP Version detected ("1.3.1")
-    var minKSPVersion: String?
-
-    /// Maximum KSP Version detected ("1.3.1")
-    var maxKSPVersion: String?
+    /// KSP Version detected ("1.3.1")
+    var kspVersion: Version?
 
     var isInitialized: Bool {
-        return kspDirectory != nil && minKSPVersion != nil && maxKSPVersion != nil
+        return kspDirectory != nil && kspVersion != nil
     }
 }

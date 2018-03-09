@@ -13,6 +13,11 @@ public class CKANClient {
     public var ckanKitSettings: CKANKitSettings
     public var isFullyInitialized: Bool { return ckanKitSettings.currentInstallation?.isInitialized == true }
     public var modules: [CKANModule]? { return ckanKitSettings.currentInstallation?.ckanRepository?.modules }
+    public var compatibleModules: [CKANModule]? {
+        guard let currentInstallation = ckanKitSettings.currentInstallation else { return nil }
+        guard let modules = modules else { return nil }
+        return modules.filter { $0.isCompatible(with: currentInstallation) }
+    }
 
     init(ckanKitSettings: CKANKitSettings) {
         self.ckanKitSettings = ckanKitSettings
@@ -34,7 +39,7 @@ public class CKANClient {
             return false
         }
 
-        let installation = KSPInstallation(kspDirectory: url, ckanRepository: CKANRepository(inDirectory: url.appendingPathComponent("LaunchPad")), minKSPVersion: version, maxKSPVersion: version)
+        let installation = KSPInstallation(kspDirectory: url, ckanRepository: CKANRepository(inDirectory: url.appendingPathComponent("LaunchPad")), kspVersion: Version(with: version))
         ckanKitSettings.currentInstallation = installation
 
         // TODO: Save version

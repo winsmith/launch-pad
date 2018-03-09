@@ -12,7 +12,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     public let ckanClient = CKANClient(ckanKitSettings: CKANKitSettings())
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
+
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

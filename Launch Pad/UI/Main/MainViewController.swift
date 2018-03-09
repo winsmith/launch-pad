@@ -9,6 +9,8 @@
 import AppKit
 
 class MainViewController: NSTabViewController {
+    private let currentInstallationKey = "launchpadCurrentInstallation"
+
     lazy var ckanClient: CKANClient = {
         guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else { fatalError("Could not get AppDelegate! I am confused!") }
         return appDelegate.ckanClient
@@ -31,6 +33,12 @@ class MainViewController: NSTabViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+
+        if let installationDict = UserDefaults.standard.value(forKey: currentInstallationKey) as? [String: String?],
+            let kspInstallation = KSPInstallation.init(from: installationDict) {
+            ckanClient.ckanKitSettings.currentInstallation = kspInstallation
+        }
+
         if !ckanClient.isFullyInitialized {
             self.presentViewControllerAsSheet(welcomeSheetViewController)
         }
@@ -40,6 +48,11 @@ class MainViewController: NSTabViewController {
 extension MainViewController: WelcomeSheetViewControllerDelegate {
     func didFinishSelectingKSPDir(sender: WelcomeSheetViewController) {
         dismissViewController(sender)
+
+        // Save Settings
+        UserDefaults.standard.setValue(ckanClient.ckanKitSettings.currentInstallation?.toDictionary(), forKey:  currentInstallationKey)
+
+        // Next Step
         updateRepositoryViewController.ckanClient = ckanClient
         self.presentViewControllerAsSheet(updateRepositoryViewController)
     }

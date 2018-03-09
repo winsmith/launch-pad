@@ -7,9 +7,8 @@
 //
 
 import Foundation
-// import ZIPFoundation
 
-class CKANRepository {
+public class CKANRepository {
     // MARK: - Properties
     // MARK: Configuration
     let downloadURL: URL
@@ -31,13 +30,32 @@ class CKANRepository {
     private let decoder = JSONDecoder()
 
     // MARK: - Initialization
-    init(inDirectory workingDirectory: URL, withDownloadURL downloadURL: URL) {
+    init(inDirectory workingDirectory: URL, withDownloadURL downloadURL: URL? = nil) {
         self.workingDirectory = workingDirectory
-        self.downloadURL = downloadURL
+
+        if let downloadURL = downloadURL {
+            self.downloadURL = downloadURL
+        } else {
+            self.downloadURL = URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!
+        }
+
+        createDirectoryIfNotExists(workingDirectory)
     }
 
     func repositoryZIPFileExists() -> Bool {
         return fileManager.fileExists(atPath: zipFileURL.path)
+    }
+
+    func createDirectoryIfNotExists(_ directoryURL: URL) {
+        var isDirectory = ObjCBool(true)
+        let directoryExists = FileManager.default.fileExists(atPath: directoryURL.path, isDirectory: &isDirectory)
+        if !(directoryExists && isDirectory.boolValue) {
+            do {
+                try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error)
+            }
+        }
     }
 
     func downloadRepositoryArchive(callback: @escaping () -> ()) -> Progress {
@@ -71,6 +89,8 @@ class CKANRepository {
     func unpackRepositoryArchive(progress: Progress? = nil) -> Bool {
         let sourceUrl = zipFileURL
         let destinationUrl = unzippedDirectoryURL
+
+        createDirectoryIfNotExists(destinationUrl)
 
         do {
             try fileManager.unzipItem(at: sourceUrl, to: destinationUrl, progress: progress)

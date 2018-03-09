@@ -11,13 +11,14 @@ import Cocoa
 class UpdateRepositoryViewController: NSViewController {
     // MARK: - Properties
     public weak var delegate: UpdateRepositoryViewControllerDelegate?
+    public var ckanClient: CKANClient?
 
     // MARK: Private Properties
-    private var repository: CKANRepository?
     private var progress = Progress(totalUnitCount: 198)
     private var progressKeyValueObservation: NSKeyValueObservation?
     private var isWorking = false
     private var bleepBloopTimer: Timer?
+    private var repository: CKANRepository? { return ckanClient?.ckanKitSettings.currentInstallation?.ckanRepository }
 
     // MARK: - Outlets
     @IBOutlet weak var progressBar: NSProgressIndicator!
@@ -41,9 +42,6 @@ class UpdateRepositoryViewController: NSViewController {
                 }
             }
         }
-
-        let downloadPath = "/tmp"
-        repository = CKANRepository(inDirectory: URL.init(fileURLWithPath: downloadPath), withDownloadURL: URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!)
     }
 
     override func viewDidAppear() {

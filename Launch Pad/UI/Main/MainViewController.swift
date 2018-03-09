@@ -40,6 +40,8 @@ class MainViewController: NSTabViewController {
 extension MainViewController: WelcomeSheetViewControllerDelegate {
     func didFinishSelectingKSPDir(sender: WelcomeSheetViewController) {
         dismissViewController(sender)
+        updateRepositoryViewController.ckanClient = ckanClient
+        self.presentViewControllerAsSheet(updateRepositoryViewController)
     }
 }
 

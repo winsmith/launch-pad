@@ -951,7 +951,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="295"/>
                                 <clipView key="contentView" drawsBackground="NO" id="iIO-m8-vfi">
                                     <rect key="frame" x="1" y="1" width="318" height="293"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="jFa-TI-5m5">
                                             <rect key="frame" x="0.0" y="0.0" width="318" height="293"/>

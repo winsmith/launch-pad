@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC1E786E20363F9F00343507 /* CKANTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786D20363F9F00343507 /* CKANTypes.swift */; };
-		DC1E786F20363FE200343507 /* CKANTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E786D20363F9F00343507 /* CKANTypes.swift */; };
 		DC33CFC1203D89140034E465 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC33CFC0203D89140034E465 /* Colors.swift */; };
-		DC33CFC3203EC8010034E465 /* CKANManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC33CFC2203EC8010034E465 /* CKANManager.swift */; };
 		DC654993203326C50023111E /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654992203326C50023111E /* BrowseViewController.swift */; };
 		DC654999203338820023111E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC654998203338820023111E /* WebKit.framework */; };
 		DC84D02B204DBC65005CBDCD /* CKANFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC84D02A204DBC65005CBDCD /* CKANFile.swift */; };
@@ -19,6 +16,8 @@
 		DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */; };
 		DCADA3A7203B297400C1E7BA /* ModuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */; };
 		DCD773D72051CB0300F6F394 /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773D62051CB0300F6F394 /* CKANClient.swift */; };
+		DCD773E62052AE8C00F6F394 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */; };
+		DCD773E82052AEC800F6F394 /* CKANModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E72052AEC800F6F394 /* CKANModule.swift */; };
 		DCD8A32520502EBC0068CD4F /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A31E20502EBC0068CD4F /* Archive.swift */; };
 		DCD8A32620502EBC0068CD4F /* Archive+Reading.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A31F20502EBC0068CD4F /* Archive+Reading.swift */; };
 		DCD8A32720502EBC0068CD4F /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A32020502EBC0068CD4F /* Entry.swift */; };
@@ -27,7 +26,6 @@
 		DCD8A32A20502EBC0068CD4F /* Data+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A32320502EBC0068CD4F /* Data+Serialization.swift */; };
 		DCD8A32B20502EBC0068CD4F /* FileManager+ZIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A32420502EBC0068CD4F /* FileManager+ZIP.swift */; };
 		DCD8A32E205067320068CD4F /* UpdateRepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8A32D205067320068CD4F /* UpdateRepositoryViewController.swift */; };
-		DCDD1641204AF16100A04672 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */; };
 		DCDD1648204B0AAC00A04672 /* CKANRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD1647204B0AAC00A04672 /* CKANRepository.swift */; };
 		DCDD164A204B0D5800A04672 /* CKANSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD1649204B0D5800A04672 /* CKANSettings.swift */; };
 		DCF093A120309F04003224AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF093A020309F04003224AC /* AppDelegate.swift */; };
@@ -68,9 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DC1E786D20363F9F00343507 /* CKANTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANTypes.swift; sourceTree = "<group>"; };
 		DC33CFC0203D89140034E465 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		DC33CFC2203EC8010034E465 /* CKANManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANManager.swift; sourceTree = "<group>"; };
 		DC654992203326C50023111E /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		DC654998203338820023111E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DC65499A203338B80023111E /* Launch Pad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Launch Pad.entitlements"; sourceTree = "<group>"; };
@@ -81,6 +77,8 @@
 		DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleCollectionViewItem.swift; sourceTree = "<group>"; };
 		DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleCollectionViewItem.xib; sourceTree = "<group>"; };
 		DCD773D62051CB0300F6F394 /* CKANClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClient.swift; sourceTree = "<group>"; };
+		DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
+		DCD773E72052AEC800F6F394 /* CKANModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANModule.swift; sourceTree = "<group>"; };
 		DCD8A31E20502EBC0068CD4F /* Archive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
 		DCD8A31F20502EBC0068CD4F /* Archive+Reading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Archive+Reading.swift"; sourceTree = "<group>"; };
 		DCD8A32020502EBC0068CD4F /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 		DCD8A32320502EBC0068CD4F /* Data+Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Serialization.swift"; sourceTree = "<group>"; };
 		DCD8A32420502EBC0068CD4F /* FileManager+ZIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+ZIP.swift"; sourceTree = "<group>"; };
 		DCD8A32D205067320068CD4F /* UpdateRepositoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepositoryViewController.swift; sourceTree = "<group>"; };
-		DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
 		DCDD1647204B0AAC00A04672 /* CKANRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANRepository.swift; sourceTree = "<group>"; };
 		DCDD1649204B0D5800A04672 /* CKANSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANSettings.swift; sourceTree = "<group>"; };
 		DCF0939D20309F04003224AC /* Launch Pad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Launch Pad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,15 +135,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DC65499B203339A00023111E /* CKANClient */ = {
-			isa = PBXGroup;
-			children = (
-				DC33CFC2203EC8010034E465 /* CKANManager.swift */,
-				DC1E786D20363F9F00343507 /* CKANTypes.swift */,
-			);
-			path = CKANClient;
-			sourceTree = "<group>";
-		};
 		DCADA391203865BC00C1E7BA /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +142,7 @@
 				DCADA3952038664400C1E7BA /* Main */,
 				DCD8A32C205067110068CD4F /* UpdateRepository */,
 				DCADA3942038663600C1E7BA /* Browse */,
-				DCDD1643204AF17E00A04672 /* Common */,
+				DCD773E42052AE8C00F6F394 /* Common */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -176,6 +164,14 @@
 				DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		DCD773E42052AE8C00F6F394 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		DCD8A31D20502EBC0068CD4F /* ZIPFoundation */ = {
@@ -201,15 +197,6 @@
 			path = Main/UpdateRepository;
 			sourceTree = "<group>";
 		};
-		DCDD1643204AF17E00A04672 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				DCDD163F204AF16100A04672 /* ModuleDetailViewController.swift */,
-			);
-			name = Common;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		DCDD1644204B09FF00A04672 /* CKANKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +204,7 @@
 				DC84D02A204DBC65005CBDCD /* CKANFile.swift */,
 				DCDD1647204B0AAC00A04672 /* CKANRepository.swift */,
 				DCDD1649204B0D5800A04672 /* CKANSettings.swift */,
+				DCD773E72052AEC800F6F394 /* CKANModule.swift */,
 			);
 			path = CKANKit;
 			sourceTree = "<group>";
@@ -251,7 +239,6 @@
 				DCF093A920309F05003224AC /* Info.plist */,
 				DCF093AA20309F05003224AC /* Launch_Pad.entitlements */,
 				DCADA391203865BC00C1E7BA /* UI */,
-				DC65499B203339A00023111E /* CKANClient */,
 				DCF093A020309F04003224AC /* AppDelegate.swift */,
 			);
 			path = "Launch Pad";
@@ -376,8 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCD8A32720502EBC0068CD4F /* Entry.swift in Sources */,
-				DCDD1641204AF16100A04672 /* ModuleDetailViewController.swift in Sources */,
-				DC33CFC3203EC8010034E465 /* CKANManager.swift in Sources */,
 				DCDD1648204B0AAC00A04672 /* CKANRepository.swift in Sources */,
 				DCD8A32A20502EBC0068CD4F /* Data+Serialization.swift in Sources */,
 				DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */,
@@ -386,8 +371,9 @@
 				DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */,
 				DCD8A32820502EBC0068CD4F /* Data+Compression.swift in Sources */,
 				DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */,
-				DC1E786E20363F9F00343507 /* CKANTypes.swift in Sources */,
 				DCDD164A204B0D5800A04672 /* CKANSettings.swift in Sources */,
+				DCD773E82052AEC800F6F394 /* CKANModule.swift in Sources */,
+				DCD773E62052AE8C00F6F394 /* ModuleDetailViewController.swift in Sources */,
 				DCD8A32E205067320068CD4F /* UpdateRepositoryViewController.swift in Sources */,
 				DC84D02B204DBC65005CBDCD /* CKANFile.swift in Sources */,
 				DCD8A32920502EBC0068CD4F /* Archive+Writing.swift in Sources */,
@@ -403,7 +389,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC1E786F20363FE200343507 /* CKANTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

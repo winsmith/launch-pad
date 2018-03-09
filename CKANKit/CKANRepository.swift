@@ -9,13 +9,14 @@
 import Foundation
 
 public class CKANRepository {
+
     // MARK: - Properties
     // MARK: Configuration
     let downloadURL: URL
     let workingDirectory: URL
 
     // MARK: CKANFiles
-    var ckanFiles: [CKANFile]?
+    var modules: [CKANModule]?
 
     // MARK: URLs
     private let zipFileName = "ckan_meta_master.zip"
@@ -24,6 +25,14 @@ public class CKANRepository {
     private var zipFileURL: URL { return workingDirectory.appendingPathComponent(zipFileName) }
     private var cachePlistURL: URL { return workingDirectory.appendingPathComponent(cachePlistFileName) }
     private var unzippedDirectoryURL: URL { return workingDirectory.appendingPathComponent(unzippedDirectoryName) }
+
+    // MARK: - Notifications
+    private var notificationCenter = NotificationCenter.default
+    static let allModulesUpdatedNotification = Notification.Name("allModulesUpdated")
+
+    private func postAllModulesUpdatedNotification() {
+        notificationCenter.post(name: CKANRepository.allModulesUpdatedNotification, object: self)
+    }
 
     // MARK: Private
     private let fileManager = FileManager.default
@@ -117,13 +126,14 @@ public class CKANRepository {
             progress.totalUnitCount = Int64(allFileURLs.count)
         }
 
-        var newCkanFiles = [CKANFile]()
+        var newModules = [CKANModule]()
         for fileURL in allFileURLs {
             if fileURL.pathExtension == "ckan" {
                 do {
                     let fileData = try Data(contentsOf: fileURL)
                     let ckanFile = try decoder.decode(CKANFile.self, from: fileData)
-                    newCkanFiles.append(ckanFile)
+                    let ckanModule = CKANModule(ckanFile: ckanFile)
+                    newModules.append(ckanModule)
                 } catch let error {
                     print(error)
                     fatalError()
@@ -132,8 +142,9 @@ public class CKANRepository {
             progress?.completedUnitCount += 1
         }
 
-        print("Decoding complete! \(newCkanFiles.count) files decoded")
-        ckanFiles = newCkanFiles
+        print("Decoding complete! \(newModules.count) files decoded")
+        modules = newModules
+        postAllModulesUpdatedNotification()
     }
 
     func deleteZipFile() {

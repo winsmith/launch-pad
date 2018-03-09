@@ -10,11 +10,9 @@ import Foundation
 
 public class CKANClient {
     /// If true, the client has all the settings available to start installing mods
-    public var isFullyInitialized: Bool {
-        return ckanKitSettings.currentInstallation?.isInitialized == true
-    }
-
     public var ckanKitSettings: CKANKitSettings
+    public var isFullyInitialized: Bool { return ckanKitSettings.currentInstallation?.isInitialized == true }
+    public var modules: [CKANModule]? { return ckanKitSettings.currentInstallation?.ckanRepository?.modules }
 
     init(ckanKitSettings: CKANKitSettings) {
         self.ckanKitSettings = ckanKitSettings

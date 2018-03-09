@@ -136,5 +136,11 @@ struct CKANFile: Decodable {
     let download_content_type: String?
 }
 
+// MARK: - Equatable
+extension CKANFile: Equatable {
+    static func ==(lhs: CKANFile, rhs: CKANFile) -> Bool {
+        return lhs.identifier == rhs.identifier && lhs.version == rhs.version
+    }
 
 
+}

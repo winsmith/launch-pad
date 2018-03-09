@@ -13,7 +13,7 @@ class ModuleCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var versionLabel: NSTextField!
     @IBOutlet weak var installedLabel: NSTextField!
 
-    var module: Module? {
+    var module: CKANModule? {
         didSet {
             guard module != oldValue else { return }
             nameLabel.stringValue = module?.name ?? ""

@@ -106,7 +106,7 @@ class UpdateRepositoryViewController: NSViewController {
         // save to cache
         // repository.saveToCache()
 
-        if let modCount = repository?.ckanFiles?.count {
+        if let modCount = repository?.modules?.count {
             updateStatusLabel("Done. \(modCount) files decoded.")
         } else {
             updateStatusLabel("Done, but something is fishy")

@@ -14,7 +14,7 @@ class ModuleDetailViewController: NSViewController {
     }
 
     // MARK: - Properties
-    public var module: Module? {
+    public var module: CKANModule? {
         didSet {
             updateUI()
         }

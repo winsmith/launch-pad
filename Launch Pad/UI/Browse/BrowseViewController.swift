@@ -23,7 +23,6 @@ class BrowseViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        // appDelegate?.ckanManager.refreshModules()
     }
 
     private func configureCollectionView() {
@@ -39,11 +38,13 @@ class BrowseViewController: NSViewController {
     }
 
     private func configureNotifications() {
-        notificationCenter.addObserver(self, selector: #selector(updateData), name: CKANManager.allModulesUpdatedNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(updateData), name: CKANRepository.allModulesUpdatedNotification, object: nil)
     }
 
     @objc func updateData() {
-        self.collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -61,25 +62,23 @@ extension BrowseViewController: NSCollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        // return appDelegate?.ckanManager.modules.count ?? 0
-        return 0
+        return appDelegate?.ckanClient.modules?.count ?? 0
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ModuleCollectionViewItem"), for: indexPath)
-//        guard let modules_list = nil else { return item }
+        guard let modules_list = appDelegate?.ckanClient.modules else { return item }
         guard let moduleCollectionViewItem = item as? ModuleCollectionViewItem else { return item }
 
-//        moduleCollectionViewItem.module = modules_list[indexPath.item]
+        moduleCollectionViewItem.module = modules_list[indexPath.item]
         return moduleCollectionViewItem
     }
 }
 
 extension BrowseViewController: NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-        let modules = [Module]()
         guard
-            // let modules = appDelegate?.ckanManager.modules,
+            let modules = appDelegate?.ckanClient.modules,
             let indexPath = indexPaths.first,
             modules.count > indexPath.item
         else { return }

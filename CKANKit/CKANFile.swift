@@ -9,18 +9,21 @@
 import Foundation
 
 struct CKANFile: Decodable {
-    /// Accepts both `["String", "String"]` and `"String"`
-    enum StringOrArray: Codable {
-        case array([String])
-        case string(String)
+    
+    /// Accepts both `["String", "String"]` and `"String"` as decodable input
+    struct StringOrArray: Codable {
+        let arrayValue: [String]
+        var stringValue: String {
+            return arrayValue.joined(separator: ", ")
+        }
 
         init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
             do {
-                self = try .array(container.decode(Array.self))
+                arrayValue = try container.decode(Array.self)
             } catch DecodingError.typeMismatch {
                 do {
-                    self = try .array([container.decode(String.self)])
+                    arrayValue = try [container.decode(String.self)]
                 } catch DecodingError.typeMismatch {
                     throw DecodingError.typeMismatch(StringOrArray.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Encoded payload not of an expected type"))
                 }
@@ -29,15 +32,9 @@ struct CKANFile: Decodable {
 
         func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
-            switch self {
-            case .array(let array):
-                try container.encode(array)
-            case .string(let string):
-                try container.encode(string)
-            }
+            try container.encode(arrayValue)
         }
     }
-
 
     struct Installation: Codable {
         // Source

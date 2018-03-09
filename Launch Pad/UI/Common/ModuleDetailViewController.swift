@@ -28,9 +28,9 @@ class ModuleDetailViewController: NSViewController {
 
     @IBOutlet weak var moduleNameLabel: NSTextField!
     @IBOutlet weak var moduleVersionLabel: NSTextField!
-    @IBOutlet weak var moduleVersionLabel2: NSTextField!
     @IBOutlet weak var authorsLabel: NSTextField!
     @IBOutlet weak var downloadSizeLabel: NSTextField!
+    @IBOutlet weak var maxKSPVersionLabel: NSTextField!
     @IBOutlet weak var minKSPVersionLabel: NSTextField!
     @IBOutlet weak var licenseLabel: NSTextField!
     @IBOutlet weak var abstractLabel: NSTextField!
@@ -51,10 +51,10 @@ class ModuleDetailViewController: NSViewController {
 
         moduleNameLabel.stringValue = module.name
         moduleVersionLabel.stringValue = module.version?.description ?? ""
-        moduleVersionLabel2.stringValue = module.version?.description ?? ""
         authorsLabel.stringValue = module.authors?.joined(separator: ", ") ?? "–"
 
         minKSPVersionLabel.stringValue = module.kspVersionMin?.description ?? "–"
+        maxKSPVersionLabel.stringValue = module.kspVersionMax?.description ?? "–"
         licenseLabel.stringValue = module.licenses?.joined(separator: ", ") ?? "–"
         abstractLabel.stringValue = module.abstract ?? ""
         descriptionLabel.stringValue = module.description ?? ""

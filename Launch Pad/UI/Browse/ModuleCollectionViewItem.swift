@@ -11,14 +11,15 @@ import Cocoa
 class ModuleCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var versionLabel: NSTextField!
-    @IBOutlet weak var installedLabel: NSTextField!
 
     var module: CKANModule? {
         didSet {
             guard module != oldValue else { return }
             nameLabel.stringValue = module?.name ?? ""
-            versionLabel.stringValue = module?.version ?? ""
-            installedLabel.stringValue = module?.isInstalled == true ? "Installed ✅" : "Not Installed"
+
+            let versionString = module?.version ?? ""
+            let authorsString = module?.authors?.joined(separator: ", ") ?? ""
+            versionLabel.stringValue = "\(versionString) - \(authorsString)"
         }
     }
 

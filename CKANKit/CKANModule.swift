@@ -20,12 +20,12 @@ public class CKANModule {
     // MARK: - Properties
     var isInstalled: Bool { return false }
     var name: String { return ckanFile.name }
-    var authors: [String]? { return nil }
+    var authors: [String]? { return ckanFile.author?.arrayValue }
     var version: String? { return ckanFile.version }
     var kspVersionMax: Version? { return Version(with: ckanFile.ksp_version_max) }
     var kspVersionMin: Version? { return Version(with: ckanFile.ksp_version_min) }
     var downloadSize: Int? { return ckanFile.download_size }
-    var licenses: [String]? { return nil }
+    var licenses: [String]? { return ckanFile.license.arrayValue }
 
     var abstract: String? { return ckanFile.abstract }
     var description: String? { return ckanFile.description }

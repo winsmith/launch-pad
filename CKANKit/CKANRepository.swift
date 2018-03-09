@@ -143,7 +143,9 @@ public class CKANRepository {
         }
 
         print("Decoding complete! \(newModules.count) files decoded")
-        modules = newModules
+        modules = newModules.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.name.trimmingCharacters(in: NSCharacterSet.whitespaces) < rhs.name.trimmingCharacters(in: NSCharacterSet.whitespaces)
+        })
         postAllModulesUpdatedNotification()
     }
 

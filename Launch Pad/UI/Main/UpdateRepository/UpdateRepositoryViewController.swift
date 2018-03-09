@@ -14,7 +14,7 @@ class UpdateRepositoryViewController: NSViewController {
     public var ckanClient: CKANClient?
 
     // MARK: Private Properties
-    private var progress = Progress(totalUnitCount: 198)
+    private var progress = Progress(totalUnitCount: 5)
     private var progressKeyValueObservation: NSKeyValueObservation?
     private var isWorking = false
     private var bleepBloopTimer: Timer?
@@ -67,7 +67,7 @@ class UpdateRepositoryViewController: NSViewController {
         let downloadProgress = repository!.downloadRepositoryArchive() {
             self.processDownloadedFile()
         }
-        progress.addChild(downloadProgress, withPendingUnitCount: 66)
+        progress.addChild(downloadProgress, withPendingUnitCount: 1)
     }
 
     private func updateStatusLabel(_ newStatus: String) {
@@ -88,7 +88,7 @@ class UpdateRepositoryViewController: NSViewController {
         // https://developer.apple.com/documentation/foundation/progress
         updateStatusLabel("Unpacking File...")
         let unpackingProgress = Progress()
-        progress.addChild(unpackingProgress, withPendingUnitCount: 66)
+        progress.addChild(unpackingProgress, withPendingUnitCount: 3)
         let success = repository!.unpackRepositoryArchive(progress: unpackingProgress)
         if success == false {
 
@@ -99,7 +99,7 @@ class UpdateRepositoryViewController: NSViewController {
         // parse
         updateStatusLabel("Parsing unpacked Repository...")
         let parsingProgress = Progress()
-        progress.addChild(parsingProgress, withPendingUnitCount: 66)
+        progress.addChild(parsingProgress, withPendingUnitCount: 2)
         repository!.readUnpackedRepositoryArchive(progress: parsingProgress)
         repository!.deleteUnzippedDirectory()
 

@@ -26,9 +26,6 @@ class ModuleCollectionViewItem: NSCollectionViewItem {
         super.viewDidLoad()
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor.color(named: .BackgroundColor).cgColor
-        view.layer?.cornerRadius = 5.0
-        view.layer?.borderColor = NSColor.color(named: .DarkAccent).cgColor
-        view.layer?.borderWidth = 1.0
     }
 
     override var isSelected: Bool {

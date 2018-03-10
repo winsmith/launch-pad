@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CKANFile: Decodable {
+struct CKANFile: Codable {
     
     /// Accepts both `["String", "String"]` and `"String"` as decodable input
     struct StringOrArray: Codable {

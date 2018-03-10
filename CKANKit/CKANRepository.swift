@@ -20,10 +20,10 @@ public class CKANRepository {
 
     // MARK: URLs
     private let zipFileName = "ckan_meta_master.zip"
-    private let cachePlistFileName = "ckan_repository_cache.plist"
+    private let cacheFileName = "ckan_repository_cache.json"
     private let unzippedDirectoryName = "ckan_meta_master"
     private var zipFileURL: URL { return workingDirectory.appendingPathComponent(zipFileName) }
-    private var cachePlistURL: URL { return workingDirectory.appendingPathComponent(cachePlistFileName) }
+    private var cacheFileURL: URL { return workingDirectory.appendingPathComponent(cacheFileName) }
     private var unzippedDirectoryURL: URL { return workingDirectory.appendingPathComponent(unzippedDirectoryName) }
 
     // MARK: - Notifications
@@ -40,15 +40,15 @@ public class CKANRepository {
 
     // MARK: - Initialization
     init(inDirectory workingDirectory: URL, withDownloadURL downloadURL: URL? = nil) {
+        // Initialize Properties
         self.workingDirectory = workingDirectory
+        self.downloadURL = downloadURL ?? URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!
 
-        if let downloadURL = downloadURL {
-            self.downloadURL = downloadURL
-        } else {
-            self.downloadURL = URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!
-        }
-
+        // Prepare Working Directory
         createDirectoryIfNotExists(workingDirectory)
+
+        // Check for Repository Cache
+        readRepositoryArchiveFromCache()
     }
 
     func repositoryZIPFileExists() -> Bool {
@@ -165,16 +165,45 @@ public class CKANRepository {
             print("Deleting unzipped directory failed with error:\(error)")
         }
     }
+}
 
+// MARK: Caching and Restoring from Cache
+extension CKANRepository {
     /// Burp the current CKAN Files into a cache file
     func saveToCache() {
-        // Not implemented
+        guard let modules = modules else {
+            print("Nothing to save, modules is empty")
+            return
+        }
+
+        let jsonEncoder = JSONEncoder()
+        let ckanFiles = modules.map { $0.ckanFile }
+
+        do {
+            let data = try jsonEncoder.encode(ckanFiles)
+            try data.write(to: cacheFileURL)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
     }
 
     /// Unburp the contents of the cache file into the ckanFiles array
-    func readRepositoryArchiveFromCache() -> Bool {
-        // Not implemented
-        return false
+    func readRepositoryArchiveFromCache() {
+        do {
+            let cacheData = try Data(contentsOf: cacheFileURL)
+            let ckanFiles = try decoder.decode([CKANFile].self, from: cacheData)
+
+
+            var newModules = [CKANModule]()
+            for ckanFile in ckanFiles {
+                let ckanModule = CKANModule(ckanFile: ckanFile)
+                newModules.append(ckanModule)
+            }
+
+            modules = newModules
+        } catch {
+            print("Could not get repository from cache:", error)
+        }
     }
 
 }

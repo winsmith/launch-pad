@@ -41,6 +41,15 @@ class MainViewController: NSTabViewController {
 
         if !ckanClient.isFullyInitialized {
             self.presentViewControllerAsSheet(welcomeSheetViewController)
+        } else {
+            if let ckanRepositoryModules = ckanClient.ckanKitSettings.currentInstallation?.ckanRepository?.modules,
+                ckanRepositoryModules.count > 0 {
+                // we are complete
+            } else {
+                updateRepositoryViewController.ckanClient = ckanClient
+                self.presentViewControllerAsSheet(updateRepositoryViewController)
+            }
+
         }
     }
 }
@@ -61,6 +70,7 @@ extension MainViewController: WelcomeSheetViewControllerDelegate {
 extension MainViewController: UpdateRepositoryViewControllerDelegate {
     func didFinishUpdating(_ sender: UpdateRepositoryViewController) {
         dismissViewController(sender)
+        ckanClient.ckanKitSettings.currentInstallation?.ckanRepository?.saveToCache()
     }
 
 

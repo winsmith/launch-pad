@@ -57,6 +57,11 @@ class UpdateRepositoryViewController: NSViewController {
 
     // MARK: - Actions
     func updateRepository() {
+        if repository == nil {
+            guard let currentInstallationURL = ckanClient?.ckanKitSettings.currentInstallation?.kspDirectory else { fatalError() }
+            ckanClient?.ckanKitSettings.currentInstallation?.ckanRepository = CKANRepository(inDirectory: currentInstallationURL)
+        }
+
         isWorking = true
         statusLabel.stringValue = "Downloading File..."
 

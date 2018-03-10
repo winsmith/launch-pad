@@ -194,7 +194,6 @@ extension CKANRepository {
             let cacheData = try Data(contentsOf: cacheFileURL)
             let ckanFiles = try decoder.decode([CKANFile].self, from: cacheData)
 
-
             var newModules = [CKANModule]()
             for ckanFile in ckanFiles {
                 let ckanModule = CKANModule(ckanFile: ckanFile)
@@ -202,6 +201,7 @@ extension CKANRepository {
             }
 
             modules = newModules
+            postAllModulesUpdatedNotification()
         } catch {
             print("Could not get repository from cache:", error)
         }

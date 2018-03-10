@@ -92,8 +92,7 @@ class UpdateRepositoryViewController: NSViewController {
         if success == false {
 
         }
-
-        // repository!.deleteZipFile()
+        repository.deleteZipFile()
 
         // parse
         updateStatusLabel("Parsing unpacked Repository...")
@@ -101,9 +100,6 @@ class UpdateRepositoryViewController: NSViewController {
         progress.addChild(parsingProgress, withPendingUnitCount: 2)
         repository.readUnpackedRepositoryArchive(progress: parsingProgress)
         repository.deleteUnzippedDirectory()
-
-        // save to cache
-        // repository.saveToCache()
 
         if let modCount = repository.modules?.count {
             updateStatusLabel("Done. \(modCount) files decoded.")

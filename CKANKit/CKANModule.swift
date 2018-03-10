@@ -32,10 +32,10 @@ public class CKANModule {
 
     // MARK: - Installation, etc
     public func isCompatible(with installation: KSPInstallation) -> Bool {
-        guard let kspVersionMax = kspVersionMax, let kspVersionMin = kspVersionMin, let installationVersion = installation.kspVersion else { return false }
+        guard let kspVersionMax = kspVersionMax, let kspVersionMin = kspVersionMin else { return false }
         return (
-            kspVersionMax <= installationVersion &&
-            kspVersionMin >= installationVersion
+            kspVersionMax <= installation.kspVersion &&
+            kspVersionMin >= installation.kspVersion
         )
     }
 }

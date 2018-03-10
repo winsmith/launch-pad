@@ -146,6 +146,7 @@ public class CKANRepository {
         modules = newModules.sorted(by: { (lhs, rhs) -> Bool in
             return lhs.name.trimmingCharacters(in: NSCharacterSet.whitespaces) < rhs.name.trimmingCharacters(in: NSCharacterSet.whitespaces)
         })
+        saveToCache()
         postAllModulesUpdatedNotification()
     }
 

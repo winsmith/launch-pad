@@ -10,16 +10,11 @@ import AppKit
 
 class MainViewController: NSTabViewController {
     private let currentInstallationKey = "launchpadCurrentInstallation"
+    var appDelegate: AppDelegate { return NSApplication.shared.delegate as! AppDelegate }
 
-    lazy var ckanClient: CKANClient = {
-        guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else { fatalError("Could not get AppDelegate! I am confused!") }
-        return appDelegate.ckanClient
-    }()
-
-    lazy var welcomeSheetViewController: WelcomeSheetViewController = {
+    lazy var selectKSPDirViewController: WelcomeSheetViewController = {
         let welcomeSheetViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "WelcomeSheetViewController"))
             as! WelcomeSheetViewController
-        welcomeSheetViewController.ckanClient = ckanClient
         welcomeSheetViewController.delegate = self
         return welcomeSheetViewController
     }()
@@ -34,35 +29,37 @@ class MainViewController: NSTabViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
 
+        // Get KSP Installation from UserDefaults
         if let installationDict = UserDefaults.standard.value(forKey: currentInstallationKey) as? [String: String?],
             let kspInstallation = KSPInstallation.init(from: installationDict) {
-            ckanClient.ckanKitSettings.currentInstallation = kspInstallation
+            appDelegate.ckanClient = CKANClient(kspInstallation: kspInstallation)
         }
 
-        if !ckanClient.isFullyInitialized {
-            self.presentViewControllerAsSheet(welcomeSheetViewController)
-        } else {
-            if let ckanRepositoryModules = ckanClient.ckanKitSettings.currentInstallation?.ckanRepository?.modules,
-                ckanRepositoryModules.count > 0 {
-                // we are complete
-            } else {
-                updateRepositoryViewController.ckanClient = ckanClient
-                self.presentViewControllerAsSheet(updateRepositoryViewController)
-            }
+        // Nothing found in UserDefaults, ask the user for the KSP Directory
+        if appDelegate.ckanClient == nil {
+            self.presentViewControllerAsSheet(selectKSPDirViewController)
+        }
 
+        // Installation is there, but no Repository yet
+        else if appDelegate.ckanClient?.isRepositoryInitialized != true {
+            updateRepositoryViewController.ckanClient = appDelegate.ckanClient
+            self.presentViewControllerAsSheet(updateRepositoryViewController)
         }
     }
 }
 
 extension MainViewController: WelcomeSheetViewControllerDelegate {
-    func didFinishSelectingKSPDir(sender: WelcomeSheetViewController) {
+    func didFinishSelectingKSPDir(sender: WelcomeSheetViewController, kspInstallation: KSPInstallation) {
         dismissViewController(sender)
 
         // Save Settings
-        UserDefaults.standard.setValue(ckanClient.ckanKitSettings.currentInstallation?.toDictionary(), forKey:  currentInstallationKey)
+        UserDefaults.standard.setValue(kspInstallation.toDictionary(), forKey:  currentInstallationKey)
 
         // Next Step
-        updateRepositoryViewController.ckanClient = ckanClient
+        appDelegate.ckanClient = CKANClient(kspInstallation: kspInstallation)
+
+        // TODO: extract into function
+        updateRepositoryViewController.ckanClient = appDelegate.ckanClient
         self.presentViewControllerAsSheet(updateRepositoryViewController)
     }
 }
@@ -70,7 +67,6 @@ extension MainViewController: WelcomeSheetViewControllerDelegate {
 extension MainViewController: UpdateRepositoryViewControllerDelegate {
     func didFinishUpdating(_ sender: UpdateRepositoryViewController) {
         dismissViewController(sender)
-        ckanClient.ckanKitSettings.currentInstallation?.ckanRepository?.saveToCache()
     }
 
 

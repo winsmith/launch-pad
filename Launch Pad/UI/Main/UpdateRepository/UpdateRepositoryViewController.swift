@@ -18,7 +18,7 @@ class UpdateRepositoryViewController: NSViewController {
     private var progressKeyValueObservation: NSKeyValueObservation?
     private var isWorking = false
     private var bleepBloopTimer: Timer?
-    private var repository: CKANRepository? { return ckanClient?.ckanKitSettings.currentInstallation?.ckanRepository }
+    private var repository: CKANRepository { return ckanClient!.kspInstallation.ckanRepository }
 
     // MARK: - Outlets
     @IBOutlet weak var progressBar: NSProgressIndicator!
@@ -57,19 +57,14 @@ class UpdateRepositoryViewController: NSViewController {
 
     // MARK: - Actions
     func updateRepository() {
-        if repository == nil {
-            guard let currentInstallationURL = ckanClient?.ckanKitSettings.currentInstallation?.kspDirectory else { fatalError() }
-            ckanClient?.ckanKitSettings.currentInstallation?.ckanRepository = CKANRepository(inDirectory: currentInstallationURL)
-        }
-
         isWorking = true
         statusLabel.stringValue = "Downloading File..."
 
-        if repository?.repositoryZIPFileExists() == true {
-            repository?.deleteZipFile()
+        if repository.repositoryZIPFileExists() == true {
+            repository.deleteZipFile()
         }
 
-        let downloadProgress = repository!.downloadRepositoryArchive() {
+        let downloadProgress = repository.downloadRepositoryArchive() {
             self.processDownloadedFile()
         }
         progress.addChild(downloadProgress, withPendingUnitCount: 1)
@@ -90,11 +85,10 @@ class UpdateRepositoryViewController: NSViewController {
     // MARK: - Repository Handling
     private func processDownloadedFile() {
         // unpack
-        // https://developer.apple.com/documentation/foundation/progress
         updateStatusLabel("Unpacking File...")
         let unpackingProgress = Progress()
         progress.addChild(unpackingProgress, withPendingUnitCount: 3)
-        let success = repository!.unpackRepositoryArchive(progress: unpackingProgress)
+        let success = repository.unpackRepositoryArchive(progress: unpackingProgress)
         if success == false {
 
         }
@@ -105,13 +99,13 @@ class UpdateRepositoryViewController: NSViewController {
         updateStatusLabel("Parsing unpacked Repository...")
         let parsingProgress = Progress()
         progress.addChild(parsingProgress, withPendingUnitCount: 2)
-        repository!.readUnpackedRepositoryArchive(progress: parsingProgress)
-        repository!.deleteUnzippedDirectory()
+        repository.readUnpackedRepositoryArchive(progress: parsingProgress)
+        repository.deleteUnzippedDirectory()
 
         // save to cache
         // repository.saveToCache()
 
-        if let modCount = repository?.modules?.count {
+        if let modCount = repository.modules?.count {
             updateStatusLabel("Done. \(modCount) files decoded.")
         } else {
             updateStatusLabel("Done, but something is fishy")

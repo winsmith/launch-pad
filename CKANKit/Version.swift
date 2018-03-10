@@ -31,6 +31,9 @@ public struct Version: Equatable, Comparable, CustomStringConvertible {
     }
 
     public static func <(lhs: Version, rhs: Version) -> Bool {
+        // TODO: This seems to be not entirely correct
+        // e.g. 1.0.5 > 1.3.1 somehow
+
         if lhs.major >= rhs.major { return false }
         if lhs.minor >= rhs.minor { return false }
         if lhs.bugfix >= rhs.bugfix { return false }

@@ -10,50 +10,15 @@ import Foundation
 
 public class CKANClient {
     /// If true, the client has all the settings available to start installing mods
-    public var ckanKitSettings: CKANKitSettings
-    public var isFullyInitialized: Bool { return ckanKitSettings.currentInstallation?.isInitialized == true }
-    public var modules: [CKANModule]? { return ckanKitSettings.currentInstallation?.ckanRepository?.modules }
+    public var kspInstallation: KSPInstallation
+    public var isRepositoryInitialized: Bool { return kspInstallation.ckanRepository.modules?.count ?? 0 > 0 }
+    public var modules: [CKANModule]? { return kspInstallation.ckanRepository.modules }
     public var compatibleModules: [CKANModule]? {
-        guard let currentInstallation = ckanKitSettings.currentInstallation else { return nil }
         guard let modules = modules else { return nil }
-        return modules.filter { $0.isCompatible(with: currentInstallation) }
+        return modules.filter { $0.isCompatible(with: kspInstallation) }
     }
 
-    init(ckanKitSettings: CKANKitSettings) {
-        self.ckanKitSettings = ckanKitSettings
-    }
-
-    public func addKSPDir(url: URL) -> Bool {
-        // check for readme.txt
-        let readmeFileURL = url.appendingPathComponent("readme.txt")
-        guard FileManager.default.fileExists(atPath: readmeFileURL.path) else { return false }
-
-        // parse readme.txt
-        guard let readmeContents = try? String(contentsOf: readmeFileURL, encoding: .ascii) else {
-            print("Error while reading readme.txt")
-            return false
-        }
-
-        guard let version = versionFromReadme(readmeContents: readmeContents) else {
-            print("failed to retrieve version number from readme file")
-            return false
-        }
-
-        let installation = KSPInstallation(kspDirectory: url, ckanRepository: CKANRepository(inDirectory: url.appendingPathComponent("LaunchPad")), kspVersion: Version(with: version))
-        ckanKitSettings.currentInstallation = installation
-
-        // TODO: Save version
-        return true
-    }
-
-    private func versionFromReadme(readmeContents: String) -> String? {
-        for line in readmeContents.split(separator: "\n") {
-            if line.starts(with: "Version") {
-                let versionNumber = line.split(separator: " ")[1]
-                return String(versionNumber)
-            }
-        }
-
-        return nil
+    init(kspInstallation: KSPInstallation) {
+        self.kspInstallation = kspInstallation
     }
 }

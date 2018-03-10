@@ -44,7 +44,7 @@ class BrowseViewController: NSViewController {
 
     @objc func updateData() {
         DispatchQueue.main.async {
-            self.modules = self.appDelegate?.ckanClient.compatibleModules ?? []
+            self.modules = self.appDelegate?.ckanClient?.compatibleModules ?? []
             self.collectionView.reloadData()
         }
     }

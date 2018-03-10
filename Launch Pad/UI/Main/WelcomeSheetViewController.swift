@@ -14,8 +14,9 @@ class WelcomeSheetViewController: NSViewController {
         resultLabel.isHidden = true
         openLaunchPadButton.isHidden = true
     }
-    var ckanClient: CKANClient?
     var delegate: WelcomeSheetViewControllerDelegate?
+
+    private var kspInstallation: KSPInstallation?
 
     @IBOutlet weak var kspDirLabel: NSTextField!
     @IBOutlet weak var resultLabel: NSTextField!
@@ -53,7 +54,8 @@ class WelcomeSheetViewController: NSViewController {
                 kspDirLabel.stringValue = path
 
                 DispatchQueue.global().async {
-                    let returnValue = self.ckanClient?.addKSPDir(url: pathURL)
+                    self.kspInstallation = KSPInstallation(kspDirectory: pathURL)
+                    let isCorrectKSPDirSelected = self.kspInstallation != nil
 
                     DispatchQueue.main.async {
                         NSAnimationContext.runAnimationGroup({context in
@@ -61,7 +63,7 @@ class WelcomeSheetViewController: NSViewController {
                             context.duration = 0.25
                             context.allowsImplicitAnimation = true
 
-                            self.updateUI(isCorrectKSPDirSelected: returnValue)
+                            self.updateUI(isCorrectKSPDirSelected: isCorrectKSPDirSelected)
                             self.view.layoutSubtreeIfNeeded()
 
                         }, completionHandler: nil)
@@ -75,10 +77,11 @@ class WelcomeSheetViewController: NSViewController {
     }
     
     @IBAction func openLaunchPad(_ sender: NSButton) {
-        delegate?.didFinishSelectingKSPDir(sender: self)
+        guard let kspInstallation = kspInstallation else { return }
+        delegate?.didFinishSelectingKSPDir(sender: self, kspInstallation: kspInstallation)
     }
 }
 
 protocol WelcomeSheetViewControllerDelegate: class {
-    func didFinishSelectingKSPDir(sender: WelcomeSheetViewController)
+    func didFinishSelectingKSPDir(sender: WelcomeSheetViewController, kspInstallation: KSPInstallation)
 }

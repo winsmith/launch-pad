@@ -12,6 +12,7 @@ class InstallModuleViewController: NSViewController {
     // MARK: - Properties
     public weak var delegate: InstallModuleViewControllerDelegate?
     public var modulesToInstall: [CKANModule]?
+    public var kspInstallation: KSPInstallation?
 
     // MARK: Private Properties
     private var progress = Progress(totalUnitCount: 5)
@@ -50,6 +51,11 @@ class InstallModuleViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+
+        if kspInstallation == nil {
+            fatalError("KSP Installation not set")
+        }
+
         installModules()
     }
 
@@ -75,8 +81,7 @@ class InstallModuleViewController: NSViewController {
         statusLabel.stringValue = "Downloading \(filename) ..."
 
         // TODO: Progress
-
-        module.install()
+        module.install(to: kspInstallation!)
     }
 }
 

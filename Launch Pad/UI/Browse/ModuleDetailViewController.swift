@@ -19,6 +19,7 @@ class ModuleDetailViewController: NSViewController {
             updateUI()
         }
     }
+    public var kspInstallation: KSPInstallation?
     private var byteFormatter = ByteCountFormatter()
 
     // MARK: - Outlets
@@ -107,8 +108,9 @@ class ModuleDetailViewController: NSViewController {
             as! InstallModuleViewController
         installModuleViewController.delegate = self
         installModuleViewController.modulesToInstall = [module!]
+        installModuleViewController.kspInstallation = kspInstallation
 
-        self.presentViewControllerAsSheet(installModuleViewController)
+        parent?.presentViewControllerAsSheet(installModuleViewController)
     }
 
     @IBAction func uninstall(_ sender: Any) {
@@ -136,6 +138,7 @@ class ModuleDetailViewController: NSViewController {
 
 extension ModuleDetailViewController: InstallModuleViewControllerDelegate {
     func didFinishInstallingModules(installModuleViewController: InstallModuleViewController) {
-        fatalError("Need to reload")
+        debugPrint("Reloading not implemented")
+        parent?.dismissViewController(installModuleViewController)
     }
 }

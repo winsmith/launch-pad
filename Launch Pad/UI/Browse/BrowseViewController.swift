@@ -84,6 +84,7 @@ extension BrowseViewController: NSCollectionViewDelegate {
         else { return }
 
         let module = modules[indexPath.item]
+        moduleDetailViewController?.kspInstallation = self.appDelegate?.ckanClient?.kspInstallation
         moduleDetailViewController?.module = module
         deselectAllItems()
         selectItem(at: indexPath)

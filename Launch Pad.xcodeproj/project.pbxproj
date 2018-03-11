@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DC33CFC1203D89140034E465 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC33CFC0203D89140034E465 /* Colors.swift */; };
+		DC4191B62055856300BD6B39 /* String+Uppercased.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4191B52055856300BD6B39 /* String+Uppercased.swift */; };
 		DC654993203326C50023111E /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654992203326C50023111E /* BrowseViewController.swift */; };
 		DC654999203338820023111E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC654998203338820023111E /* WebKit.framework */; };
 		DC84D02B204DBC65005CBDCD /* CKANFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC84D02A204DBC65005CBDCD /* CKANFile.swift */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		DC33CFC0203D89140034E465 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		DC4191B52055856300BD6B39 /* String+Uppercased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercased.swift"; sourceTree = "<group>"; };
 		DC654992203326C50023111E /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		DC654998203338820023111E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DC65499A203338B80023111E /* Launch Pad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Launch Pad.entitlements"; sourceTree = "<group>"; };
@@ -120,6 +122,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC4191B42055855000BD6B39 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DC4191B52055856300BD6B39 /* String+Uppercased.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		DC654996203327DF0023111E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +248,7 @@
 		DCF0939F20309F04003224AC /* Launch Pad */ = {
 			isa = PBXGroup;
 			children = (
+				DC4191B42055855000BD6B39 /* Helpers */,
 				DC65499A203338B80023111E /* Launch Pad.entitlements */,
 				DCF093A920309F05003224AC /* Info.plist */,
 				DCF093AA20309F05003224AC /* Launch_Pad.entitlements */,
@@ -383,6 +394,7 @@
 				DCD8A32920502EBC0068CD4F /* Archive+Writing.swift in Sources */,
 				DCD773D72051CB0300F6F394 /* CKANClient.swift in Sources */,
 				DCD8A32520502EBC0068CD4F /* Archive.swift in Sources */,
+				DC4191B62055856300BD6B39 /* String+Uppercased.swift in Sources */,
 				DCF093A120309F04003224AC /* AppDelegate.swift in Sources */,
 				DCD8A32620502EBC0068CD4F /* Archive+Reading.swift in Sources */,
 				DCD8A32B20502EBC0068CD4F /* FileManager+ZIP.swift in Sources */,

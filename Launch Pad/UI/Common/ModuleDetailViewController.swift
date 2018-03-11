@@ -35,7 +35,23 @@ class ModuleDetailViewController: NSViewController {
     @IBOutlet weak var licenseLabel: NSTextField!
     @IBOutlet weak var abstractLabel: NSTextField!
     @IBOutlet weak var descriptionLabel: NSTextField!
+    @IBOutlet weak var dependenciesLabel: NSTextField!
+    @IBOutlet weak var suggestionsLabel: NSTextField!
 
+    // Resources
+    @IBOutlet weak var resourcesStackView: NSStackView!
+    @IBOutlet weak var resourcesButton1: NSButton!
+    @IBOutlet weak var resourcesButton2: NSButton!
+    @IBOutlet weak var resourcesButton3: NSButton!
+    @IBOutlet weak var resourcesButton4: NSButton!
+    @IBOutlet weak var resourcesButton5: NSButton!
+    @IBOutlet weak var resourcesBUtton6: NSButton!
+    @IBOutlet weak var resourcesButton7: NSButton!
+    @IBOutlet weak var resourcesButton8: NSButton!
+    lazy var resourcesButtons: [NSButton] = { return [resourcesButton1, resourcesButton2, resourcesButton3, resourcesButton4,
+                                                      resourcesButton5, resourcesBUtton6, resourcesButton7, resourcesButton8] }()
+
+    
     // MARK: - Updating
     func updateUI() {
         guard let module = module else {
@@ -64,13 +80,27 @@ class ModuleDetailViewController: NSViewController {
         } else {
             downloadSizeLabel.stringValue = "o_o"
         }
+
+        // Update Resources Buttons
+        for button in resourcesButtons {
+            button.isHidden = true
+        }
+
+        if let resources = module.resources {
+            for (button, resourceKey) in zip(resourcesButtons, resources.keys) {
+                button.title = resourceKey.firstUppercased
+                button.isHidden = false
+            }
+        }
+
+        // Dependencies
+        dependenciesLabel.stringValue = module.dependencies?.map({ $0.name }).joined(separator: ", ") ?? "–"
+        suggestionsLabel.stringValue = module.suggestions?.map({ $0.name }).joined(separator: ", ")  ?? "–"
     }
 
     // MARK: - Actions
     @IBAction func install(_ sender: Any) {
         guard module?.isInstalled == false else { return }
-
-        
     }
 
     @IBAction func uninstall(_ sender: Any) {
@@ -78,4 +108,21 @@ class ModuleDetailViewController: NSViewController {
 
     @IBAction func upgrade(_ sender: Any) {
     }
+
+    // MARK: - Resources Buttons
+    @IBAction func resourcesButton(_ sender: NSButton) {
+        guard let resourceURLDict = module?.resources?[sender.title.lowercased()] else { return }
+        switch resourceURLDict {
+        case .dictionary(let value):
+            guard let firstKey = value.keys.first else { return }
+            guard let urlString = value[firstKey] else { return }
+            guard let resourceURL = URL(string: urlString) else { return }
+            NSWorkspace.shared.open(resourceURL)
+
+        case .string(let value):
+            guard let resourceURL = URL(string: value) else { return }
+            NSWorkspace.shared.open(resourceURL)
+        }
+    }
+
 }

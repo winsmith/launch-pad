@@ -31,6 +31,10 @@ public class CKANModule {
     var abstract: String? { return ckanFile.abstract }
     var description: String? { return ckanFile.description }
 
+    var resources: [String: CKANFile.ResourceURL]? { return ckanFile.resources }
+    var dependencies: [CKANFile.Relationship]? { return ckanFile.depends }
+    var suggestions: [CKANFile.Relationship]? { return ckanFile.suggests }
+
     // MARK: - Installation, etc
     public func isCompatible(with installation: KSPInstallation) -> Bool {
         guard let kspVersionMax = kspVersionMax, let kspVersionMin = kspVersionMin else { return false }

@@ -75,7 +75,7 @@ extension CKANRepository {
             newestCompatibleModulesList.append(newestModules[key]!)
         }
 
-        return newestCompatibleModulesList
+        return newestCompatibleModulesList.sorted { $0.name.trimmed < $1.name.trimmed }
     }
 }
 
@@ -173,9 +173,7 @@ extension CKANRepository {
         }
 
         print("Decoding complete! \(newModules.count) files decoded")
-        modules = newModules.sorted(by: { (lhs, rhs) -> Bool in
-            return lhs.name.trimmingCharacters(in: NSCharacterSet.whitespaces) < rhs.name.trimmingCharacters(in: NSCharacterSet.whitespaces)
-        })
+        modules = newModules.sorted { $0.name.trimmed < $1.name.trimmed }
         saveToCache()
         postAllModulesUpdatedNotification()
     }

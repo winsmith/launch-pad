@@ -35,7 +35,9 @@ public class CKANModule {
     var dependencies: [CKANFile.Relationship]? { return ckanFile.depends }
     var suggestions: [CKANFile.Relationship]? { return ckanFile.suggests }
 
-    // MARK: - Installation, etc
+    var downloadURL: URL { return ckanFile.download }
+
+    // MARK: - Meta, etc
     public func isCompatible(with installation: KSPInstallation) -> Bool {
         guard let kspVersionMax = kspVersionMax, let kspVersionMin = kspVersionMin else { return false }
         
@@ -56,5 +58,12 @@ extension CKANModule: Comparable {
 
     public static func ==(lhs: CKANModule, rhs: CKANModule) -> Bool {
         return lhs.ckanFile == rhs.ckanFile
+    }
+}
+
+// MARK: - Installing
+extension CKANModule {
+    public func install() {
+        guard !isInstalled else { return }
     }
 }

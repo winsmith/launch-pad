@@ -101,6 +101,14 @@ class ModuleDetailViewController: NSViewController {
     // MARK: - Actions
     @IBAction func install(_ sender: Any) {
         guard module?.isInstalled == false else { return }
+        guard module?.dependencies?.isEmpty != false else { fatalError("Cannot yet install modules with dependencies")}
+
+        let installModuleViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "InstallModuleViewController"))
+            as! InstallModuleViewController
+        installModuleViewController.delegate = self
+        installModuleViewController.modulesToInstall = [module!]
+
+        self.presentViewControllerAsSheet(installModuleViewController)
     }
 
     @IBAction func uninstall(_ sender: Any) {
@@ -124,5 +132,10 @@ class ModuleDetailViewController: NSViewController {
             NSWorkspace.shared.open(resourceURL)
         }
     }
+}
 
+extension ModuleDetailViewController: InstallModuleViewControllerDelegate {
+    func didFinishInstallingModules(installModuleViewController: InstallModuleViewController) {
+        fatalError("Need to reload")
+    }
 }

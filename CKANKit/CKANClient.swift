@@ -13,8 +13,8 @@ public class CKANClient {
     public var kspInstallation: KSPInstallation
     public var isRepositoryInitialized: Bool { return kspInstallation.ckanRepository.modules?.count ?? 0 > 0 }
     public var modules: [CKANModule]? { return kspInstallation.ckanRepository.modules }
-    public var compatibleModules: [CKANModule] {
-        return kspInstallation.ckanRepository.compatibleModules(with: kspInstallation)
+    public var newestCompatibleModules: [CKANModule] {
+        return kspInstallation.ckanRepository.newestCompatibleModules(with: kspInstallation)
     }
 
     init(kspInstallation: KSPInstallation) {

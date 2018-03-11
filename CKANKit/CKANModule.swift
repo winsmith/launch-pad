@@ -18,6 +18,7 @@ public class CKANModule {
     }
 
     // MARK: - Properties
+    var identifier: String { return ckanFile.identifier }
     var isInstalled: Bool { return false }
     var name: String { return ckanFile.name }
     var authors: [String]? { return ckanFile.author?.arrayValue }
@@ -46,7 +47,13 @@ public class CKANModule {
 }
 
 // MARK: - Equatable
-extension CKANModule: Equatable {
+extension CKANModule: Comparable {
+    public static func <(lhs: CKANModule, rhs: CKANModule) -> Bool {
+        guard let lhsVersion = lhs.version else { return true }
+        guard let rhsVersion = rhs.version else { return false }
+        return lhsVersion < rhsVersion
+    }
+
     public static func ==(lhs: CKANModule, rhs: CKANModule) -> Bool {
         return lhs.ckanFile == rhs.ckanFile
     }

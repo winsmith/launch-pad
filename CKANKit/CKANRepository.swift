@@ -58,6 +58,25 @@ extension CKANRepository {
         guard let modules = modules else { return [] }
         return modules.filter { $0.isCompatible(with: kspInstallation) }
     }
+
+    func newestCompatibleModules(with kspInstallation: KSPInstallation) -> [CKANModule] {
+        var newestModules = [String: CKANModule]()
+        let compatibleModulesList = compatibleModules(with: kspInstallation)
+
+        for module in compatibleModulesList {
+            let existingModule = newestModules[module.identifier]
+            if existingModule == nil || existingModule! < module {
+                newestModules[module.identifier] = module
+            }
+        }
+
+        var newestCompatibleModulesList = [CKANModule]()
+        for key in newestModules.keys {
+            newestCompatibleModulesList.append(newestModules[key]!)
+        }
+
+        return newestCompatibleModulesList
+    }
 }
 
 // MARK: - Downloading, Unpacking and Parsing the CKAN Meta information

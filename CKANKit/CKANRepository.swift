@@ -50,7 +50,18 @@ public class CKANRepository {
         // Check for Repository Cache
         readRepositoryArchiveFromCache()
     }
+}
 
+// MARK: - Filtering, Searching and Querying
+extension CKANRepository {
+    func compatibleModules(with kspInstallation: KSPInstallation) -> [CKANModule] {
+        guard let modules = modules else { return [] }
+        return modules.filter { $0.isCompatible(with: kspInstallation) }
+    }
+}
+
+// MARK: - Downloading, Unpacking and Parsing the CKAN Meta information
+extension CKANRepository {
     func repositoryZIPFileExists() -> Bool {
         return fileManager.fileExists(atPath: zipFileURL.path)
     }
@@ -168,7 +179,7 @@ public class CKANRepository {
     }
 }
 
-// MARK: Caching and Restoring from Cache
+// MARK: - Caching and Restoring from Cache
 extension CKANRepository {
     /// Burp the current CKAN Files into a cache file
     func saveToCache() {

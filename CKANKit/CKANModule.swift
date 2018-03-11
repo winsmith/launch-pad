@@ -33,9 +33,14 @@ public class CKANModule {
     // MARK: - Installation, etc
     public func isCompatible(with installation: KSPInstallation) -> Bool {
         guard let kspVersionMax = kspVersionMax, let kspVersionMin = kspVersionMin else { return false }
+
+        if name == "'Otter' Submersible" {
+            print("Otter")
+        }
+
         return (
-            kspVersionMax <= installation.kspVersion &&
-            kspVersionMin >= installation.kspVersion
+            kspVersionMax >= installation.kspVersion &&
+            kspVersionMin <= installation.kspVersion
         )
     }
 }

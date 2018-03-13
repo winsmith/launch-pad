@@ -5,7 +5,7 @@
 
 ## 🚀 What is this?
 
-This project is aiming to be a macOS mod manager for [Kerbal Space Program](https://kerbalspaceprogram.com).
+This project wants to be a macOS mod manager for [Kerbal Space Program](https://kerbalspaceprogram.com).
 Instead of trying to create a new standard for mod distribution, the aim of this project is to be a more Mac-friendly
 client to the very good [CKAN](https://github.com/KSP-CKAN/CKAN) mod repository.
 
@@ -19,11 +19,13 @@ If you want a mac-compatible CKAN client right now and don't mind using the comm
 
 ## 🛰 What is the development status?
 
-Generally speaking, **nothing** is even close to finished.
+Generally speaking, we are far from being finished.
 
 - You can parse download and parse CKAN files
-- You cannot click anything, there is no user interface
-- You cannot install mods
+- You can browse the mod repository
+- You **cannot** install mods
+- You **cannot** upgrade mods
+- You **cannot** remove mods
 
 ## 👾 Name and License
 

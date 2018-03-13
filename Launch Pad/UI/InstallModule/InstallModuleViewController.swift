@@ -77,9 +77,6 @@ class InstallModuleViewController: NSViewController {
     }
 
     private func install(_ module: CKANModule) {
-        let filename = module.downloadURL.lastPathComponent
-        statusLabel.stringValue = "Downloading \(filename) ..."
-
         // TODO: Progress
         module.install(to: kspInstallation!, progress: nil, callback: {})
     }

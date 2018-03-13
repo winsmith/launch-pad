@@ -1,5 +1,8 @@
 # Launch Pad
 
+![mods are downloaded, unpacked, and placed into Kerbal Space Program](docs/download.png)
+
+
 ## 🚀 What is this?
 
 This project is aiming to be a macOS mod manager for [Kerbal Space Program](https://kerbalspaceprogram.com).

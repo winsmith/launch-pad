@@ -66,16 +66,21 @@ extension CKANModule: Comparable {
 
 // MARK: - Installing
 extension CKANModule {
-    public func install(to kspInstallation: KSPInstallation, process: Process?, callback: @escaping () -> ()) {
+    public func install(to kspInstallation: KSPInstallation, progress: Progress?, callback: @escaping () -> ()) {
         guard !isInstalled else { return }
 
         prepare()
-        let downloadProcess = download() { localURL in
-            self.unpack(zipFileURL: localURL, kspInstallation: kspInstallation, progress: Progress())
+        let downloadProgress = download() { localURL in
+            let unzipProgress = Progress()
+            unzipProgress.kind = ProgressKind(rawValue: "Unpacking...")
+            progress?.addChild(unzipProgress, withPendingUnitCount: 20)
+            let unpackSuccessful = self.unpack(zipFileURL: localURL, kspInstallation: kspInstallation, progress: unzipProgress)
+            guard unpackSuccessful else { fatalError() }
             callback()
         }
-        if let process = process {
-            // add child process
+        downloadProgress.kind = ProgressKind(rawValue: "Downloading...")
+        if let progress = progress {
+            progress.addChild(downloadProgress, withPendingUnitCount: 10)
         }
     }
 

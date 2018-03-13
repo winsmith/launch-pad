@@ -32,8 +32,8 @@ class BrowseViewController: NSViewController {
         collectionView.enclosingScrollView?.borderType = .noBorder
 
         let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.itemSize = NSSize(width: 230.0, height: 60.0)
-        flowLayout.sectionInset = NSEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 20.0)
+        flowLayout.itemSize = NSSize(width: 300.0, height: 60.0)
+        flowLayout.sectionInset = NSEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0)
         flowLayout.minimumInteritemSpacing = 20.0
         flowLayout.minimumLineSpacing = 1.0
         collectionView.collectionViewLayout = flowLayout

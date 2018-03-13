@@ -1,6 +1,6 @@
 # Launch Pad
 
-![mods are downloaded, unpacked, and placed into Kerbal Space Program](docs/download.png)
+![mods are downloaded, unpacked, and placed into Kerbal Space Program](docs/launchpad.gif)
 
 
 ## 🚀 What is this?

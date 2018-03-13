@@ -81,7 +81,7 @@ class InstallModuleViewController: NSViewController {
         statusLabel.stringValue = "Downloading \(filename) ..."
 
         // TODO: Progress
-        module.install(to: kspInstallation!)
+        module.install(to: kspInstallation!, process: nil, callback: {})
     }
 }
 

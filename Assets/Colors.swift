@@ -11,11 +11,14 @@ import Foundation
 
 enum Color: String {
     case AlmostBlack = "AlmostBlack"
+    case AngryMushroom = "AngryMushroom"
     case BackgroundColor = "BackgroundColor"
-    case DarkGray = "DarkGray"
     case DarkAccent = "DarkAccent"
-    case LightGray = "LightGray"
-    case MediumGray = "MediumGray"
+    case DarkGray = "DarkGray"
+    case DrunkOnWhite = "DrunkOnWhite"
+    case FightToothpast = "FightToothpast"
+    case LightAccent = "LightAccent"
+    case WarningLabel = "WarningLabel"
 }
 
 extension NSColor {

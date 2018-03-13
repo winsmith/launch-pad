@@ -3,6 +3,8 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
@@ -1053,13 +1055,38 @@
                                     <segue destination="3uI-3E-YpQ" kind="embed" id="1yj-1d-kgX"/>
                                 </connections>
                             </containerView>
+                            <box boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="BVg-1R-6ab">
+                                <rect key="frame" x="270" y="20" width="777" height="260"/>
+                                <view key="contentView" id="ZXX-BQ-Auw">
+                                    <rect key="frame" x="1" y="1" width="775" height="258"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uD1-Qi-9md">
+                                            <rect key="frame" x="0.0" y="0.0" width="775" height="258"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Cloud" id="PtO-kJ-lnC"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="uD1-Qi-9md" secondAttribute="trailing" id="8NY-6C-2Ik"/>
+                                        <constraint firstItem="uD1-Qi-9md" firstAttribute="leading" secondItem="ZXX-BQ-Auw" secondAttribute="leading" id="Qlt-fF-qh0"/>
+                                        <constraint firstItem="uD1-Qi-9md" firstAttribute="top" secondItem="ZXX-BQ-Auw" secondAttribute="top" id="VxS-Hz-gVe"/>
+                                        <constraint firstAttribute="bottom" secondItem="uD1-Qi-9md" secondAttribute="bottom" id="fFm-hF-1kS"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                                <color key="fillColor" name="BackgroundColor"/>
+                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstItem="gp0-oR-bPN" firstAttribute="width" relation="lessThanOrEqual" secondItem="WgU-1d-pbv" secondAttribute="width" multiplier="0.5" id="0Ez-G4-T9P"/>
                             <constraint firstItem="dPF-zY-NXw" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" constant="5" id="3Cq-Jb-i3M"/>
+                            <constraint firstAttribute="trailing" secondItem="BVg-1R-6ab" secondAttribute="trailing" constant="20" id="6CN-Jv-Ct6"/>
+                            <constraint firstItem="BVg-1R-6ab" firstAttribute="leading" secondItem="gp0-oR-bPN" secondAttribute="trailing" constant="20" id="9tl-SO-ao6"/>
                             <constraint firstAttribute="bottom" secondItem="dPF-zY-NXw" secondAttribute="bottom" constant="5" id="DCi-5U-bAQ"/>
                             <constraint firstItem="dPF-zY-NXw" firstAttribute="leading" secondItem="jFa-TI-5m5" secondAttribute="trailing" constant="20" id="SJB-dE-ZFq"/>
                             <constraint firstItem="gp0-oR-bPN" firstAttribute="leading" secondItem="WgU-1d-pbv" secondAttribute="leading" priority="750" id="a7u-Z4-x8b"/>
+                            <constraint firstAttribute="bottom" secondItem="BVg-1R-6ab" secondAttribute="bottom" constant="20" id="aT7-qv-RcC"/>
+                            <constraint firstItem="BVg-1R-6ab" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" constant="20" id="daE-cC-Lkh"/>
                             <constraint firstAttribute="bottom" secondItem="gp0-oR-bPN" secondAttribute="bottom" id="g0b-Wy-e0v"/>
                             <constraint firstAttribute="trailing" secondItem="dPF-zY-NXw" secondAttribute="trailing" constant="20" id="lTz-uq-g3v"/>
                             <constraint firstItem="gp0-oR-bPN" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" constant="5" id="tUX-po-xZw"/>
@@ -1067,6 +1094,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="jFa-TI-5m5" id="ToC-Zk-EFz"/>
+                        <outlet property="welcomeBox" destination="BVg-1R-6ab" id="g4x-ON-aJV"/>
                     </connections>
                 </viewController>
                 <customObject id="G44-ql-Kll" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1136,16 +1164,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24l-wv-OpG">
-                                <rect key="frame" x="161" y="117" width="129" height="67"/>
+                                <rect key="frame" x="43" y="35" width="364" height="231"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pwv-ek-YfR">
-                                        <rect key="frame" x="-2" y="50" width="30" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Icon" id="pjh-u1-DvN">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kK-eF-0ZQ">
+                                        <rect key="frame" x="0.0" y="50" width="364" height="181"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Cloud" id="SaC-06-mla"/>
+                                    </imageView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tuz-eB-2Vk">
                                         <rect key="frame" x="-2" y="25" width="55" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Settings" id="eBx-XN-vAS">
@@ -1221,7 +1245,7 @@
                                     <constraint firstAttribute="width" constant="120" id="pue-wQ-3TI"/>
                                     <constraint firstAttribute="height" constant="120" id="zSy-n5-r4C"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="aSw-Bk-Qbl"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Box" id="aSw-Bk-Qbl"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xq3-f0-BBd">
                                 <rect key="frame" x="158" y="408" width="479" height="17"/>
@@ -1473,7 +1497,7 @@
                             <stackView orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aq4-dw-Geu">
                                 <rect key="frame" x="27" y="216" width="608" height="16"/>
                                 <beginningViews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wv6-R7-MCt">
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wv6-R7-MCt">
                                         <rect key="frame" x="0.0" y="-1" width="73" height="17"/>
                                         <buttonCell key="cell" type="inline" title="Homepage" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="9Uq-pj-bwl">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1687,6 +1711,7 @@
                         <outlet property="dependenciesLabel" destination="gaz-rq-13M" id="4KZ-9u-YB8"/>
                         <outlet property="descriptionLabel" destination="eWn-gD-7Mu" id="8Tc-lh-D2X"/>
                         <outlet property="downloadSizeLabel" destination="5Q1-8d-E7K" id="Bin-g5-Ffv"/>
+                        <outlet property="iconImageView" destination="oQG-1j-Wye" id="Tmg-bF-fLd"/>
                         <outlet property="installButton" destination="Ube-JZ-AMf" id="ulX-Pe-AjK"/>
                         <outlet property="licenseLabel" destination="mB9-4b-tVr" id="v8w-0s-nN1"/>
                         <outlet property="maxKSPVersionLabel" destination="pVv-sx-W50" id="Aj7-7Z-mxD"/>
@@ -1713,8 +1738,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Box" width="123" height="103"/>
+        <image name="Cloud" width="364" height="181"/>
         <image name="NSAdvanced" width="32" height="32"/>
-        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSNetwork" width="32" height="32"/>
+        <namedColor name="BackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -31,7 +31,12 @@ class ModuleCollectionViewItem: NSCollectionViewItem {
 
     override var isSelected: Bool {
         didSet {
-            nameLabel.textColor = isSelected ? NSColor.blue : NSColor.black
+            view.wantsLayer = true
+
+            let lightColor = NSColor.color(named: .BackgroundColor)
+            let darkColor = NSColor.color(named: .DarkAccent)
+            view.layer?.backgroundColor = isSelected ? darkColor.cgColor : lightColor.cgColor
+            nameLabel.textColor = isSelected ? lightColor : darkColor
         }
     }
 }

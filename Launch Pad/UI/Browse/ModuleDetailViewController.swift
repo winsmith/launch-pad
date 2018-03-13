@@ -27,6 +27,7 @@ class ModuleDetailViewController: NSViewController {
     @IBOutlet weak var uninstallButton: NSButton!
     @IBOutlet weak var upgradeButton: NSButton!
 
+    @IBOutlet weak var iconImageView: NSImageView!
     @IBOutlet weak var moduleNameLabel: NSTextField!
     @IBOutlet weak var moduleVersionLabel: NSTextField!
     @IBOutlet weak var authorsLabel: NSTextField!
@@ -88,7 +89,7 @@ class ModuleDetailViewController: NSViewController {
         }
 
         if let resources = module.resources {
-            for (button, resourceKey) in zip(resourcesButtons, resources.keys) {
+            for (button, resourceKey) in zip(resourcesButtons, resources.keys.filter { $0 != "x_screenshot" }) {
                 button.title = resourceKey.firstUppercased
                 button.isHidden = false
             }
@@ -97,6 +98,16 @@ class ModuleDetailViewController: NSViewController {
         // Dependencies
         dependenciesLabel.stringValue = module.dependencies?.map({ $0.name }).joined(separator: ", ") ?? "–"
         suggestionsLabel.stringValue = module.suggestions?.map({ $0.name }).joined(separator: ", ")  ?? "–"
+
+        // Screenshot
+        if let resources = module.resources, let screenshot = resources["x_screenshot"], let screenshotURL = screenshot.urlValue() {
+            URLSession.shared.dataTask(with: screenshotURL) { data, response, error in
+                guard error == nil, let data = data else { return }
+                DispatchQueue.main.async { self.iconImageView.image = NSImage(data: data) }
+            }.resume()
+        } else {
+            iconImageView.image = NSImage(named: NSImage.Name(rawValue: "Box"))
+        }
     }
 
     // MARK: - Actions
@@ -122,17 +133,8 @@ class ModuleDetailViewController: NSViewController {
     // MARK: - Resources Buttons
     @IBAction func resourcesButton(_ sender: NSButton) {
         guard let resourceURLDict = module?.resources?[sender.title.lowercased()] else { return }
-        switch resourceURLDict {
-        case .dictionary(let value):
-            guard let firstKey = value.keys.first else { return }
-            guard let urlString = value[firstKey] else { return }
-            guard let resourceURL = URL(string: urlString) else { return }
-            NSWorkspace.shared.open(resourceURL)
-
-        case .string(let value):
-            guard let resourceURL = URL(string: value) else { return }
-            NSWorkspace.shared.open(resourceURL)
-        }
+        guard let resourceURL = resourceURLDict.urlValue() else { return }
+        NSWorkspace.shared.open(resourceURL)
     }
 }
 

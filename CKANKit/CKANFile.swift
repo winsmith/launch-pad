@@ -90,6 +90,20 @@ struct CKANFile: Codable {
                 try container.encode(string)
             }
         }
+
+        func urlValue() -> URL? {
+            switch self {
+            case .dictionary(let value):
+                guard let firstKey = value.keys.first else { return nil }
+                guard let urlString = value[firstKey] else { return nil }
+                guard let resourceURL = URL(string: urlString) else { return nil }
+                return resourceURL
+
+            case .string(let value):
+                guard let resourceURL = URL(string: value) else { return nil }
+                return resourceURL
+            }
+        }
     }
 
     // Spec Version

@@ -11,6 +11,7 @@ import WebKit
 
 class BrowseViewController: NSViewController {
     @IBOutlet private weak var collectionView: NSCollectionView!
+    @IBOutlet weak var welcomeBox: NSBox!
     private var moduleDetailViewController: ModuleDetailViewController?
     private let appDelegate = NSApplication.shared.delegate as? AppDelegate
     private let notificationCenter = NotificationCenter.default
@@ -86,6 +87,7 @@ extension BrowseViewController: NSCollectionViewDelegate {
         let module = modules[indexPath.item]
         moduleDetailViewController?.kspInstallation = self.appDelegate?.ckanClient?.kspInstallation
         moduleDetailViewController?.module = module
+        welcomeBox.isHidden = true
         deselectAllItems()
         selectItem(at: indexPath)
     }

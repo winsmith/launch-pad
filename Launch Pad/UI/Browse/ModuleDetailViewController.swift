@@ -141,6 +141,8 @@ class ModuleDetailViewController: NSViewController {
 extension ModuleDetailViewController: InstallModuleViewControllerDelegate {
     func didFinishInstallingModules(installModuleViewController: InstallModuleViewController) {
         debugPrint("Reloading not implemented")
-        parent?.dismissViewController(installModuleViewController)
+        DispatchQueue.main.async {
+            self.parent?.dismissViewController(installModuleViewController)
+        }
     }
 }

@@ -71,14 +71,17 @@ class InstallModuleViewController: NSViewController {
         for module in modulesToInstall ?? [] {
             install(module)
         }
-
-        isWorking = false
-        delegate?.didFinishInstallingModules(installModuleViewController: self)
     }
 
     private func install(_ module: CKANModule) {
-        // TODO: Progress
-        module.install(to: kspInstallation!, progress: nil, callback: {})
+        module.install(to: kspInstallation!, progress: progress) {
+            guard self.modulesToInstall != nil else { return }
+            self.modulesToInstall!.remove(at: self.modulesToInstall!.index(of:module)!)
+            if self.modulesToInstall!.isEmpty {
+                self.isWorking = false
+                self.delegate?.didFinishInstallingModules(installModuleViewController: self)
+            }
+        }
     }
 }
 

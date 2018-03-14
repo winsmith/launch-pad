@@ -72,15 +72,15 @@ extension CKANModule {
         prepare()
         let downloadProgress = download() { localURL in
             let unzipProgress = Progress()
-            unzipProgress.kind = ProgressKind(rawValue: "Unpacking...")
-            progress?.addChild(unzipProgress, withPendingUnitCount: 20)
+            unzipProgress.localizedDescription = "Unpacking..."
+            progress?.addChild(unzipProgress, withPendingUnitCount: 3)
             let unpackSuccessful = self.unpack(zipFileURL: localURL, kspInstallation: kspInstallation, progress: unzipProgress)
             guard unpackSuccessful else { fatalError() }
             callback()
         }
-        downloadProgress.kind = ProgressKind(rawValue: "Downloading...")
+        downloadProgress.localizedDescription = "Downloading..."
         if let progress = progress {
-            progress.addChild(downloadProgress, withPendingUnitCount: 10)
+            progress.addChild(downloadProgress, withPendingUnitCount: 2)
         }
     }
 

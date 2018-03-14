@@ -62,6 +62,14 @@ class InstallModuleViewController: NSViewController {
     private func updateUI() {
         DispatchQueue.main.async {
             self.progressBar.doubleValue = self.progress.fractionCompleted * 100
+
+            if self.progress.completedUnitCount < 2 {
+                self.statusLabel.stringValue = "Downloading..."
+            } else if self.progress.completedUnitCount < 4 {
+                self.statusLabel.stringValue = "Unpacking..."
+            } else {
+                self.statusLabel.stringValue = "Installing..."
+            }
         }
     }
 

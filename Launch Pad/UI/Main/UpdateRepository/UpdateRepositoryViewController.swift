@@ -52,7 +52,6 @@ class UpdateRepositoryViewController: NSViewController {
     private func updateUI() {
         DispatchQueue.main.async {
             self.progressBar.doubleValue = self.progress.fractionCompleted * 100
-            self.statusLabel.stringValue = self.progress.kind?.rawValue ?? "Working beep boop"
         }
     }
 

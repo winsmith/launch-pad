@@ -1164,15 +1164,23 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24l-wv-OpG">
-                                <rect key="frame" x="43" y="35" width="364" height="231"/>
+                                <rect key="frame" x="43" y="22" width="364" height="256"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kK-eF-0ZQ">
-                                        <rect key="frame" x="0.0" y="50" width="364" height="181"/>
+                                        <rect key="frame" x="0.0" y="75" width="364" height="181"/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Cloud" id="SaC-06-mla"/>
                                     </imageView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tuz-eB-2Vk">
-                                        <rect key="frame" x="-2" y="25" width="55" height="17"/>
+                                        <rect key="frame" x="-2" y="50" width="55" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Settings" id="eBx-XN-vAS">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-uD-qR5">
+                                        <rect key="frame" x="-2" y="25" width="92" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ablator Notice" id="K3B-A9-2np">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1191,8 +1199,10 @@
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -1672,12 +1682,25 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <textField horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="628-bc-yDB">
+                                <rect key="frame" x="27" y="129" width="608" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="Pzp-wH-5eF"/>
+                                </constraints>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Debug" drawsBackground="YES" id="iAz-ee-q3s">
+                                    <font key="font" size="12" name="Menlo-Regular"/>
+                                    <color key="textColor" name="DarkAccent"/>
+                                    <color key="backgroundColor" name="BackgroundColor"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="xq3-f0-BBd" firstAttribute="leading" secondItem="oQG-1j-Wye" secondAttribute="trailing" constant="20" id="612-0A-dps"/>
                             <constraint firstItem="xq3-f0-BBd" firstAttribute="top" secondItem="iE8-gG-HAq" secondAttribute="baseline" constant="4" id="62w-Oe-woz"/>
+                            <constraint firstItem="628-bc-yDB" firstAttribute="top" secondItem="x3Z-E7-LVt" secondAttribute="bottom" constant="8" id="6Qv-gE-gqA"/>
                             <constraint firstItem="pMb-Zq-Mks" firstAttribute="top" secondItem="FGF-oJ-9A9" secondAttribute="bottom" constant="8" id="6RB-o3-hH7"/>
                             <constraint firstItem="oQG-1j-Wye" firstAttribute="leading" secondItem="de3-KT-nxP" secondAttribute="leading" constant="20" id="6lx-9S-p7n"/>
+                            <constraint firstAttribute="trailing" secondItem="628-bc-yDB" secondAttribute="trailing" constant="20" id="Aoq-Rf-q8u"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8aK-gq-GqF" secondAttribute="trailing" id="IXJ-r5-1lQ"/>
                             <constraint firstItem="FGF-oJ-9A9" firstAttribute="leading" secondItem="oQG-1j-Wye" secondAttribute="trailing" constant="20" id="JEW-1x-raK"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YU0-Yq-Mj2" secondAttribute="trailing" id="Kqs-Fa-c9k"/>
@@ -1686,6 +1709,7 @@
                             <constraint firstItem="qoc-G7-0iT" firstAttribute="leading" secondItem="oQG-1j-Wye" secondAttribute="trailing" constant="20" id="Q6S-On-ZBB"/>
                             <constraint firstAttribute="trailing" secondItem="xq3-f0-BBd" secondAttribute="trailing" constant="20" id="R0f-7S-Hds"/>
                             <constraint firstItem="FGF-oJ-9A9" firstAttribute="top" secondItem="xq3-f0-BBd" secondAttribute="bottom" constant="8" id="RCH-YH-Kjx"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="628-bc-yDB" secondAttribute="bottom" constant="20" id="RHD-Tu-1zd"/>
                             <constraint firstAttribute="trailing" secondItem="x3Z-E7-LVt" secondAttribute="trailing" constant="20" id="Rry-PK-XDE"/>
                             <constraint firstItem="YU0-Yq-Mj2" firstAttribute="top" secondItem="pMb-Zq-Mks" secondAttribute="bottom" constant="21" id="Taj-EY-Ab6"/>
                             <constraint firstItem="x3Z-E7-LVt" firstAttribute="leading" secondItem="de3-KT-nxP" secondAttribute="leading" constant="27" id="Zhv-LE-ROf"/>
@@ -1699,6 +1723,7 @@
                             <constraint firstItem="8aK-gq-GqF" firstAttribute="leading" secondItem="de3-KT-nxP" secondAttribute="leading" constant="27" id="oTi-PF-Scf"/>
                             <constraint firstItem="iE8-gG-HAq" firstAttribute="top" secondItem="de3-KT-nxP" secondAttribute="top" constant="20" id="pJa-rO-IiR"/>
                             <constraint firstItem="oQG-1j-Wye" firstAttribute="top" secondItem="de3-KT-nxP" secondAttribute="top" constant="20" id="t8a-RG-Yg1"/>
+                            <constraint firstItem="628-bc-yDB" firstAttribute="leading" secondItem="de3-KT-nxP" secondAttribute="leading" constant="27" id="up8-MG-LbY"/>
                             <constraint firstItem="pMb-Zq-Mks" firstAttribute="leading" secondItem="oQG-1j-Wye" secondAttribute="trailing" constant="20" id="vgv-vs-aFO"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iE8-gG-HAq" secondAttribute="trailing" constant="20" id="wH7-PP-6g6"/>
                             <constraint firstItem="YU0-Yq-Mj2" firstAttribute="leading" secondItem="de3-KT-nxP" secondAttribute="leading" constant="27" id="wOT-9l-MoU"/>
@@ -1708,6 +1733,7 @@
                     <connections>
                         <outlet property="abstractLabel" destination="YU0-Yq-Mj2" id="CvM-Yb-Eii"/>
                         <outlet property="authorsLabel" destination="xq3-f0-BBd" id="pUX-YT-KIa"/>
+                        <outlet property="debugLabel" destination="628-bc-yDB" id="iEo-5r-44k"/>
                         <outlet property="dependenciesLabel" destination="gaz-rq-13M" id="4KZ-9u-YB8"/>
                         <outlet property="descriptionLabel" destination="eWn-gD-7Mu" id="8Tc-lh-D2X"/>
                         <outlet property="downloadSizeLabel" destination="5Q1-8d-E7K" id="Bin-g5-Ffv"/>
@@ -1747,6 +1773,9 @@
         </namedColor>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DarkAccent">
+            <color red="0.32156862745098042" green="0.27450980392156865" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

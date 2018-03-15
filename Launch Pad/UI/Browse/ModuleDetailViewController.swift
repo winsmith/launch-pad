@@ -39,7 +39,8 @@ class ModuleDetailViewController: NSViewController {
     @IBOutlet weak var descriptionLabel: NSTextField!
     @IBOutlet weak var dependenciesLabel: NSTextField!
     @IBOutlet weak var suggestionsLabel: NSTextField!
-
+    @IBOutlet weak var debugLabel: NSTextField!
+    
     // Resources
     @IBOutlet weak var resourcesStackView: NSStackView!
     @IBOutlet weak var resourcesButton1: NSButton!
@@ -76,6 +77,11 @@ class ModuleDetailViewController: NSViewController {
         licenseLabel.stringValue = module.licenses?.joined(separator: ", ") ?? "–"
         abstractLabel.stringValue = module.abstract ?? ""
         descriptionLabel.stringValue = module.description ?? ""
+
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = .prettyPrinted
+        let debugData = try? jsonEncoder.encode(module.ckanFile)
+        debugLabel.stringValue = debugData != nil ? String(data: debugData!, encoding: .utf8)! : ""
 
         if let downloadSizeBytes = module.downloadSize {
             downloadSizeLabel.stringValue = byteFormatter.string(fromByteCount: Int64(downloadSizeBytes))

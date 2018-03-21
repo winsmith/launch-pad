@@ -11,7 +11,7 @@ import Cocoa
 class InstallModuleViewController: NSViewController {
     // MARK: - Properties
     public weak var delegate: InstallModuleViewControllerDelegate?
-    public var modulesToInstall: [CKANModule]?
+    public var releasesToInstall: [Release]?
     public var kspInstallation: KSPInstallation?
 
     // MARK: Private Properties
@@ -30,7 +30,7 @@ class InstallModuleViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let firstModule = modulesToInstall?.first {
+        if let firstModule = releasesToInstall?.first {
             titleLabel.stringValue = "Installing \(firstModule.name)"
         }
 
@@ -76,16 +76,16 @@ class InstallModuleViewController: NSViewController {
     private func installModules() {
         isWorking = true
 
-        for module in modulesToInstall ?? [] {
+        for module in releasesToInstall ?? [] {
             install(module)
         }
     }
 
-    private func install(_ module: CKANModule) {
-        module.install(to: kspInstallation!, progress: progress) {
-            guard self.modulesToInstall != nil else { return }
-            self.modulesToInstall!.remove(at: self.modulesToInstall!.index(of:module)!)
-            if self.modulesToInstall!.isEmpty {
+    private func install(_ release: Release) {
+        release.install(to: kspInstallation!, progress: progress) {
+            guard self.releasesToInstall != nil else { return }
+            self.releasesToInstall!.remove(at: self.releasesToInstall!.index(of:release)!)
+            if self.releasesToInstall!.isEmpty {
                 self.isWorking = false
                 self.delegate?.didFinishInstallingModules(installModuleViewController: self)
             }

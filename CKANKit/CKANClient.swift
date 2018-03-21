@@ -9,13 +9,10 @@
 import Foundation
 
 public class CKANClient {
-    /// If true, the client has all the settings available to start installing mods
     public var kspInstallation: KSPInstallation
     public var isRepositoryInitialized: Bool { return kspInstallation.ckanRepository.modules?.count ?? 0 > 0 }
-    public var modules: [CKANModule]? { return kspInstallation.ckanRepository.modules }
-    public var newestCompatibleModules: [CKANModule] {
-        return kspInstallation.ckanRepository.newestCompatibleModules(with: kspInstallation)
-    }
+    public var modules: [Module]? { return kspInstallation.ckanRepository.modules }
+    public var newestCompatibleModules: [Module] { return kspInstallation.ckanRepository.compatibleModules(with: kspInstallation) }
 
     init(kspInstallation: KSPInstallation) {
         self.kspInstallation = kspInstallation

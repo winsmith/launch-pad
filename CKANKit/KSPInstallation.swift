@@ -21,7 +21,7 @@ public struct KSPInstallation {
     var ckanRepository: CKANRepository
 
     /// KSP Version detected ("1.3.1")
-    var kspVersion: Version
+    var kspVersion: VersionNumber
 
     public func toDictionary() -> [String: String?] {
         return [
@@ -47,7 +47,7 @@ public struct KSPInstallation {
             return nil
         }
 
-        guard let version = Version(with: versionString) else {
+        guard let version = VersionNumber(with: versionString) else {
             print("Failed to parse '\(versionString)' as Version")
             return nil
         }
@@ -63,7 +63,7 @@ public struct KSPInstallation {
         guard let kspDirectoryStringUnpacked = kspDirectoryString else { return nil }
         guard let kspVersionString = dict[KSPInstallationKeys.kspVersion.rawValue] else { return nil}
         guard let kspVersionStringUnpacked = kspVersionString else { return nil }
-        guard let version = Version(with: kspVersionStringUnpacked) else { return nil }
+        guard let version = VersionNumber(with: kspVersionStringUnpacked) else { return nil }
 
         let kspDirectoryURL = URL(fileURLWithPath: kspDirectoryStringUnpacked)
         self.kspDirectory = kspDirectoryURL

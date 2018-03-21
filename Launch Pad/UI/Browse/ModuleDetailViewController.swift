@@ -14,7 +14,7 @@ class ModuleDetailViewController: NSViewController {
     }
 
     // MARK: - Properties
-    public var module: CKANModule? {
+    public var module: Module? {
         didSet {
             updateUI()
         }
@@ -64,26 +64,26 @@ class ModuleDetailViewController: NSViewController {
             return
         }
 
-        installButton.isHidden = module.isInstalled
-        uninstallButton.isHidden = !module.isInstalled
-        upgradeButton.isHidden = !module.isInstalled
+        installButton.isHidden = false // module.isInstalled
+        uninstallButton.isHidden = true // !module.isInstalled
+        upgradeButton.isHidden = true // !module.isInstalled
 
         moduleNameLabel.stringValue = module.name
-        moduleVersionLabel.stringValue = module.version?.description ?? ""
-        authorsLabel.stringValue = module.authors?.joined(separator: ", ") ?? "–"
+        moduleVersionLabel.stringValue = module.latestRelease.version?.description ?? ""
+        authorsLabel.stringValue = module.latestRelease.authors?.joined(separator: ", ") ?? "–"
 
-        minKSPVersionLabel.stringValue = module.kspVersionMin?.description ?? "–"
-        maxKSPVersionLabel.stringValue = module.kspVersionMax?.description ?? "–"
-        licenseLabel.stringValue = module.licenses?.joined(separator: ", ") ?? "–"
-        abstractLabel.stringValue = module.abstract ?? ""
-        descriptionLabel.stringValue = module.description ?? ""
+        minKSPVersionLabel.stringValue = module.latestRelease.kspVersionMin?.description ?? "–"
+        maxKSPVersionLabel.stringValue = module.latestRelease.kspVersionMax?.description ?? "–"
+        licenseLabel.stringValue = module.latestRelease.licenses?.joined(separator: ", ") ?? "–"
+        abstractLabel.stringValue = module.latestRelease.abstract ?? ""
+        descriptionLabel.stringValue = module.latestRelease.description ?? ""
 
         let jsonEncoder = JSONEncoder()
         jsonEncoder.outputFormatting = .prettyPrinted
-        let debugData = try? jsonEncoder.encode(module.ckanFile)
+        let debugData = try? jsonEncoder.encode(module.latestRelease.ckanFile)
         debugLabel.stringValue = debugData != nil ? String(data: debugData!, encoding: .utf8)! : ""
 
-        if let downloadSizeBytes = module.downloadSize {
+        if let downloadSizeBytes = module.latestRelease.downloadSize {
             downloadSizeLabel.stringValue = byteFormatter.string(fromByteCount: Int64(downloadSizeBytes))
         } else {
             downloadSizeLabel.stringValue = "o_o"
@@ -94,7 +94,7 @@ class ModuleDetailViewController: NSViewController {
             button.isHidden = true
         }
 
-        if let resources = module.resources {
+        if let resources = module.latestRelease.resources {
             for (button, resourceKey) in zip(resourcesButtons, resources.keys.filter { $0 != "x_screenshot" }) {
                 button.title = resourceKey.firstUppercased
                 button.isHidden = false
@@ -102,11 +102,11 @@ class ModuleDetailViewController: NSViewController {
         }
 
         // Dependencies
-        dependenciesLabel.stringValue = module.dependencies?.map({ $0.name }).joined(separator: ", ") ?? "–"
-        suggestionsLabel.stringValue = module.suggestions?.map({ $0.name }).joined(separator: ", ")  ?? "–"
+        dependenciesLabel.stringValue = module.latestRelease.dependencies?.map({ $0.name }).joined(separator: ", ") ?? "–"
+        suggestionsLabel.stringValue = module.latestRelease.suggestions?.map({ $0.name }).joined(separator: ", ")  ?? "–"
 
         // Screenshot
-        if let resources = module.resources, let screenshot = resources["x_screenshot"], let screenshotURL = screenshot.urlValue() {
+        if let resources = module.latestRelease.resources, let screenshot = resources["x_screenshot"], let screenshotURL = screenshot.urlValue() {
             URLSession.shared.dataTask(with: screenshotURL) { data, response, error in
                 guard error == nil, let data = data else { return }
                 DispatchQueue.main.async { self.iconImageView.image = NSImage(data: data) }
@@ -118,16 +118,16 @@ class ModuleDetailViewController: NSViewController {
 
     // MARK: - Actions
     @IBAction func install(_ sender: Any) {
-        guard module?.isInstalled == false else { return }
-        guard module?.dependencies?.isEmpty != false else { fatalError("Cannot yet install modules with dependencies")}
+        guard module?.latestRelease.isInstalled == false else { return }
+        guard module?.latestRelease.dependencies?.isEmpty != false else { fatalError("Cannot yet install modules with dependencies")}
 
-        let installModuleViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "InstallModuleViewController"))
+        let installReleaseViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "InstallModuleViewController"))
             as! InstallModuleViewController
-        installModuleViewController.delegate = self
-        installModuleViewController.modulesToInstall = [module!]
-        installModuleViewController.kspInstallation = kspInstallation
+        installReleaseViewController.delegate = self
+        installReleaseViewController.releasesToInstall = [module!.latestRelease]
+        installReleaseViewController.kspInstallation = kspInstallation
 
-        parent?.presentViewControllerAsSheet(installModuleViewController)
+        parent?.presentViewControllerAsSheet(installReleaseViewController)
     }
 
     @IBAction func uninstall(_ sender: Any) {
@@ -138,7 +138,7 @@ class ModuleDetailViewController: NSViewController {
 
     // MARK: - Resources Buttons
     @IBAction func resourcesButton(_ sender: NSButton) {
-        guard let resourceURLDict = module?.resources?[sender.title.lowercased()] else { return }
+        guard let resourceURLDict = module?.latestRelease.resources?[sender.title.lowercased()] else { return }
         guard let resourceURL = resourceURLDict.urlValue() else { return }
         NSWorkspace.shared.open(resourceURL)
     }

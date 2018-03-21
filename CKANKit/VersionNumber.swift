@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Version: Equatable, Comparable, CustomStringConvertible {
+public struct VersionNumber: Equatable, Comparable, CustomStringConvertible {
     let major: Int
     let minor: Int
     let bugfix: Int
@@ -22,7 +22,7 @@ public struct Version: Equatable, Comparable, CustomStringConvertible {
         bugfix = components.count > 2 ? Int(components[2])! : 0
     }
 
-    public static func ==(lhs: Version, rhs: Version) -> Bool {
+    public static func ==(lhs: VersionNumber, rhs: VersionNumber) -> Bool {
         return (
             lhs.major == rhs.major &&
             lhs.minor == rhs.minor &&
@@ -30,7 +30,7 @@ public struct Version: Equatable, Comparable, CustomStringConvertible {
         )
     }
 
-    public static func <(lhs: Version, rhs: Version) -> Bool {
+    public static func <(lhs: VersionNumber, rhs: VersionNumber) -> Bool {
         if lhs.major != rhs.major {
             return lhs.major < rhs.major
         } else if lhs.minor != rhs.minor {

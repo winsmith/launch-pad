@@ -12,13 +12,13 @@ class ModuleCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var versionLabel: NSTextField!
 
-    var module: CKANModule? {
+    var module: Module? {
         didSet {
             guard module != oldValue else { return }
             nameLabel.stringValue = module?.name ?? ""
 
-            let versionString = module?.version ?? ""
-            let authorsString = module?.authors?.joined(separator: ", ") ?? ""
+            let versionString = module?.releases.first?.version ?? ""
+            let authorsString = module?.releases.first?.authors?.joined(separator: ", ") ?? ""
             versionLabel.stringValue = "\(versionString) - \(authorsString)"
         }
     }

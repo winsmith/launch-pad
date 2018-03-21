@@ -15,7 +15,7 @@ class BrowseViewController: NSViewController {
     private var moduleDetailViewController: ModuleDetailViewController?
     private let appDelegate = NSApplication.shared.delegate as? AppDelegate
     private let notificationCenter = NotificationCenter.default
-    private var modules: [CKANModule] = []
+    private var modules: [Module] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

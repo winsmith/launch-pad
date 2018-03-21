@@ -16,7 +16,7 @@ public class CKANRepository {
     let workingDirectory: URL
 
     // MARK: CKANFiles
-    var modules: [CKANModule]?
+    var modules: [Module]?
 
     // MARK: URLs
     private let zipFileName = "ckan_meta_master.zip"
@@ -54,29 +54,11 @@ public class CKANRepository {
 
 // MARK: - Filtering, Searching and Querying
 extension CKANRepository {
-    func compatibleModules(with kspInstallation: KSPInstallation) -> [CKANModule] {
+    func compatibleModules(with kspInstallation: KSPInstallation) -> [Module] {
         guard let modules = modules else { return [] }
-        return modules.filter { $0.isCompatible(with: kspInstallation) }
+        return modules.filter { $0.getCompatibleReleases(with: kspInstallation).isEmpty == false }
     }
 
-    func newestCompatibleModules(with kspInstallation: KSPInstallation) -> [CKANModule] {
-        var newestModules = [String: CKANModule]()
-        let compatibleModulesList = compatibleModules(with: kspInstallation)
-
-        for module in compatibleModulesList {
-            let existingModule = newestModules[module.identifier]
-            if existingModule == nil || existingModule! < module {
-                newestModules[module.identifier] = module
-            }
-        }
-
-        var newestCompatibleModulesList = [CKANModule]()
-        for key in newestModules.keys {
-            newestCompatibleModulesList.append(newestModules[key]!)
-        }
-
-        return newestCompatibleModulesList.sorted { $0.name.trimmed < $1.name.trimmed }
-    }
 }
 
 // MARK: - Downloading, Unpacking and Parsing the CKAN Meta information
@@ -156,23 +138,31 @@ extension CKANRepository {
             progress.totalUnitCount = Int64(allFileURLs.count)
         }
 
-        var newModules = [CKANModule]()
+        var newModulesDict = [String: Module]()
         for fileURL in allFileURLs {
             if fileURL.pathExtension == "ckan" {
                 do {
                     let fileData = try Data(contentsOf: fileURL)
                     let ckanFile = try decoder.decode(CKANFile.self, from: fileData)
-                    let ckanModule = CKANModule(ckanFile: ckanFile)
-                    newModules.append(ckanModule)
+                    let release = Release(ckanFile: ckanFile)
+                    if let module = newModulesDict[release.identifier] {
+                        module.add(release: release)
+                    } else {
+                        let module = Module(firstRelease: release)
+                        newModulesDict[release.identifier] = module
+                    }
                 } catch let error {
-                    print(error)
-                    fatalError()
+                    fatalError(error.localizedDescription)
                 }
             }
             progress?.completedUnitCount += 1
         }
 
-        print("Decoding complete! \(newModules.count) files decoded")
+        var newModules = [Module]()
+        for (_, module) in newModulesDict {
+            newModules.append(module)
+        }
+
         modules = newModules.sorted { $0.name.trimmed < $1.name.trimmed }
         saveToCache()
         postAllModulesUpdatedNotification()
@@ -206,7 +196,8 @@ extension CKANRepository {
         }
 
         let jsonEncoder = JSONEncoder()
-        let ckanFiles = modules.map { $0.ckanFile }
+        let releases = modules.reduce([Release]()) { (result, module) -> [Release] in result + module.releases }
+        let ckanFiles = releases.map { $0.ckanFile }
 
         do {
             let data = try jsonEncoder.encode(ckanFiles)
@@ -222,10 +213,20 @@ extension CKANRepository {
             let cacheData = try Data(contentsOf: cacheFileURL)
             let ckanFiles = try decoder.decode([CKANFile].self, from: cacheData)
 
-            var newModules = [CKANModule]()
+            var newModulesDict = [String: Module]()
             for ckanFile in ckanFiles {
-                let ckanModule = CKANModule(ckanFile: ckanFile)
-                newModules.append(ckanModule)
+                let release = Release(ckanFile: ckanFile)
+                if let module = newModulesDict[release.identifier] {
+                    module.add(release: release)
+                } else {
+                    let module = Module(firstRelease: release)
+                    newModulesDict[release.identifier] = module
+                }
+            }
+
+            var newModules = [Module]()
+            for (_, module) in newModulesDict {
+                newModules.append(module)
             }
 
             modules = newModules

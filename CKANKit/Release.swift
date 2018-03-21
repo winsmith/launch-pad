@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CKANModule {
+public class Release {
     // MARK: - Private Properties
     let ckanFile: CKANFile
 
@@ -23,8 +23,8 @@ public class CKANModule {
     var name: String { return ckanFile.name }
     var authors: [String]? { return ckanFile.author?.arrayValue }
     var version: String? { return ckanFile.version }
-    var kspVersionMax: Version? { return Version(with: ckanFile.ksp_version_max) }
-    var kspVersionMin: Version? { return Version(with: ckanFile.ksp_version_min) }
+    var kspVersionMax: VersionNumber? { return VersionNumber(with: ckanFile.ksp_version_max) }
+    var kspVersionMin: VersionNumber? { return VersionNumber(with: ckanFile.ksp_version_min) }
     var downloadSize: Int? { return ckanFile.download_size }
     var licenses: [String]? { return ckanFile.license.arrayValue }
 
@@ -52,20 +52,22 @@ public class CKANModule {
 }
 
 // MARK: - Equatable
-extension CKANModule: Comparable {
-    public static func <(lhs: CKANModule, rhs: CKANModule) -> Bool {
+extension Release: Comparable {
+    public static func <(lhs: Release, rhs: Release) -> Bool {
+        // TODO: Check that only Releases of the same module are compared
+
         guard let lhsVersion = lhs.version else { return true }
         guard let rhsVersion = rhs.version else { return false }
         return lhsVersion < rhsVersion
     }
 
-    public static func ==(lhs: CKANModule, rhs: CKANModule) -> Bool {
+    public static func ==(lhs: Release, rhs: Release) -> Bool {
         return lhs.ckanFile == rhs.ckanFile
     }
 }
 
 // MARK: - Installing
-extension CKANModule {
+extension Release {
     public func install(to kspInstallation: KSPInstallation, progress: Progress?, callback: @escaping () -> ()) {
         guard !isInstalled else { return }
 

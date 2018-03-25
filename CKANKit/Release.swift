@@ -40,7 +40,7 @@ public class Release {
     var downloadURL: URL { return ckanFile.download }
 
     // MARK: - Internal CKANFile Properties
-    private var installationInstructions: [CKANFile.InstallationDirective] { return ckanFile.install ?? [CKANFile.InstallationDirective]() }
+    private var installationDirectives: [CKANFile.InstallationDirective] { return ckanFile.install ?? [CKANFile.InstallationDirective]() }
 
     // MARK: - Private Properties
     private let fileManager = FileManager.default
@@ -177,8 +177,17 @@ extension Release {
     }
 
     private func copyReleaseFilesToInstallation(kspInstallation: KSPInstallation, progress: Progress) {
-        for installationInstruction in installationInstructions {
-            self.install(installationInstruction, toInstallation: kspInstallation)
+        if installationDirectives.isEmpty {
+            // If no install sections are provided, a CKAN client must find the top-most directory in
+            // the archive that matches the module identifier, and install that with a target of GameData.
+            let installationDirective = CKANFile.InstallationDirective(file: nil, find: identifier,
+                find_regexp: nil, install_to: "GameData", as: nil, filter: nil, filter_regexp: nil,
+                include_only: nil, include_only_regexp: nil, find_matches_files: nil)
+            self.install(installationDirective, toInstallation: kspInstallation)
+        } else {
+            for installationDirective in installationDirectives {
+                self.install(installationDirective, toInstallation: kspInstallation)
+            }
         }
     }
 

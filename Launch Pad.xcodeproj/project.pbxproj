@@ -21,6 +21,7 @@
 		DCD2D77F2067DCCC0009D5B8 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D77E2067DCCC0009D5B8 /* SettingsKeys.swift */; };
 		DCD2D7812067DD450009D5B8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7802067DD450009D5B8 /* Settings.swift */; };
 		DCD2D7832067DF960009D5B8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7822067DF960009D5B8 /* SettingsViewController.swift */; };
+		DCD2D7852067E2F20009D5B8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7842067E2F20009D5B8 /* Logger.swift */; };
 		DCD773D72051CB0300F6F394 /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773D62051CB0300F6F394 /* CKANClient.swift */; };
 		DCD773E62052AE8C00F6F394 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */; };
 		DCD773E82052AEC800F6F394 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E72052AEC800F6F394 /* Release.swift */; };
@@ -89,6 +90,7 @@
 		DCD2D77E2067DCCC0009D5B8 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		DCD2D7802067DD450009D5B8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		DCD2D7822067DF960009D5B8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DCD2D7842067E2F20009D5B8 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		DCD773D62051CB0300F6F394 /* CKANClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClient.swift; sourceTree = "<group>"; };
 		DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
 		DCD773E72052AEC800F6F394 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				DC4191B52055856300BD6B39 /* String+Uppercased.swift */,
+				DCD2D7842067E2F20009D5B8 /* Logger.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				DC654993203326C50023111E /* BrowseViewController.swift in Sources */,
 				DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */,
 				DCD8A32820502EBC0068CD4F /* Data+Compression.swift in Sources */,
+				DCD2D7852067E2F20009D5B8 /* Logger.swift in Sources */,
 				DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */,
 				DC4191B920559AFC00BD6B39 /* InstallModuleViewController.swift in Sources */,
 				DCDD164A204B0D5800A04672 /* KSPInstallation.swift in Sources */,

@@ -195,9 +195,12 @@ extension Release {
 
         for urlToCopy in urlsToCopy {
             do {
-                logger.log("Copying to %@ ...", destinationURL.path)
-                try fileManager.moveItem(at: urlToCopy, to: destinationURL.appendingPathComponent(urlToCopy.lastPathComponent))
-                logger.log("Copied to %@.", destinationURL.path)
+                let finalDestinationURL = destinationURL.appendingPathComponent(urlToCopy.lastPathComponent)
+                logger.log("Creating all subdirectories of %@ ...", finalDestinationURL.path)
+                try fileManager.createParentDirectoryStructure(for: finalDestinationURL)
+                logger.log("Copying to %@ ...", finalDestinationURL.path)
+                try fileManager.moveItem(at: urlToCopy, to: finalDestinationURL)
+                logger.log("Copied to %@.", finalDestinationURL.path)
             } catch {
                 logger.log("Failed to copy: %@", error.localizedDescription)
             }

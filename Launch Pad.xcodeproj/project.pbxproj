@@ -18,6 +18,9 @@
 		DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */; };
 		DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */; };
 		DCADA3A7203B297400C1E7BA /* ModuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */; };
+		DCD2D77F2067DCCC0009D5B8 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D77E2067DCCC0009D5B8 /* SettingsKeys.swift */; };
+		DCD2D7812067DD450009D5B8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7802067DD450009D5B8 /* Settings.swift */; };
+		DCD2D7832067DF960009D5B8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7822067DF960009D5B8 /* SettingsViewController.swift */; };
 		DCD773D72051CB0300F6F394 /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773D62051CB0300F6F394 /* CKANClient.swift */; };
 		DCD773E62052AE8C00F6F394 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */; };
 		DCD773E82052AEC800F6F394 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E72052AEC800F6F394 /* Release.swift */; };
@@ -83,6 +86,9 @@
 		DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSheetViewController.swift; sourceTree = "<group>"; };
 		DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleCollectionViewItem.swift; sourceTree = "<group>"; };
 		DCADA3A5203B297400C1E7BA /* ModuleCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleCollectionViewItem.xib; sourceTree = "<group>"; };
+		DCD2D77E2067DCCC0009D5B8 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
+		DCD2D7802067DD450009D5B8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		DCD2D7822067DF960009D5B8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DCD773D62051CB0300F6F394 /* CKANClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClient.swift; sourceTree = "<group>"; };
 		DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
 		DCD773E72052AEC800F6F394 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
@@ -166,6 +172,7 @@
 				DCADA3952038664400C1E7BA /* Main */,
 				DCD8A32C205067110068CD4F /* UpdateRepository */,
 				DCADA3942038663600C1E7BA /* Browse */,
+				DCD2D77D2067DCBB0009D5B8 /* Settings */,
 				DC4191B720559AE400BD6B39 /* InstallModule */,
 			);
 			path = UI;
@@ -189,6 +196,16 @@
 				DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		DCD2D77D2067DCBB0009D5B8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DCD2D7802067DD450009D5B8 /* Settings.swift */,
+				DCD2D77E2067DCCC0009D5B8 /* SettingsKeys.swift */,
+				DCD2D7822067DF960009D5B8 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		DCD8A31D20502EBC0068CD4F /* ZIPFoundation */ = {
@@ -254,11 +271,11 @@
 		DCF0939F20309F04003224AC /* Launch Pad */ = {
 			isa = PBXGroup;
 			children = (
+				DCADA391203865BC00C1E7BA /* UI */,
 				DC4191B42055855000BD6B39 /* Helpers */,
 				DCF093A920309F05003224AC /* Info.plist */,
 				DC65499A203338B80023111E /* Launch Pad.entitlements */,
 				DCF093AA20309F05003224AC /* Launch_Pad.entitlements */,
-				DCADA391203865BC00C1E7BA /* UI */,
 				DCF093A020309F04003224AC /* AppDelegate.swift */,
 			);
 			path = "Launch Pad";
@@ -384,6 +401,7 @@
 			files = (
 				DCD8A32720502EBC0068CD4F /* Entry.swift in Sources */,
 				DCDD1648204B0AAC00A04672 /* CKANRepository.swift in Sources */,
+				DCD2D7812067DD450009D5B8 /* Settings.swift in Sources */,
 				DCD8A32A20502EBC0068CD4F /* Data+Serialization.swift in Sources */,
 				DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */,
 				DCD773EA2052BC1500F6F394 /* VersionNumber.swift in Sources */,
@@ -398,6 +416,7 @@
 				DCD773E82052AEC800F6F394 /* Release.swift in Sources */,
 				DCD773E62052AE8C00F6F394 /* ModuleDetailViewController.swift in Sources */,
 				DCD8A32E205067320068CD4F /* UpdateRepositoryViewController.swift in Sources */,
+				DCD2D77F2067DCCC0009D5B8 /* SettingsKeys.swift in Sources */,
 				DC84D02B204DBC65005CBDCD /* CKANFile.swift in Sources */,
 				DCD8A32920502EBC0068CD4F /* Archive+Writing.swift in Sources */,
 				DCD773D72051CB0300F6F394 /* CKANClient.swift in Sources */,
@@ -406,6 +425,7 @@
 				DCF093A120309F04003224AC /* AppDelegate.swift in Sources */,
 				DCD8A32620502EBC0068CD4F /* Archive+Reading.swift in Sources */,
 				DCD8A32B20502EBC0068CD4F /* FileManager+ZIP.swift in Sources */,
+				DCD2D7832067DF960009D5B8 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

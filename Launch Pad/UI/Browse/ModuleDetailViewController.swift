@@ -82,6 +82,7 @@ class ModuleDetailViewController: NSViewController {
         jsonEncoder.outputFormatting = .prettyPrinted
         let debugData = try? jsonEncoder.encode(module.latestRelease.ckanFile)
         debugLabel.stringValue = debugData != nil ? String(data: debugData!, encoding: .utf8)! : ""
+        debugLabel.isHidden = !Settings.shouldDisplayDebugInformation
 
         if let downloadSizeBytes = module.latestRelease.downloadSize {
             downloadSizeLabel.stringValue = byteFormatter.string(fromByteCount: Int64(downloadSizeBytes))

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 
 public class Release {
     // MARK: - Private Properties
@@ -15,6 +16,7 @@ public class Release {
     // MARK: - Init
     init(ckanFile: CKANFile) {
         self.ckanFile = ckanFile
+        self.logger = Logger(category: "\(ckanFile.identifier) \(ckanFile.version)", subsystem: "CKANKit")
     }
 
     // MARK: - Properties
@@ -29,7 +31,7 @@ public class Release {
     var licenses: [String]? { return ckanFile.license.arrayValue }
 
     var abstract: String? { return ckanFile.abstract }
-    var description: String? { return ckanFile.description }
+    var detailDescription: String? { return ckanFile.description }
 
     var resources: [String: CKANFile.ResourceURL]? { return ckanFile.resources }
     var dependencies: [CKANFile.Relationship]? { return ckanFile.depends }
@@ -39,6 +41,7 @@ public class Release {
 
     // MARK: - Private Properties
     private let fileManager = FileManager.default
+    private let logger: Logger
 
     // MARK: - Meta, etc
     public func isCompatible(with installation: KSPInstallation) -> Bool {
@@ -66,18 +69,29 @@ extension Release: Comparable {
     }
 }
 
+// MARK: - CustomStringConvertible
+extension Release: CustomStringConvertible {
+    public var description: String {
+        return "Release: \(identifier) (\(version ?? "no version specified"))"
+    }
+}
+
 // MARK: - Installing
 extension Release {
     public func install(to kspInstallation: KSPInstallation, progress: Progress?, callback: @escaping () -> ()) {
-        guard !isInstalled else { return }
+        logger.log("Beginning install into %@", kspInstallation.kspDirectory.path)
+
+        guard !isInstalled else {
+            logger.log("Cancelling installation because the release is already installed")
+            return
+        }
 
         prepareTempDirectories()
-        let downloadProgress = download() { localURL in
+        let downloadProgress = downloadReleaseArchive() { localURL in
             let unzipProgress = Progress()
             unzipProgress.localizedDescription = "Unpacking..."
             progress?.addChild(unzipProgress, withPendingUnitCount: 3)
-            let unpackSuccessful = self.unpack(zipFileURL: localURL, kspInstallation: kspInstallation, progress: unzipProgress)
-            guard unpackSuccessful else { fatalError() }
+            self.unpackReleaseArchive(kspInstallation: kspInstallation, progress: unzipProgress)
             callback()
         }
         downloadProgress.localizedDescription = "Downloading..."
@@ -88,58 +102,69 @@ extension Release {
 
     // MARK: URLs
     private var tempDirectoryURL: URL { return URL(fileURLWithPath: "/tmp").appendingPathComponent(identifier) }
+    private var localDownloadedArchiveURL: URL { return tempDirectoryURL.appendingPathComponent(downloadURL.lastPathComponent) }
 
     private func prepareTempDirectories() {
+        logger.log("Preparing Temp Directory at %@ ...", tempDirectoryURL.path)
+
         if fileManager.fileExists(atPath: tempDirectoryURL.path) {
-            do { try fileManager.removeItem(atPath: tempDirectoryURL.path) }
-            catch { print(error) }
+            logger.log("Temp directory already exists, removing...")
+            do {
+                try fileManager.removeItem(atPath: tempDirectoryURL.path)
+                logger.log("Removed old temp directory.")
+            }
+            catch {
+                logger.log("Error while removing previous temp directory: %@", error.localizedDescription)
+                print(error)
+            }
         }
 
-        do { try fileManager.createDirectory(at: tempDirectoryURL, withIntermediateDirectories: true, attributes: nil) }
-        catch { print(error) }
+        do {
+            logger.log("Creating Temp directory...")
+            try fileManager.createDirectory(at: tempDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+            logger.log("Created Temp directory.")
+        }
+        catch {
+            logger.log("Error while creating temp directory: %@", error.localizedDescription)
+            print(error)
+        }
+
+        logger.log("Preparing Temp Directory complete.")
     }
 
-    private func download(_ callback: @escaping (_ downloadedURL: URL) -> ()) -> Progress {
-        let localUrl = tempDirectoryURL.appendingPathComponent(downloadURL.lastPathComponent)
-        let sessionConfig = URLSessionConfiguration.default
-        let session = URLSession(configuration: sessionConfig)
-        let request = URLRequest(url: downloadURL)
+    private func downloadReleaseArchive(_ callback: @escaping (_ downloadedURL: URL) -> ()) -> Progress {
+        logger.log("Downloading %@ ...", downloadURL.absoluteString)
 
-        let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let task = session.downloadTask(with: URLRequest(url: downloadURL)) { (tempLocalUrl, response, error) in
             if let tempLocalUrl = tempLocalUrl, error == nil {
-                // Success
-                if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-                    print("Success: \(statusCode)")
-                }
-
                 do {
-                    try self.fileManager.copyItem(at: tempLocalUrl, to: localUrl)
-                    callback(localUrl)
+                    try self.fileManager.copyItem(at: tempLocalUrl, to: self.localDownloadedArchiveURL)
+                    self.logger.log("Download successful.")
+                    callback(self.localDownloadedArchiveURL)
                 } catch (let writeError) {
-                    print("error writing file \(localUrl) : \(writeError)")
+                    self.logger.log("Failed to save downloaded file: %@", writeError.localizedDescription)
+                    print("error writing file \(self.localDownloadedArchiveURL) : \(writeError)")
                 }
-
             } else {
-                print("Failure: \(error?.localizedDescription ?? ":("))")
+                let errorString = error?.localizedDescription ?? "Unknown Error"
+                self.logger.log("Download failed: %@", errorString)
             }
         }
         task.resume()
         return task.progress
     }
 
-    private func unpack(zipFileURL: URL, kspInstallation: KSPInstallation, progress: Progress) -> Bool {
-        let sourceUrl = zipFileURL
-        let destinationUrl = kspInstallation.kspDirectory.appendingPathComponent("GameData")
+    private func unpackReleaseArchive(kspInstallation: KSPInstallation, progress: Progress) {
+        logger.log("Unpacking into %@ ...", tempDirectoryURL.path)
 
         do {
-            try fileManager.unzipItem(at: sourceUrl, to: destinationUrl, progress: progress)
-            return true
+            try fileManager.unzipItem(at: localDownloadedArchiveURL, to: tempDirectoryURL, progress: progress)
+            logger.log("Unpacking successful")
         } catch CocoaError.fileWriteFileExists {
-            // File Exists
-            print("Nothing unpacked, file exists")
+            logger.log("Unpacking failed because a file already exists at the target path.")
         } catch {
-            print("Extraction of ZIP archive failed with error:\(error)")
+            logger.log("Unpacking failed with error: %@", error.localizedDescription)
         }
-        return false
     }
 }

@@ -76,7 +76,7 @@ class ModuleDetailViewController: NSViewController {
         maxKSPVersionLabel.stringValue = module.latestRelease.kspVersionMax?.description ?? "–"
         licenseLabel.stringValue = module.latestRelease.licenses?.joined(separator: ", ") ?? "–"
         abstractLabel.stringValue = module.latestRelease.abstract ?? ""
-        descriptionLabel.stringValue = module.latestRelease.description ?? ""
+        descriptionLabel.stringValue = module.latestRelease.detailDescription ?? ""
 
         let jsonEncoder = JSONEncoder()
         jsonEncoder.outputFormatting = .prettyPrinted

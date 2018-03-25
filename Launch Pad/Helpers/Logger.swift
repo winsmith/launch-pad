@@ -20,7 +20,11 @@ class Logger {
         logObject = OSLog(subsystem: subsystem, category: category)
     }
 
-    func log(_ message: StaticString, type: OSLogType = OSLogType.default) {
-        os_log(message, log: logObject, type: type)
+    func log(_ message: StaticString, _ messageContent: String? = nil, type: OSLogType = OSLogType.default) {
+        if let messageContent = messageContent {
+            os_log(message, log: logObject, type: type, messageContent)
+        } else {
+            os_log(message, log: logObject, type: type)
+        }
     }
 }

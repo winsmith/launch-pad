@@ -39,6 +39,9 @@ public class Release {
 
     var downloadURL: URL { return ckanFile.download }
 
+    // MARK: - Internal CKANFile Properties
+    private var installationInstructions: [CKANFile.InstallationDirective] { return ckanFile.install ?? [CKANFile.InstallationDirective]() }
+
     // MARK: - Private Properties
     private let fileManager = FileManager.default
     private let logger: Logger
@@ -92,6 +95,11 @@ extension Release {
             unzipProgress.localizedDescription = "Unpacking..."
             progress?.addChild(unzipProgress, withPendingUnitCount: 3)
             self.unpackReleaseArchive(kspInstallation: kspInstallation, progress: unzipProgress)
+
+            let copyProgress = Progress()
+            copyProgress.localizedDescription = "Installing into \(kspInstallation.kspDirectory.path)..."
+            progress?.addChild(copyProgress, withPendingUnitCount: 1)
+            self.copyReleaseFilesToInstallation(kspInstallation: kspInstallation, progress: copyProgress)
             callback()
         }
         downloadProgress.localizedDescription = "Downloading..."
@@ -165,6 +173,83 @@ extension Release {
             logger.log("Unpacking failed because a file already exists at the target path.")
         } catch {
             logger.log("Unpacking failed with error: %@", error.localizedDescription)
+        }
+    }
+
+    private func copyReleaseFilesToInstallation(kspInstallation: KSPInstallation, progress: Progress) {
+        for installationInstruction in installationInstructions {
+            self.install(installationInstruction, toInstallation: kspInstallation)
+        }
+    }
+
+    /// https://github.com/KSP-CKAN/CKAN/blob/master/Spec.md#install
+    private func install(_ installation: CKANFile.InstallationDirective, toInstallation: KSPInstallation) {
+        logger.log("Processing installation directive...")
+
+        let urlsToCopy = getSourceURLSFromInstallation(installation, withKSPInstallation: toInstallation)
+        guard let destinationURL = getDestinationURLFromInstallationDirective(installation, withKSPInstallation: toInstallation) else {
+            fatalError()
+        }
+
+        // TODO: as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files
+
+        for urlToCopy in urlsToCopy {
+            do {
+                logger.log("Copying to %@ ...", destinationURL.path)
+                try fileManager.moveItem(at: urlToCopy, to: destinationURL.appendingPathComponent(urlToCopy.lastPathComponent))
+                logger.log("Copied to %@.", destinationURL.path)
+            } catch {
+                logger.log("Failed to copy: %@", error.localizedDescription)
+            }
+        }
+
+        logger.log("Done processing installation directive.")
+    }
+
+    private func getSourceURLSFromInstallation(_ installation: CKANFile.InstallationDirective, withKSPInstallation kspInstallation: KSPInstallation) -> [URL] {
+        var urlsToCopy = [URL]()
+
+        // file: The file or directory root that this directive pertains to
+        if let file = installation.file {
+            urlsToCopy.append(tempDirectoryURL.appendingPathComponent(file))
+        }
+
+        // find: Locate the top-most directory which exactly matches the name specified.
+        else if let find = installation.find {
+            // TODO
+        }
+
+        // find_regexp: Locate the top-most directory which matches the specified regular expression
+        else if let find_regexp = installation.find_regexp {
+            // TODO
+        }
+
+        logger.log("Generated %@ source URLs.", "\(urlsToCopy.count)")
+        return urlsToCopy
+    }
+
+    private func getDestinationURLFromInstallationDirective(_ installationDirective: CKANFile.InstallationDirective, withKSPInstallation kspInstallation: KSPInstallation) -> URL? {
+        logger.log("Parsing destination URL from '%@'...", "\(installationDirective.install_to)")
+
+        let valid_values_that_allow_subdirectories = ["GameData", "Tutorial", "Scenarios"]
+        let valid_values = valid_values_that_allow_subdirectories + ["GameRoot", "Missions", "Ships", "Ships/SPH", "Ships/VAB", "Ships/@thumbs/VAB", "Ships/@thumbs/SPH"]
+
+        guard installationDirective.install_to.hasPrefix("GameData") || valid_values.contains(installationDirective.install_to) else {
+            logger.log("Destination URL is invalid")
+            return nil
+        }
+        guard installationDirective.install_to.contains("..") == false else {
+            logger.log("Destination URL tries to traverse upward. Failing.")
+            return nil
+        }
+
+        if installationDirective.install_to == "GameRoot" {
+            logger.log("Destination URL is Game Root.")
+            return kspInstallation.kspDirectory
+        } else {
+            let destinationURL = kspInstallation.kspDirectory.appendingPathComponent(installationDirective.install_to)
+            logger.log("Destination URL is %@.", destinationURL.path)
+            return destinationURL
         }
     }
 }

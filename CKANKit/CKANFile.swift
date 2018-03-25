@@ -36,7 +36,7 @@ struct CKANFile: Codable {
         }
     }
 
-    struct Installation: Codable {
+    struct InstallationDirective: Codable {
         // Source
         let file: String?
         let find: String?
@@ -118,7 +118,7 @@ struct CKANFile: Codable {
     let version: String
 
     // Optional Fields
-    let install: [Installation]?
+    let install: [InstallationDirective]?
     let comment: String?
     let author: StringOrArray?
     let description: String?

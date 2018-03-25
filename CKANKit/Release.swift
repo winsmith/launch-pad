@@ -206,25 +206,41 @@ extension Release {
         logger.log("Done processing installation directive.")
     }
 
-    private func getSourceURLSFromInstallation(_ installation: CKANFile.InstallationDirective, withKSPInstallation kspInstallation: KSPInstallation) -> [URL] {
+    private func getSourceURLSFromInstallation(_ installationDirective: CKANFile.InstallationDirective, withKSPInstallation kspInstallation: KSPInstallation) -> [URL] {
         var urlsToCopy = [URL]()
 
         // file: The file or directory root that this directive pertains to
-        if let file = installation.file {
+        if let file = installationDirective.file {
             urlsToCopy.append(tempDirectoryURL.appendingPathComponent(file))
         }
 
         // find: Locate the top-most directory which exactly matches the name specified.
-        else if let find = installation.find {
-            // TODO
+        else if let findDirective = installationDirective.find {
+            guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { return urlsToCopy }
+            var mostFittingPath: String?
+            var mostFittingPathDepth: Int = 99999
+
+            while let element = directoryEnumerator.nextObject() as? String {
+                if element.hasSuffix(findDirective) && mostFittingPathDepth > directoryEnumerator.level {
+                    mostFittingPath = element
+                    mostFittingPathDepth = directoryEnumerator.level
+                }
+            }
+            if let mostFittingPath = mostFittingPath {
+                let mostFittingPathURL = tempDirectoryURL.appendingPathComponent(mostFittingPath)
+                urlsToCopy.append(mostFittingPathURL)
+            }
         }
 
         // find_regexp: Locate the top-most directory which matches the specified regular expression
-        else if let find_regexp = installation.find_regexp {
+        else if let find_regexp = installationDirective.find_regexp {
             // TODO
         }
 
         logger.log("Generated %@ source URLs.", "\(urlsToCopy.count)")
+        for urlToCopy in urlsToCopy {
+            logger.log(" - %@", urlToCopy.path)
+        }
         return urlsToCopy
     }
 

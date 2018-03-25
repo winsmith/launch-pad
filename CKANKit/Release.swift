@@ -71,7 +71,7 @@ extension Release {
     public func install(to kspInstallation: KSPInstallation, progress: Progress?, callback: @escaping () -> ()) {
         guard !isInstalled else { return }
 
-        prepare()
+        prepareTempDirectories()
         let downloadProgress = download() { localURL in
             let unzipProgress = Progress()
             unzipProgress.localizedDescription = "Unpacking..."
@@ -86,22 +86,21 @@ extension Release {
         }
     }
 
-    private func tempDirectoryURL() -> URL {
-        return URL(fileURLWithPath: "/tmp").appendingPathComponent(identifier)
-    }
+    // MARK: URLs
+    private var tempDirectoryURL: URL { return URL(fileURLWithPath: "/tmp").appendingPathComponent(identifier) }
 
-    private func prepare() {
-        if fileManager.fileExists(atPath: tempDirectoryURL().path) {
-            do { try fileManager.removeItem(atPath: tempDirectoryURL().path) }
+    private func prepareTempDirectories() {
+        if fileManager.fileExists(atPath: tempDirectoryURL.path) {
+            do { try fileManager.removeItem(atPath: tempDirectoryURL.path) }
             catch { print(error) }
         }
 
-        do { try fileManager.createDirectory(at: tempDirectoryURL(), withIntermediateDirectories: true, attributes: nil) }
+        do { try fileManager.createDirectory(at: tempDirectoryURL, withIntermediateDirectories: true, attributes: nil) }
         catch { print(error) }
     }
 
     private func download(_ callback: @escaping (_ downloadedURL: URL) -> ()) -> Progress {
-        let localUrl = tempDirectoryURL().appendingPathComponent(downloadURL.lastPathComponent)
+        let localUrl = tempDirectoryURL.appendingPathComponent(downloadURL.lastPathComponent)
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
         let request = URLRequest(url: downloadURL)

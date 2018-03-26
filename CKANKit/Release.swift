@@ -193,6 +193,8 @@ extension Release {
     }
 
     private func copyReleaseFilesToInstallation(kspInstallation: KSPInstallation, progress: Progress) -> [URL] {
+        progress.totalUnitCount = installationDirectives.isEmpty ? 1 : Int64(installationDirectives.count)
+
         var installedFiles = [URL]()
         if installationDirectives.isEmpty {
             // If no install sections are provided, a CKAN client must find the top-most directory in
@@ -201,9 +203,11 @@ extension Release {
                 find_regexp: nil, install_to: "GameData", as: nil, filter: nil, filter_regexp: nil,
                 include_only: nil, include_only_regexp: nil, find_matches_files: nil)
             installedFiles += self.install(installationDirective, toInstallation: kspInstallation)
+            progress.completedUnitCount = 1
         } else {
             for installationDirective in installationDirectives {
                 installedFiles += self.install(installationDirective, toInstallation: kspInstallation)
+                progress.totalUnitCount += 1
             }
         }
 

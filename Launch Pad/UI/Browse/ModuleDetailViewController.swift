@@ -16,6 +16,7 @@ class ModuleDetailViewController: NSViewController {
     // MARK: - Properties
     public var module: Module? {
         didSet {
+            guard module != oldValue else { return }
             updateUI()
         }
     }
@@ -146,6 +147,7 @@ class ModuleDetailViewController: NSViewController {
 
     @IBAction func uninstall(_ sender: Any) {
         module?.installedRelease?.uninstall()
+        updateUI()
     }
 
     @IBAction func upgrade(_ sender: Any) {
@@ -161,8 +163,8 @@ class ModuleDetailViewController: NSViewController {
 
 extension ModuleDetailViewController: InstallModuleViewControllerDelegate {
     func didFinishInstallingModules(installModuleViewController: InstallModuleViewController) {
-        debugPrint("Reloading not implemented")
         DispatchQueue.main.async {
+            self.updateUI()
             self.parent?.dismissViewController(installModuleViewController)
         }
     }

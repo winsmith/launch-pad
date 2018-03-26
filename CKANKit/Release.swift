@@ -304,4 +304,37 @@ extension Release {
             return destinationURL
         }
     }
+
+    // MARK: - Uninstalling
+    public func uninstall() {
+        logger.log("Beginning uninstall ...")
+
+        guard let module = module else {
+            logger.log("Could not retrieve module. Aborting.")
+            return
+        }
+
+        guard let metadata = module.ckanRepository?.metadataManager.metadata(for: module) else {
+            logger.log("Could not retrieve metadata. Aborting.")
+            return
+        }
+
+        guard metadata.installedVersion == version else {
+            logger.log("Tried to uninstall a release that's not installed. Aborting.")
+            return
+        }
+
+        for filePath in metadata.installedFiles {
+            logger.log("Trying to delete %@ ...", filePath)
+            let fileURL = URL(fileURLWithPath: filePath)
+
+            do {
+                try fileManager.removeItem(at: fileURL)
+                module.ckanRepository?.metadataManager.deleteMetadata(for: module)
+                logger.log("Deleted file: %@", fileURL.path)
+            } catch {
+                logger.log("Failed to delete file: %@", error.localizedDescription)
+            }
+        }
+    }
 }

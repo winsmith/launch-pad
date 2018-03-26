@@ -43,6 +43,10 @@ class ModuleMetadataManager {
         saveToCache()
     }
 
+    func deleteMetadata(for module: Module) {
+        moduleMetadata[module.identifier] = nil
+    }
+
     // MARK: - Saving and Retrieving from Cache
     func saveToCache() {
         do {

@@ -145,6 +145,7 @@ class ModuleDetailViewController: NSViewController {
     }
 
     @IBAction func uninstall(_ sender: Any) {
+        module?.installedRelease?.uninstall()
     }
 
     @IBAction func upgrade(_ sender: Any) {

@@ -145,6 +145,9 @@ struct CKANFile: Codable {
     let download_size: Int?
     let download_hash: [String: String]?
     let download_content_type: String?
+
+    // Fields used by Launch Pad
+    var isInstalled: Bool?
 }
 
 // MARK: - Equatable

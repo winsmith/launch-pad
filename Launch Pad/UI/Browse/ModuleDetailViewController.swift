@@ -64,9 +64,22 @@ class ModuleDetailViewController: NSViewController {
             return
         }
 
-        installButton.isHidden = false // module.isInstalled
-        uninstallButton.isHidden = true // !module.isInstalled
-        upgradeButton.isHidden = true // !module.isInstalled
+        if module.installedRelease == nil {
+            installButton.isHidden = false
+            uninstallButton.isHidden = true
+            upgradeButton.isHidden = true
+        } else if let installedRelease = module.installedRelease {
+            installButton.isHidden = true
+
+            if installedRelease == module.latestRelease {
+                uninstallButton.isHidden = false
+                upgradeButton.isHidden = true
+            } else {
+                uninstallButton.isHidden = true
+                upgradeButton.isHidden = false
+                upgradeButton.stringValue = "Upgrade from \(installedRelease.version ?? "0") to \(module.latestRelease.version ?? "0")"
+            }
+        }
 
         moduleNameLabel.stringValue = module.name
         moduleVersionLabel.stringValue = module.latestRelease.version?.description ?? ""

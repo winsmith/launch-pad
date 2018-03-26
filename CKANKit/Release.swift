@@ -11,7 +11,7 @@ import os
 
 public class Release {
     // MARK: - Private Properties
-    let ckanFile: CKANFile
+    var ckanFile: CKANFile
 
     // MARK: - Init
     init(ckanFile: CKANFile) {
@@ -21,7 +21,7 @@ public class Release {
 
     // MARK: - Properties
     var identifier: String { return ckanFile.identifier }
-    var isInstalled: Bool { return false }
+    var isInstalled: Bool { return ckanFile.isInstalled == true }
     var name: String { return ckanFile.name }
     var authors: [String]? { return ckanFile.author?.arrayValue }
     var version: String? { return ckanFile.version }
@@ -45,6 +45,7 @@ public class Release {
     // MARK: - Private Properties
     private let fileManager = FileManager.default
     private let logger: Logger
+    internal weak var module: Module?
 
     // MARK: - Meta, etc
     public func isCompatible(with installation: KSPInstallation) -> Bool {
@@ -89,19 +90,32 @@ extension Release {
             return
         }
 
+        // Prepare
         prepareTempDirectories()
+
+        // Download
         let downloadProgress = downloadReleaseArchive() { localURL in
+
+            // Unzip
             let unzipProgress = Progress()
             unzipProgress.localizedDescription = "Unpacking..."
             progress?.addChild(unzipProgress, withPendingUnitCount: 3)
             self.unpackReleaseArchive(kspInstallation: kspInstallation, progress: unzipProgress)
 
+            // Copy
             let copyProgress = Progress()
             copyProgress.localizedDescription = "Installing into \(kspInstallation.kspDirectory.path)..."
             progress?.addChild(copyProgress, withPendingUnitCount: 1)
             self.copyReleaseFilesToInstallation(kspInstallation: kspInstallation, progress: copyProgress)
+
+            // Update Repository
+            self.ckanFile.isInstalled = true
+            self.module?.ckanRepository?.saveToCache()
+
+            // Callback
             callback()
         }
+
         downloadProgress.localizedDescription = "Downloading..."
         if let progress = progress {
             progress.addChild(downloadProgress, withPendingUnitCount: 2)
@@ -200,6 +214,7 @@ extension Release {
             fatalError()
         }
 
+        let todo = "as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files"
         // TODO: as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files
 
         for urlToCopy in urlsToCopy {
@@ -246,6 +261,7 @@ extension Release {
 
         // find_regexp: Locate the top-most directory which matches the specified regular expression
         else if let find_regexp = installationDirective.find_regexp {
+            let todo = find_regexp
             // TODO
         }
 

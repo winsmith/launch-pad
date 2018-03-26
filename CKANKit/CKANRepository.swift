@@ -161,6 +161,7 @@ extension CKANRepository {
         var newModules = [Module]()
         for (_, module) in newModulesDict {
             newModules.append(module)
+            module.ckanRepository = self
         }
 
         modules = newModules.sorted { $0.name.trimmed < $1.name.trimmed }
@@ -227,6 +228,7 @@ extension CKANRepository {
             var newModules = [Module]()
             for (_, module) in newModulesDict {
                 newModules.append(module)
+                module.ckanRepository = self
             }
 
             modules = newModules

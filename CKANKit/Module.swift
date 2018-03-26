@@ -14,14 +14,19 @@ public class Module {
 
     var identifier: String { return latestRelease.identifier }
     var name: String { return latestRelease.name }
+    var installedRelease: Release? { return releases.filter { $0.isInstalled }.first }
+
+    internal weak var ckanRepository: CKANRepository?
 
     init(firstRelease: Release) {
         releases = [firstRelease]
+        firstRelease.module = self
     }
 
     func add(release: Release) {
         releases.append(release)
         releases.sort { $0 > $1 }
+        release.module = self
     }
 
     func getLatestCompatibleRelease(with installation: KSPInstallation) -> Release? {

@@ -43,7 +43,7 @@ public class Module {
 
 extension Module: Comparable {
     public static func <(lhs: Module, rhs: Module) -> Bool {
-        return lhs.name < rhs.name
+        return lhs.name.replacingOccurrences(of: "'", with: "").trimmed < rhs.name.replacingOccurrences(of: "'", with: "").trimmed
     }
 
     public static func ==(lhs: Module, rhs: Module) -> Bool {

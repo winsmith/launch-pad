@@ -15,6 +15,6 @@ extension String {
     }
 
     var trimmed: String {
-        return trimmingCharacters(in: NSCharacterSet.whitespaces)
+        return trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
     }
 }

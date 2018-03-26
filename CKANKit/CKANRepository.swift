@@ -167,7 +167,7 @@ extension CKANRepository {
             module.ckanRepository = self
         }
 
-        modules = newModules.sorted { $0.name.trimmed < $1.name.trimmed }
+        modules = newModules.sorted()
         saveToCache()
         postAllModulesUpdatedNotification()
     }
@@ -233,7 +233,7 @@ extension CKANRepository {
                 module.ckanRepository = self
             }
 
-            modules = newModules
+            modules = newModules.sorted()
             postAllModulesUpdatedNotification()
         } catch {
             print("Could not get repository from cache:", error)

@@ -46,6 +46,11 @@ class MainViewController: NSTabViewController {
             self.presentViewControllerAsSheet(updateRepositoryViewController)
         }
     }
+
+    public func updateRepository() {
+        updateRepositoryViewController.ckanClient = appDelegate.ckanClient
+        self.presentViewControllerAsSheet(updateRepositoryViewController)
+    }
 }
 
 extension MainViewController: WelcomeSheetViewControllerDelegate {

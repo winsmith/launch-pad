@@ -23,6 +23,7 @@
 		DCD2D7832067DF960009D5B8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7822067DF960009D5B8 /* SettingsViewController.swift */; };
 		DCD2D7852067E2F20009D5B8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7842067E2F20009D5B8 /* Logger.swift */; };
 		DCD2D7872068713D0009D5B8 /* ModuleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7862068713D0009D5B8 /* ModuleMetadata.swift */; };
+		DCD2D7952068FF470009D5B8 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7942068FF470009D5B8 /* MainWindowController.swift */; };
 		DCD773D72051CB0300F6F394 /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773D62051CB0300F6F394 /* CKANClient.swift */; };
 		DCD773E62052AE8C00F6F394 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */; };
 		DCD773E82052AEC800F6F394 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E72052AEC800F6F394 /* Release.swift */; };
@@ -93,6 +94,7 @@
 		DCD2D7822067DF960009D5B8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DCD2D7842067E2F20009D5B8 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		DCD2D7862068713D0009D5B8 /* ModuleMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleMetadata.swift; sourceTree = "<group>"; };
+		DCD2D7942068FF470009D5B8 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		DCD773D62051CB0300F6F394 /* CKANClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClient.swift; sourceTree = "<group>"; };
 		DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
 		DCD773E72052AEC800F6F394 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		DCADA3952038664400C1E7BA /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				DCD2D7942068FF470009D5B8 /* MainWindowController.swift */,
 				DCADA392203865EB00C1E7BA /* MainViewController.swift */,
 				DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */,
 			);
@@ -419,6 +422,7 @@
 				DCD2D7852067E2F20009D5B8 /* Logger.swift in Sources */,
 				DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */,
 				DC4191B920559AFC00BD6B39 /* InstallModuleViewController.swift in Sources */,
+				DCD2D7952068FF470009D5B8 /* MainWindowController.swift in Sources */,
 				DCDD164A204B0D5800A04672 /* KSPInstallation.swift in Sources */,
 				DCD773E82052AEC800F6F394 /* Release.swift in Sources */,
 				DCD773E62052AE8C00F6F394 /* ModuleDetailViewController.swift in Sources */,

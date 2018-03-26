@@ -21,7 +21,6 @@ public class Release {
 
     // MARK: - Properties
     var identifier: String { return ckanFile.identifier }
-    var isInstalled: Bool { return ckanFile.isInstalled == true }
     var name: String { return ckanFile.name }
     var authors: [String]? { return ckanFile.author?.arrayValue }
     var version: String? { return ckanFile.version }
@@ -85,6 +84,7 @@ extension Release {
     public func install(to kspInstallation: KSPInstallation, progress: Progress?, callback: @escaping () -> ()) {
         logger.log("Beginning install into %@", kspInstallation.kspDirectory.path)
 
+        let isInstalled = module?.ckanRepository?.metadataManager.metadata(for: module!)?.installedVersion == self.version
         guard !isInstalled else {
             logger.log("Cancelling installation because the release is already installed")
             return
@@ -106,11 +106,13 @@ extension Release {
             let copyProgress = Progress()
             copyProgress.localizedDescription = "Installing into \(kspInstallation.kspDirectory.path)..."
             progress?.addChild(copyProgress, withPendingUnitCount: 1)
-            self.copyReleaseFilesToInstallation(kspInstallation: kspInstallation, progress: copyProgress)
+            let installedFiles = self.copyReleaseFilesToInstallation(kspInstallation: kspInstallation, progress: copyProgress)
 
             // Update Repository
-            self.ckanFile.isInstalled = true
-            self.module?.ckanRepository?.saveToCache()
+            if let module = self.module, let version = self.version {
+                let metadata = ModuleMetadataManager.ModuleMetadata(installedVersion: version, installedFiles: installedFiles.map { $0.path })
+                module.ckanRepository?.metadataManager.saveMetadata(for: module, metadata)
+            }
 
             // Callback
             callback()
@@ -190,23 +192,26 @@ extension Release {
         }
     }
 
-    private func copyReleaseFilesToInstallation(kspInstallation: KSPInstallation, progress: Progress) {
+    private func copyReleaseFilesToInstallation(kspInstallation: KSPInstallation, progress: Progress) -> [URL] {
+        var installedFiles = [URL]()
         if installationDirectives.isEmpty {
             // If no install sections are provided, a CKAN client must find the top-most directory in
             // the archive that matches the module identifier, and install that with a target of GameData.
             let installationDirective = CKANFile.InstallationDirective(file: nil, find: identifier,
                 find_regexp: nil, install_to: "GameData", as: nil, filter: nil, filter_regexp: nil,
                 include_only: nil, include_only_regexp: nil, find_matches_files: nil)
-            self.install(installationDirective, toInstallation: kspInstallation)
+            installedFiles += self.install(installationDirective, toInstallation: kspInstallation)
         } else {
             for installationDirective in installationDirectives {
-                self.install(installationDirective, toInstallation: kspInstallation)
+                installedFiles += self.install(installationDirective, toInstallation: kspInstallation)
             }
         }
+
+        return installedFiles
     }
 
     /// https://github.com/KSP-CKAN/CKAN/blob/master/Spec.md#install
-    private func install(_ installation: CKANFile.InstallationDirective, toInstallation: KSPInstallation) {
+    private func install(_ installation: CKANFile.InstallationDirective, toInstallation: KSPInstallation) -> [URL] {
         logger.log("Processing installation directive...")
 
         let urlsToCopy = getSourceURLSFromInstallation(installation, withKSPInstallation: toInstallation)
@@ -217,6 +222,7 @@ extension Release {
         let todo = "as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files"
         // TODO: as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files
 
+        var installedFiles = [URL]()
         for urlToCopy in urlsToCopy {
             do {
                 let finalDestinationURL = destinationURL.appendingPathComponent(urlToCopy.lastPathComponent)
@@ -225,12 +231,14 @@ extension Release {
                 logger.log("Copying to %@ ...", finalDestinationURL.path)
                 try fileManager.moveItem(at: urlToCopy, to: finalDestinationURL)
                 logger.log("Copied to %@.", finalDestinationURL.path)
+                installedFiles.append(finalDestinationURL)
             } catch {
                 logger.log("Failed to copy: %@", error.localizedDescription)
             }
         }
 
         logger.log("Done processing installation directive.")
+        return installedFiles
     }
 
     private func getSourceURLSFromInstallation(_ installationDirective: CKANFile.InstallationDirective, withKSPInstallation kspInstallation: KSPInstallation) -> [URL] {

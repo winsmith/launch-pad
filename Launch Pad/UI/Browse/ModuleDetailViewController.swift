@@ -132,7 +132,7 @@ class ModuleDetailViewController: NSViewController {
 
     // MARK: - Actions
     @IBAction func install(_ sender: Any) {
-        guard module?.latestRelease.isInstalled == false else { return }
+        guard module?.installedRelease == nil else { return }
         guard module?.latestRelease.dependencies?.isEmpty != false else { fatalError("Cannot yet install modules with dependencies")}
 
         let installReleaseViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "InstallModuleViewController"))

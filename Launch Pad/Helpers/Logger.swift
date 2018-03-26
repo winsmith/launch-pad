@@ -9,7 +9,6 @@
 import Foundation
 import os
 
-
 /// https://developer.apple.com/documentation/os/logging
 class Logger {
     let logObject: OSLog

@@ -17,6 +17,7 @@ public class CKANRepository {
 
     // MARK: CKANFiles
     var modules: [Module]?
+    let metadataManager: ModuleMetadataManager
 
     // MARK: URLs
     private let zipFileName = "ckan_meta_master.zip"
@@ -36,13 +37,15 @@ public class CKANRepository {
 
     // MARK: Private
     private let fileManager = FileManager.default
-    private let decoder = JSONDecoder()
+    private let jsonDecoder = JSONDecoder()
+    private let jsonEncoder = JSONEncoder()
 
     // MARK: - Initialization
     init(inDirectory workingDirectory: URL, withDownloadURL downloadURL: URL? = nil) {
         // Initialize Properties
         self.workingDirectory = workingDirectory
         self.downloadURL = downloadURL ?? URL(string: "https://github.com/KSP-CKAN/CKAN-meta/archive/master.zip")!
+        self.metadataManager = ModuleMetadataManager(inDirectory: workingDirectory)
 
         // Prepare Working Directory
         createDirectoryIfNotExists(workingDirectory)
@@ -143,7 +146,7 @@ extension CKANRepository {
             if fileURL.pathExtension == "ckan" {
                 do {
                     let fileData = try Data(contentsOf: fileURL)
-                    let ckanFile = try decoder.decode(CKANFile.self, from: fileData)
+                    let ckanFile = try jsonDecoder.decode(CKANFile.self, from: fileData)
                     let release = Release(ckanFile: ckanFile)
                     if let module = newModulesDict[release.identifier] {
                         module.add(release: release)
@@ -196,7 +199,6 @@ extension CKANRepository {
             return
         }
 
-        let jsonEncoder = JSONEncoder()
         let releases = modules.reduce([Release]()) { (result, module) -> [Release] in result + module.releases }
         let ckanFiles = releases.map { $0.ckanFile }
 
@@ -212,7 +214,7 @@ extension CKANRepository {
     func readRepositoryArchiveFromCache() {
         do {
             let cacheData = try Data(contentsOf: cacheFileURL)
-            let ckanFiles = try decoder.decode([CKANFile].self, from: cacheData)
+            let ckanFiles = try jsonDecoder.decode([CKANFile].self, from: cacheData)
 
             var newModulesDict = [String: Module]()
             for ckanFile in ckanFiles {

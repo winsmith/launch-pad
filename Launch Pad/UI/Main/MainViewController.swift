@@ -51,6 +51,14 @@ class MainViewController: NSTabViewController {
         updateRepositoryViewController.ckanClient = appDelegate.ckanClient
         self.presentViewControllerAsSheet(updateRepositoryViewController)
     }
+
+    public func filterModules(by filterString: String) {
+        let selectedTabViewItem = tabViewItems[selectedTabViewItemIndex]
+
+        if let browseViewController = selectedTabViewItem.viewController as? BrowseViewController {
+            browseViewController.filter = filterString
+        }
+    }
 }
 
 extension MainViewController: WelcomeSheetViewControllerDelegate {

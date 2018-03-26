@@ -9,15 +9,16 @@
 import Cocoa
 
 class MainWindowController: NSWindowController {
-    @IBOutlet weak var searchBar: NSToolbar!
-
-    private var mainViewController: NSViewController?
-    
     override func windowDidLoad() {
         super.windowDidLoad()
     }
 
     @IBAction func updateRepository(_ sender: NSToolbarItem) {
         (contentViewController as? MainViewController)?.updateRepository()
+    }
+
+    @IBAction func filter(_ sender: NSSearchField) {
+        let searchValue = sender.stringValue
+        (contentViewController as? MainViewController)?.filterModules(by: searchValue)
     }
 }

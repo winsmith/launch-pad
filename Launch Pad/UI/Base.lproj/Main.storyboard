@@ -710,6 +710,9 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
                                     </searchField>
+                                    <connections>
+                                        <action selector="filter:" target="B8D-0N-5wS" id="Phj-q8-EOq"/>
+                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="sA9-xX-WDS"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="J7v-Xc-UwL"/>
@@ -731,7 +734,6 @@
                         </connections>
                     </window>
                     <connections>
-                        <outlet property="searchBar" destination="r7m-F5-MqN" id="Rxw-0h-AQL"/>
                         <segue destination="Vpq-Jf-SGX" kind="relationship" relationship="window.shadowedContentViewController" id="oHT-tp-c5C"/>
                     </connections>
                 </windowController>
@@ -985,7 +987,7 @@
         <!--Main View Controller-->
         <scene sceneID="eBe-1M-9VG">
             <objects>
-                <tabViewController id="Vpq-Jf-SGX" customClass="MainViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController tabStyle="bottom" id="Vpq-Jf-SGX" customClass="MainViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="ey1-pX-3VV"/>
                         <tabViewItem identifier="" id="g6M-8F-hUP"/>
@@ -1022,13 +1024,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gp0-oR-bPN">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="295"/>
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" id="iIO-m8-vfi">
-                                    <rect key="frame" x="1" y="1" width="298" height="293"/>
+                                    <rect key="frame" x="1" y="1" width="298" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="jFa-TI-5m5">
-                                            <rect key="frame" x="0.0" y="0.0" width="298" height="293"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="298" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="ZiM-ip-iuV">
                                                 <size key="itemSize" width="50" height="50"/>
@@ -1094,7 +1096,7 @@
                             <constraint firstItem="BVg-1R-6ab" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" constant="20" id="daE-cC-Lkh"/>
                             <constraint firstAttribute="bottom" secondItem="gp0-oR-bPN" secondAttribute="bottom" id="g0b-Wy-e0v"/>
                             <constraint firstAttribute="trailing" secondItem="dPF-zY-NXw" secondAttribute="trailing" constant="20" id="lTz-uq-g3v"/>
-                            <constraint firstItem="gp0-oR-bPN" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" constant="5" id="tUX-po-xZw"/>
+                            <constraint firstItem="gp0-oR-bPN" firstAttribute="top" secondItem="WgU-1d-pbv" secondAttribute="top" id="tUX-po-xZw"/>
                         </constraints>
                     </view>
                     <connections>

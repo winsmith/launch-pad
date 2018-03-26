@@ -16,6 +16,12 @@ class BrowseViewController: NSViewController {
     private let appDelegate = NSApplication.shared.delegate as? AppDelegate
     private let notificationCenter = NotificationCenter.default
     private var modules: [Module] = []
+    public var filter: String? { didSet { updateFilter() } }
+    private var filteredModules: [Module] {
+        guard let filter = filter else { return modules }
+        guard filter != "" else { return modules }
+        return self.modules.filter { $0.name.lowercased().range(of: filter.lowercased()) != nil }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +62,10 @@ class BrowseViewController: NSViewController {
             self.moduleDetailViewController = moduleDetailViewController
         }
     }
+
+    func updateFilter() {
+        collectionView.reloadData()
+    }
 }
 
 // MARK: - NSCollectionViewDataSource
@@ -65,14 +75,14 @@ extension BrowseViewController: NSCollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return modules.count
+        return filteredModules.count
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ModuleCollectionViewItem"), for: indexPath)
         guard let moduleCollectionViewItem = item as? ModuleCollectionViewItem else { return item }
 
-        moduleCollectionViewItem.module = modules[indexPath.item]
+        moduleCollectionViewItem.module = filteredModules[indexPath.item]
         return moduleCollectionViewItem
     }
 }
@@ -81,10 +91,10 @@ extension BrowseViewController: NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         guard
             let indexPath = indexPaths.first,
-            modules.count > indexPath.item
+            filteredModules.count > indexPath.item
         else { return }
 
-        let module = modules[indexPath.item]
+        let module = filteredModules[indexPath.item]
         moduleDetailViewController?.kspInstallation = self.appDelegate?.ckanClient?.kspInstallation
         moduleDetailViewController?.module = module
         welcomeBox.isHidden = true

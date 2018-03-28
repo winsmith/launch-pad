@@ -1,7 +1,8 @@
 # Launch Pad
 
-![mods are downloaded, unpacked, and placed into Kerbal Space Program](docs/launchpad.gif)
+![a cute animation of mods being downloaded, unpacked, and placed into Kerbal Space Program](docs/launchpad.gif)
 
+![A screenshot of the current state of the software](docs/screenshot.png)
 
 ## 🚀 What is this?
 
@@ -23,9 +24,9 @@ Generally speaking, we are far from being finished.
 
 - You can parse download and parse CKAN files
 - You can browse the mod repository
-- You **cannot** install mods
+- You can install mods
+- You can remove mods
 - You **cannot** upgrade mods
-- You **cannot** remove mods
 
 ## 👾 Name and License
 

@@ -58,14 +58,8 @@ extension InstallModuleCoordinator: InstallModuleViewControllerDelegate {
 }
 
 extension InstallModuleCoordinator: InstallModulePreparationViewControllerDelegate {
-    func userRequestedInstallation(includingSuggestions: Bool, _ installModulePreparationViewController: InstallModulePreparationViewController) {
+    func userRequestedInstallation(releasesToInstall: [Release], _ installModulePreparationViewController: InstallModulePreparationViewController) {
         installModulePreparationViewController.dismiss(self)
-
-        let dependencies = module.latestRelease.dependencies
-        let release: [Release] = [module.latestRelease]
-        let suggestions = module.latestRelease.suggestions
-        let releasesToInstall = includingSuggestions ? dependencies + release + suggestions : dependencies + release
-        
         showInstallModuleViewController(releases: releasesToInstall)
     }
 

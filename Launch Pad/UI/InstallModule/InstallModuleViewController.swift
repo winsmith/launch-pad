@@ -13,9 +13,10 @@ class InstallModuleViewController: NSViewController {
     public weak var delegate: InstallModuleViewControllerDelegate?
     public var releasesToInstall: [Release]?
     public var kspInstallation: KSPInstallation?
+    private var remainingReleasesToInstall: [Release]?
 
     // MARK: Private Properties
-    private var progress = Progress(totalUnitCount: 5)
+    private var progress = Progress(totalUnitCount: 1)
     private var progressKeyValueObservation: NSKeyValueObservation?
     private var isWorking = false
     private var bleepBloopTimer: Timer?
@@ -30,7 +31,7 @@ class InstallModuleViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let firstModule = releasesToInstall?.first {
+        if let firstModule = remainingReleasesToInstall?.first {
             titleLabel.stringValue = "Installing \(firstModule.name)"
         }
 
@@ -51,6 +52,7 @@ class InstallModuleViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        progress.totalUnitCount = Int64(releasesToInstall!.count)
 
         if kspInstallation == nil {
             fatalError("KSP Installation not set")
@@ -62,32 +64,33 @@ class InstallModuleViewController: NSViewController {
     private func updateUI() {
         DispatchQueue.main.async {
             self.progressBar.doubleValue = self.progress.fractionCompleted * 100
+            self.statusLabel.stringValue = "Doing Things ..."
 
-            if self.progress.completedUnitCount < 2 {
-                self.statusLabel.stringValue = "Downloading..."
-            } else if self.progress.completedUnitCount < 4 {
-                self.statusLabel.stringValue = "Unpacking..."
-            } else {
-                self.statusLabel.stringValue = "Installing..."
+            if let firstModule = self.remainingReleasesToInstall?.first {
+                self.titleLabel.stringValue = "Installing \(firstModule.name)"
             }
         }
     }
 
     private func installModules() {
         isWorking = true
-
-        for module in releasesToInstall ?? [] {
-            install(module)
-        }
+        remainingReleasesToInstall = releasesToInstall
+        installFirstRemainingRelease()
     }
 
-    private func install(_ release: Release) {
-        release.install(to: kspInstallation!, progress: progress) {
-            guard self.releasesToInstall != nil else { return }
-            self.releasesToInstall!.remove(at: self.releasesToInstall!.index(of:release)!)
-            if self.releasesToInstall!.isEmpty {
+    private func installFirstRemainingRelease() {
+        let release = remainingReleasesToInstall!.first!
+        let releaseProgress = Progress(totalUnitCount: 5)
+        self.progress.addChild(releaseProgress, withPendingUnitCount: 1)
+        release.install(to: kspInstallation!, progress: releaseProgress) {
+            self.remainingReleasesToInstall!.remove(at: self.remainingReleasesToInstall!.index(of:release)!)
+            if self.remainingReleasesToInstall!.isEmpty {
                 self.isWorking = false
-                self.delegate?.didFinishInstallingModules(installModuleViewController: self)
+                DispatchQueue.main.async {
+                    self.delegate?.didFinishInstallingModules(installModuleViewController: self)
+                }
+            } else {
+                self.installFirstRemainingRelease()
             }
         }
     }

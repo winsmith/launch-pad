@@ -144,6 +144,7 @@ extension Release {
         let isInstalled = module?.ckanRepository?.metadataManager.metadata(for: module!)?.installedVersion == self.version
         guard !isInstalled else {
             logger.log("Cancelling installation because the release is already installed")
+            callback()
             return
         }
 
@@ -332,6 +333,7 @@ extension Release {
         else if let find_regexp = installationDirective.find_regexp {
             let todo = find_regexp
             // TODO
+            logger.log("Warning: skipping find_regexp installation directive because it is unsupported.")
         }
 
         logger.log("Generated %@ source URLs.", "\(urlsToCopy.count)")

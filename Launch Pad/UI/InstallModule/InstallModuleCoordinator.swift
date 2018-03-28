@@ -53,7 +53,7 @@ class InstallModuleCoordinator {
 
 extension InstallModuleCoordinator: InstallModuleViewControllerDelegate {
     func didFinishInstallingModules(installModuleViewController: InstallModuleViewController) {
-
+        installModuleViewController.dismiss(self)
     }
 }
 
@@ -66,8 +66,6 @@ extension InstallModuleCoordinator: InstallModulePreparationViewControllerDelega
     func userDidCancel(_ installModulePreparationViewController: InstallModulePreparationViewController) {
         installModulePreparationViewController.dismiss(self)
     }
-
-
 }
 
 protocol InstallModuleCoordinatorDelegate: class {

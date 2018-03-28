@@ -41,8 +41,10 @@ class ModuleDetailViewController: NSViewController {
     @IBOutlet weak var descriptionLabel: NSTextField!
     @IBOutlet weak var dependenciesLabel: NSTextField!
     @IBOutlet weak var suggestionsLabel: NSTextField!
+    @IBOutlet weak var recommendationsLabel: NSTextField!
+    @IBOutlet weak var supportLabel: NSTextField!
     @IBOutlet weak var debugLabel: NSTextField!
-    
+
     // Resources
     @IBOutlet weak var resourcesStackView: NSStackView!
     @IBOutlet weak var resourcesButton1: NSButton!
@@ -120,6 +122,8 @@ class ModuleDetailViewController: NSViewController {
         // Dependencies
         dependenciesLabel.stringValue = " - " + module.latestRelease.dependencies.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
         suggestionsLabel.stringValue = " - " + module.latestRelease.suggestions.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
+        recommendationsLabel.stringValue = " - " + module.latestRelease.recommendations.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
+        supportLabel.stringValue = " - " + module.latestRelease.supports.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
 
         // Screenshot
         if let resources = module.latestRelease.resources, let screenshot = resources["x_screenshot"], let screenshotURL = screenshot.urlValue() {

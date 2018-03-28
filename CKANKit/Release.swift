@@ -51,6 +51,24 @@ public class Release {
         }
     }
 
+    var recommendations: [Release] {
+        guard let recommendations = ckanFile.recommends else { return [] }
+        guard let repository = module?.ckanRepository else { return [] }
+
+        return recommendations.flatMap { relationship in
+            repository.latestReleaseSatifying(relationship)
+        }
+    }
+
+    var supports: [Release] {
+        guard let supported = ckanFile.supports else { return [] }
+        guard let repository = module?.ckanRepository else { return [] }
+
+        return supported.flatMap { relationship in
+            repository.latestReleaseSatifying(relationship)
+        }
+    }
+
     var downloadURL: URL { return ckanFile.download }
 
     // MARK: - Internal CKANFile Properties

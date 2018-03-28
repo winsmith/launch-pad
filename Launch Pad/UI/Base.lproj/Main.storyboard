@@ -696,7 +696,6 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <toolbar key="toolbar" implicitIdentifier="E2C85EC2-A716-487F-925C-9432E9B50A75" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="small" id="r7m-F5-MqN">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="EC82AE3B-4A1D-4FC5-9067-9A84AD7D627A" label="Toolbar Item" paletteLabel="Toolbar Item" tag="-1" image="NSAdvanced" id="l70-CD-kJ0"/>
                                 <toolbarItem implicitItemIdentifier="31B9031B-812B-47D2-A58A-E550F89015FF" label="Custom View" paletteLabel="Custom View" id="n4t-NN-vLw">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="96" height="22"/>
@@ -723,7 +722,6 @@
                                 </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="l70-CD-kJ0"/>
                                 <toolbarItem reference="juK-DH-LRv"/>
                                 <toolbarItem reference="J7v-Xc-UwL"/>
                                 <toolbarItem reference="n4t-NN-vLw"/>
@@ -2104,7 +2102,6 @@ Gw
     <resources>
         <image name="Box" width="123" height="103"/>
         <image name="Cloud" width="364" height="181"/>
-        <image name="NSAdvanced" width="32" height="32"/>
         <image name="NSNetwork" width="32" height="32"/>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

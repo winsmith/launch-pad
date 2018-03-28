@@ -144,6 +144,9 @@ extension Release {
         let isInstalled = module?.ckanRepository?.metadataManager.metadata(for: module!)?.installedVersion == self.version
         guard !isInstalled else {
             logger.log("Cancelling installation because the release is already installed")
+            if let progress = progress {
+                progress.completedUnitCount = progress.totalUnitCount
+            }
             callback()
             return
         }

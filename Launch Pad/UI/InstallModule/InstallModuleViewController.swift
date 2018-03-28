@@ -64,10 +64,9 @@ class InstallModuleViewController: NSViewController {
     private func updateUI() {
         DispatchQueue.main.async {
             self.progressBar.doubleValue = self.progress.fractionCompleted * 100
-            self.statusLabel.stringValue = "Doing Things ..."
 
             if let firstModule = self.remainingReleasesToInstall?.first {
-                self.titleLabel.stringValue = "Installing \(firstModule.name)"
+                self.statusLabel.stringValue = "Installing \(firstModule.name)"
             }
         }
     }

@@ -807,6 +807,186 @@
             </objects>
             <point key="canvasLocation" x="588" y="-424.5"/>
         </scene>
+        <!--Install Module Preparation View Controller-->
+        <scene sceneID="Hde-zh-pSD">
+            <objects>
+                <viewController storyboardIdentifier="InstallModulePreparationViewController" id="zi6-2n-A7g" customClass="InstallModulePreparationViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="xO0-fL-OKp">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H4p-LV-8Ku">
+                                <rect key="frame" x="18" y="256" width="230" height="24"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Install &lt;Name&gt; &lt;Version&gt;" id="pvk-ve-aky">
+                                    <font key="font" size="20" name=".AppleSystemUIFont"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k8C-rC-vjW">
+                                <rect key="frame" x="20" y="123" width="410" height="113"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qTj-s1-Cx8">
+                                        <rect key="frame" x="0.0" y="5" width="201" height="108"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uk0-V5-wz2">
+                                                <rect key="frame" x="-2" y="84" width="140" height="24"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Dependencies" id="9n9-s8-YbV">
+                                                    <font key="font" metaFont="systemBold" size="20"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OCb-nE-rIE">
+                                                <rect key="frame" x="-2" y="25" width="188" height="51"/>
+                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Installing this module will also install the following dependencies:" id="ath-7x-hf0">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rIe-Ay-bBe">
+                                                <rect key="frame" x="-2" y="0.0" width="149" height="17"/>
+                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="&lt;List of Dependencies&gt;" id="JNQ-ra-reo">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ek-6c-Oi0">
+                                        <rect key="frame" x="209" y="0.0" width="201" height="113"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aWP-e5-v6J">
+                                                <rect key="frame" x="-2" y="89" width="123" height="24"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Suggestions" id="jGp-yc-PeZ">
+                                                    <font key="font" metaFont="systemBold" size="20"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7Gb-Vy-Yru">
+                                                <rect key="frame" x="-2" y="47" width="193" height="34"/>
+                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="The Mod Authors suggest also installing these:" id="3oV-vg-2vp">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oyw-PM-3Fa">
+                                                <rect key="frame" x="-2" y="23" width="137" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Install Suggestions" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="j3c-zE-kwA">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zi4-k1-RF6">
+                                                <rect key="frame" x="-2" y="0.0" width="136" height="17"/>
+                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="&lt;List of suggestions&gt;" id="tmd-KM-uVX">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="0ek-6c-Oi0" secondAttribute="bottom" id="bWb-C3-d4t"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ElQ-ee-clP">
+                                <rect key="frame" x="20" y="20" width="410" height="95"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z3w-NS-VGY">
+                                        <rect key="frame" x="-6" y="67" width="82" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lKa-2X-Noy">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="cancel:" target="zi6-2n-A7g" id="uaf-qc-XnC"/>
+                                        </connections>
+                                    </button>
+                                    <button horizontalHuggingPriority="100" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZoV-AU-IYW">
+                                        <rect key="frame" x="72" y="67" width="344" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Begin Installation" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3W9-Af-vvI">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="beginInstallation:" target="zi6-2n-A7g" id="ZVB-YN-90J"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="H4p-LV-8Ku" secondAttribute="trailing" constant="20" id="5Wj-1h-OVv"/>
+                            <constraint firstItem="H4p-LV-8Ku" firstAttribute="leading" secondItem="xO0-fL-OKp" secondAttribute="leading" constant="20" id="JtB-Qh-3yn"/>
+                            <constraint firstItem="H4p-LV-8Ku" firstAttribute="top" secondItem="xO0-fL-OKp" secondAttribute="top" constant="20" id="KSF-oU-Y9Y"/>
+                            <constraint firstItem="k8C-rC-vjW" firstAttribute="leading" secondItem="xO0-fL-OKp" secondAttribute="leading" constant="20" id="Slc-xo-ttS"/>
+                            <constraint firstAttribute="trailing" secondItem="k8C-rC-vjW" secondAttribute="trailing" constant="20" id="YjK-xM-PyG"/>
+                            <constraint firstAttribute="bottom" secondItem="ElQ-ee-clP" secondAttribute="bottom" constant="20" id="amh-Id-GVp"/>
+                            <constraint firstAttribute="trailing" secondItem="ElQ-ee-clP" secondAttribute="trailing" constant="20" id="fSS-c8-OzG"/>
+                            <constraint firstItem="ElQ-ee-clP" firstAttribute="top" secondItem="k8C-rC-vjW" secondAttribute="bottom" constant="8" id="kCK-C2-9PX"/>
+                            <constraint firstItem="k8C-rC-vjW" firstAttribute="top" secondItem="H4p-LV-8Ku" secondAttribute="bottom" constant="20" id="yIP-sy-Cyf"/>
+                            <constraint firstItem="ElQ-ee-clP" firstAttribute="leading" secondItem="xO0-fL-OKp" secondAttribute="leading" constant="20" id="zNA-ay-w8d"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dependencyListLabel" destination="rIe-Ay-bBe" id="ghX-VB-aMO"/>
+                        <outlet property="installSuggestionsCheckBox" destination="oyw-PM-3Fa" id="YJ1-yO-THr"/>
+                        <outlet property="suggestionListLabel" destination="Zi4-k1-RF6" id="R2I-ok-aEP"/>
+                        <outlet property="titleLabel" destination="H4p-LV-8Ku" id="Z7G-ce-zyx"/>
+                    </connections>
+                </viewController>
+                <customObject id="qRN-FQ-TWc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1093" y="-425"/>
+        </scene>
         <!--Update Repository View Controller-->
         <scene sceneID="IcA-xe-MY1">
             <objects>

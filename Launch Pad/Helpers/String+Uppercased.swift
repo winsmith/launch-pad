@@ -17,4 +17,8 @@ extension String {
     var trimmed: String {
         return trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
     }
+
+    var digits: String {
+        return components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+    }
 }

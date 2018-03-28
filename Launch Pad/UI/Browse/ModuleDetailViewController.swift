@@ -22,6 +22,7 @@ class ModuleDetailViewController: NSViewController {
     }
     public var kspInstallation: KSPInstallation?
     private var byteFormatter = ByteCountFormatter()
+    private var installModuleCoordinator: InstallModuleCoordinator?
 
     // MARK: - Outlets
     @IBOutlet weak var installButton: NSButton!
@@ -117,8 +118,8 @@ class ModuleDetailViewController: NSViewController {
         }
 
         // Dependencies
-        dependenciesLabel.stringValue = module.latestRelease.dependencies?.map({ $0.name }).joined(separator: ", ") ?? "–"
-        suggestionsLabel.stringValue = module.latestRelease.suggestions?.map({ $0.name }).joined(separator: ", ")  ?? "–"
+        dependenciesLabel.stringValue = " - " + module.latestRelease.dependencies.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
+        suggestionsLabel.stringValue = " - " + module.latestRelease.suggestions.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
 
         // Screenshot
         if let resources = module.latestRelease.resources, let screenshot = resources["x_screenshot"], let screenshotURL = screenshot.urlValue() {
@@ -134,15 +135,10 @@ class ModuleDetailViewController: NSViewController {
     // MARK: - Actions
     @IBAction func install(_ sender: Any) {
         guard module?.installedRelease == nil else { return }
-        guard module?.latestRelease.dependencies?.isEmpty != false else { fatalError("Cannot yet install modules with dependencies")}
-
-        let installReleaseViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "InstallModuleViewController"))
-            as! InstallModuleViewController
-        installReleaseViewController.delegate = self
-        installReleaseViewController.releasesToInstall = [module!.latestRelease]
-        installReleaseViewController.kspInstallation = kspInstallation
-
-        parent?.presentViewControllerAsSheet(installReleaseViewController)
+        guard let module = module, let kspInstallation = kspInstallation, let parent = parent else { return }
+        installModuleCoordinator = InstallModuleCoordinator(module: module, kspInstallation: kspInstallation, parentViewController: parent)
+        installModuleCoordinator!.delegate = self
+        installModuleCoordinator!.begin()
     }
 
     @IBAction func uninstall(_ sender: Any) {
@@ -161,11 +157,10 @@ class ModuleDetailViewController: NSViewController {
     }
 }
 
-extension ModuleDetailViewController: InstallModuleViewControllerDelegate {
-    func didFinishInstallingModules(installModuleViewController: InstallModuleViewController) {
+extension ModuleDetailViewController: InstallModuleCoordinatorDelegate {
+    func didFinishInstallingModules(installModuleCoordinator: InstallModuleCoordinator) {
         DispatchQueue.main.async {
             self.updateUI()
-            self.parent?.dismissViewController(installModuleViewController)
         }
     }
 }

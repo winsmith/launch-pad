@@ -62,6 +62,11 @@ extension CKANRepository {
         return modules.filter { $0.getCompatibleReleases(with: kspInstallation).isEmpty == false }
     }
 
+    func latestReleaseSatifying(_ relationship: CKANFile.Relationship) -> Release? {
+        guard let modules = modules else { return nil }
+        guard let module = modules.first(where: { $0.identifier == relationship.name }) else { return nil }
+        return module.latestReleaseSatisfying(relationship)
+    }
 }
 
 // MARK: - Downloading, Unpacking and Parsing the CKAN Meta information

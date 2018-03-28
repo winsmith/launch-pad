@@ -24,6 +24,8 @@
 		DCD2D7852067E2F20009D5B8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7842067E2F20009D5B8 /* Logger.swift */; };
 		DCD2D7872068713D0009D5B8 /* ModuleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7862068713D0009D5B8 /* ModuleMetadata.swift */; };
 		DCD2D7952068FF470009D5B8 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D7942068FF470009D5B8 /* MainWindowController.swift */; };
+		DCD2D79720690C230009D5B8 /* InstallModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D79620690C230009D5B8 /* InstallModuleCoordinator.swift */; };
+		DCD2D79920690C620009D5B8 /* InstallModulePreparationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2D79820690C620009D5B8 /* InstallModulePreparationViewController.swift */; };
 		DCD773D72051CB0300F6F394 /* CKANClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773D62051CB0300F6F394 /* CKANClient.swift */; };
 		DCD773E62052AE8C00F6F394 /* ModuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */; };
 		DCD773E82052AEC800F6F394 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD773E72052AEC800F6F394 /* Release.swift */; };
@@ -95,6 +97,8 @@
 		DCD2D7842067E2F20009D5B8 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		DCD2D7862068713D0009D5B8 /* ModuleMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleMetadata.swift; sourceTree = "<group>"; };
 		DCD2D7942068FF470009D5B8 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		DCD2D79620690C230009D5B8 /* InstallModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallModuleCoordinator.swift; sourceTree = "<group>"; };
+		DCD2D79820690C620009D5B8 /* InstallModulePreparationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallModulePreparationViewController.swift; sourceTree = "<group>"; };
 		DCD773D62051CB0300F6F394 /* CKANClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANClient.swift; sourceTree = "<group>"; };
 		DCD773E52052AE8C00F6F394 /* ModuleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailViewController.swift; sourceTree = "<group>"; };
 		DCD773E72052AEC800F6F394 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 		DC4191B720559AE400BD6B39 /* InstallModule */ = {
 			isa = PBXGroup;
 			children = (
+				DCD2D79620690C230009D5B8 /* InstallModuleCoordinator.swift */,
+				DCD2D79820690C620009D5B8 /* InstallModulePreparationViewController.swift */,
 				DC4191B820559AFC00BD6B39 /* InstallModuleViewController.swift */,
 			);
 			path = InstallModule;
@@ -416,6 +422,7 @@
 				DCD773EA2052BC1500F6F394 /* VersionNumber.swift in Sources */,
 				DC2C5E6F20626431008E5D05 /* Module.swift in Sources */,
 				DC33CFC1203D89140034E465 /* Colors.swift in Sources */,
+				DCD2D79920690C620009D5B8 /* InstallModulePreparationViewController.swift in Sources */,
 				DC654993203326C50023111E /* BrowseViewController.swift in Sources */,
 				DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */,
 				DCD8A32820502EBC0068CD4F /* Data+Compression.swift in Sources */,
@@ -434,6 +441,7 @@
 				DCD8A32520502EBC0068CD4F /* Archive.swift in Sources */,
 				DC4191B62055856300BD6B39 /* String+Uppercased.swift in Sources */,
 				DCF093A120309F04003224AC /* AppDelegate.swift in Sources */,
+				DCD2D79720690C230009D5B8 /* InstallModuleCoordinator.swift in Sources */,
 				DCD8A32620502EBC0068CD4F /* Archive+Reading.swift in Sources */,
 				DCD8A32B20502EBC0068CD4F /* FileManager+ZIP.swift in Sources */,
 				DCD2D7832067DF960009D5B8 /* SettingsViewController.swift in Sources */,

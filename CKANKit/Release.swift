@@ -33,8 +33,23 @@ public class Release {
     var detailDescription: String? { return ckanFile.description }
 
     var resources: [String: CKANFile.ResourceURL]? { return ckanFile.resources }
-    var dependencies: [CKANFile.Relationship]? { return ckanFile.depends }
-    var suggestions: [CKANFile.Relationship]? { return ckanFile.suggests }
+    var dependencies: [Release] {
+        guard let dependencies = ckanFile.depends else { return [] }
+        guard let repository = module?.ckanRepository else { return [] }
+
+        return dependencies.flatMap { relationship in
+            repository.latestReleaseSatifying(relationship)
+        }
+    }
+
+    var suggestions: [Release] {
+        guard let suggestions = ckanFile.suggests else { return [] }
+        guard let repository = module?.ckanRepository else { return [] }
+
+        return suggestions.flatMap { relationship in
+            repository.latestReleaseSatifying(relationship)
+        }
+    }
 
     var downloadURL: URL { return ckanFile.download }
 
@@ -54,6 +69,30 @@ public class Release {
             kspVersionMax >= installation.kspVersion &&
             kspVersionMin <= installation.kspVersion
         )
+    }
+
+    func satisfies(_ relationship: CKANFile.Relationship) -> Bool {
+        guard relationship.name == identifier else { return false }
+        guard let releaseVersion = version, let releaseVersionNumber = VersionNumber(with: releaseVersion) else { fatalError() }
+        guard let matchingStyle = relationship.matchingStyle() else { return false }
+
+        switch matchingStyle {
+        case .onlyName:
+            return true
+        case .exactVersion:
+            let exactVersionNumber = VersionNumber(with: relationship.version!)!
+            return exactVersionNumber == releaseVersionNumber
+        case .minVersion:
+            let minVersionNumber = VersionNumber(with: relationship.min_version!)!
+            return minVersionNumber <= releaseVersionNumber
+        case .maxVersion:
+            let maxVersionNumber = VersionNumber(with: relationship.max_version!)!
+            return maxVersionNumber >= releaseVersionNumber
+        case .minAndMaxVersion:
+            let maxVersionNumber = VersionNumber(with: relationship.max_version!)!
+            let minVersionNumber = VersionNumber(with: relationship.min_version!)!
+            return minVersionNumber <= releaseVersionNumber && maxVersionNumber >= releaseVersionNumber
+        }
     }
 }
 

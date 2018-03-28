@@ -39,6 +39,11 @@ public class Module {
     func getCompatibleReleases(with installation: KSPInstallation) -> [Release] {
         return releases.filter { $0.isCompatible(with: installation) }
     }
+
+    func latestReleaseSatisfying(_ relationhip: CKANFile.Relationship) -> Release? {
+        guard relationhip.name == identifier else { return nil }
+        return releases.first { $0.satisfies(relationhip) }
+    }
 }
 
 extension Module: Comparable {

@@ -55,10 +55,43 @@ struct CKANFile: Codable {
     }
 
     struct Relationship: Codable {
-        let name: String
+        let name: String // Identifier, actually
         let min_version: String?
         let max_version: String?
         let version: String?
+
+        enum MatchingStyle {
+            case onlyName
+            case exactVersion
+            case minVersion
+            case maxVersion
+            case minAndMaxVersion
+        }
+
+        func matchingStyle() -> MatchingStyle? {
+            if version == nil && min_version == nil && max_version == nil {
+                return .onlyName
+            }
+
+            else if version != nil && min_version == nil && max_version == nil {
+                return .exactVersion
+            }
+
+            else if version == nil && min_version != nil && max_version == nil {
+                return .minVersion
+            }
+
+            else if version == nil && min_version == nil && max_version != nil {
+                return .maxVersion
+            }
+
+            else if version == nil && min_version != nil && max_version != nil {
+                return .minAndMaxVersion
+            }
+
+            debugPrint("Relationship has an invalid matching style.")
+            return nil
+        }
     }
 
     // This whole specialized struct extists so we can parse Kerbal Engineer Redux's resource section.

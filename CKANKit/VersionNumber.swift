@@ -17,9 +17,11 @@ public struct VersionNumber: Equatable, Comparable, CustomStringConvertible {
         guard let versionString = versionString else { return nil }
 
         let components = versionString.split(separator: ".")
-        major = components.count > 0 ? Int(components[0])! : 0
-        minor = components.count > 1 ? Int(components[1])! : 0
-        bugfix = components.count > 2 ? Int(components[2])! : 0
+        let digitOnlyComponents = components.map { String($0).digits }
+
+        major = components.count > 0 ? Int(digitOnlyComponents[0])! : 0
+        minor = components.count > 1 ? Int(digitOnlyComponents[1])! : 0
+        bugfix = components.count > 2 ? Int(digitOnlyComponents[2])! : 0
     }
 
     public static func ==(lhs: VersionNumber, rhs: VersionNumber) -> Bool {

@@ -21,7 +21,7 @@ class ModuleDetailViewController: NSViewController {
         }
     }
     public var kspInstallation: KSPInstallation?
-    private var byteFormatter = ByteCountFormatter()
+    private let byteFormatter = ByteCountFormatter()
     private var installModuleCoordinator: InstallModuleCoordinator?
 
     // MARK: - Outlets
@@ -39,11 +39,17 @@ class ModuleDetailViewController: NSViewController {
     @IBOutlet weak var licenseLabel: NSTextField!
     @IBOutlet weak var abstractLabel: NSTextField!
     @IBOutlet weak var descriptionLabel: NSTextField!
-    @IBOutlet weak var dependenciesLabel: NSTextField!
-    @IBOutlet weak var suggestionsLabel: NSTextField!
-    @IBOutlet weak var recommendationsLabel: NSTextField!
-    @IBOutlet weak var supportLabel: NSTextField!
+    @IBOutlet weak var relatedModulesTitleLabel: NSTextField!
+    @IBOutlet weak var dependenciesStackView: NSStackView!
+    @IBOutlet weak var dependenciesContainer: NSStackView!
+    @IBOutlet weak var recommendationsStackView: NSStackView!
+    @IBOutlet weak var recommendationsContainer: NSStackView!
+    @IBOutlet weak var suggestionsStackView: NSStackView!
+    @IBOutlet weak var suggestionsContainer: NSStackView!
+    @IBOutlet weak var supportsStackView: NSStackView!
+    @IBOutlet weak var supportsContainer: NSStackView!
     @IBOutlet weak var debugLabel: NSTextField!
+    @IBOutlet weak var debugContainer: NSView!
 
     // Resources
     @IBOutlet weak var resourcesStackView: NSStackView!
@@ -58,6 +64,28 @@ class ModuleDetailViewController: NSViewController {
     lazy var resourcesButtons: [NSButton] = { return [resourcesButton1, resourcesButton2, resourcesButton3, resourcesButton4,
                                                       resourcesButton5, resourcesBUtton6, resourcesButton7, resourcesButton8] }()
 
+    // MARK: - Setup
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        installButton.attributedTitle = attributedTitle("INSTALL", textColor: NSColor.white)
+        uninstallButton.attributedTitle = attributedTitle("UNINSTALL", textColor: NSColor.white)
+        upgradeButton.attributedTitle = attributedTitle("UPGRADE", textColor: NSColor.white)
+    }
+
+    func attributedTitle(_ title: String, textColor: NSColor) -> NSAttributedString {
+        let style = NSMutableParagraphStyle()
+        style.alignment = .center
+
+        let attributes =
+            [
+                NSAttributedStringKey.foregroundColor: textColor,
+                NSAttributedStringKey.font: NSFont.systemFont(ofSize: 13),
+                NSAttributedStringKey.paragraphStyle: style
+                ] as [NSAttributedStringKey : Any]
+
+        let attributedTitle = NSAttributedString(string: title, attributes: attributes)
+        return attributedTitle
+    }
     
     // MARK: - Updating
     func updateUI() {
@@ -92,14 +120,30 @@ class ModuleDetailViewController: NSViewController {
         minKSPVersionLabel.stringValue = module.latestRelease.kspVersionMin?.description ?? "–"
         maxKSPVersionLabel.stringValue = module.latestRelease.kspVersionMax?.description ?? "–"
         licenseLabel.stringValue = module.latestRelease.licenses?.joined(separator: ", ") ?? "–"
-        abstractLabel.stringValue = module.latestRelease.abstract ?? ""
-        descriptionLabel.stringValue = module.latestRelease.detailDescription ?? ""
 
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.outputFormatting = .prettyPrinted
-        let debugData = try? jsonEncoder.encode(module.latestRelease.ckanFile)
-        debugLabel.stringValue = debugData != nil ? String(data: debugData!, encoding: .utf8)! : ""
-        debugLabel.isHidden = !Settings.shouldDisplayDebugInformation
+        if let abstract = module.latestRelease.abstract {
+            abstractLabel.stringValue = abstract
+            abstractLabel.isHidden = false
+        } else {
+            abstractLabel.isHidden = true
+        }
+
+        if let detailDescription = module.latestRelease.detailDescription {
+            descriptionLabel.stringValue = detailDescription
+            descriptionLabel.isHidden = false
+        } else {
+            descriptionLabel.isHidden = true
+        }
+
+        if Settings.shouldDisplayDebugInformation {
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = .prettyPrinted
+            let debugData = try? jsonEncoder.encode(module.latestRelease.ckanFile)
+            debugLabel.stringValue = debugData != nil ? String(data: debugData!, encoding: .utf8)! : ""
+            debugContainer.isHidden = false
+        } else {
+            debugContainer.isHidden = true
+        }
 
         if let downloadSizeBytes = module.latestRelease.downloadSize {
             downloadSizeLabel.stringValue = byteFormatter.string(fromByteCount: Int64(downloadSizeBytes))
@@ -119,20 +163,65 @@ class ModuleDetailViewController: NSViewController {
             }
         }
 
-        // Dependencies
-        dependenciesLabel.stringValue = " - " + module.latestRelease.dependencies.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
-        suggestionsLabel.stringValue = " - " + module.latestRelease.suggestions.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
-        recommendationsLabel.stringValue = " - " + module.latestRelease.recommendations.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
-        supportLabel.stringValue = " - " + module.latestRelease.supports.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
+        // Related Modules
+        relatedModulesTitleLabel.isHidden = (
+            module.latestRelease.dependencies.isEmpty &&
+            module.latestRelease.recommendations.isEmpty &&
+            module.latestRelease.suggestions.isEmpty &&
+            module.latestRelease.supports.isEmpty
+        )
+
+        for arrangedSubview in dependenciesStackView.arrangedSubviews + recommendationsStackView.arrangedSubviews + suggestionsStackView.arrangedSubviews + supportsStackView.arrangedSubviews {
+            arrangedSubview.removeFromSuperview()
+        }
+
+        dependenciesContainer.isHidden = module.latestRelease.dependencies.isEmpty
+        for relationship in module.latestRelease.dependencies {
+            let button = NSButton.init(title: relationship.name, target: self, action: #selector(openRelationship(_:)))
+            button.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+            button.bezelStyle = .inline
+            dependenciesStackView.addArrangedSubview(button)
+        }
+
+        recommendationsContainer.isHidden = module.latestRelease.recommendations.isEmpty
+        for relationship in module.latestRelease.recommendations {
+            let button = NSButton.init(title: relationship.name, target: self, action: #selector(openRelationship(_:)))
+            button.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+            button.bezelStyle = .inline
+            recommendationsStackView.addArrangedSubview(button)
+        }
+
+        suggestionsContainer.isHidden = module.latestRelease.suggestions.isEmpty
+        for relationship in module.latestRelease.suggestions {
+            let button = NSButton.init(title: relationship.name, target: self, action: #selector(openRelationship(_:)))
+            button.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+            button.bezelStyle = .inline
+            suggestionsStackView.addArrangedSubview(button)
+        }
+
+        supportsContainer.isHidden = module.latestRelease.supports.isEmpty
+        for relationship in module.latestRelease.supports {
+            let button = NSButton.init(title: relationship.name, target: self, action: #selector(openRelationship(_:)))
+            button.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+            button.bezelStyle = .inline
+            supportsStackView.addArrangedSubview(button)
+        }
 
         // Screenshot
         if let resources = module.latestRelease.resources, let screenshot = resources["x_screenshot"], let screenshotURL = screenshot.urlValue() {
+
+            iconImageView.image = NSImage(named: NSImage.Name(rawValue: "Box"))
+            self.iconImageView.isHidden = false
+
             URLSession.shared.dataTask(with: screenshotURL) { data, response, error in
                 guard error == nil, let data = data else { return }
-                DispatchQueue.main.async { self.iconImageView.image = NSImage(data: data) }
+                DispatchQueue.main.async {
+                    self.iconImageView.image = NSImage(data: data)
+                }
             }.resume()
         } else {
             iconImageView.image = NSImage(named: NSImage.Name(rawValue: "Box"))
+            iconImageView.isHidden = true
         }
     }
 
@@ -158,6 +247,45 @@ class ModuleDetailViewController: NSViewController {
         guard let resourceURLDict = module?.latestRelease.resources?[sender.title.lowercased()] else { return }
         guard let resourceURL = resourceURLDict.urlValue() else { return }
         NSWorkspace.shared.open(resourceURL)
+    }
+
+    @objc func openRelationship(_ sender: NSButton) {
+        let release = self.release(for: sender)
+        if let moduleForRelease = release?.module {
+            module = moduleForRelease
+        }
+    }
+
+    func release(for button: NSButton) -> Release? {
+        if dependenciesStackView.arrangedSubviews.contains(button) {
+            let possibleReleases = module!.latestRelease.dependencies
+            if let indexOfRelease = dependenciesStackView.arrangedSubviews.index(of: button) {
+                return possibleReleases[indexOfRelease]
+            }
+        }
+
+        else if recommendationsStackView.arrangedSubviews.contains(button) {
+            let possibleReleases = module!.latestRelease.recommendations
+            if let indexOfRelease = recommendationsStackView.arrangedSubviews.index(of: button) {
+                return possibleReleases[indexOfRelease]
+            }
+        }
+
+        else if suggestionsStackView.arrangedSubviews.contains(button) {
+            let possibleReleases = module!.latestRelease.suggestions
+            if let indexOfRelease = suggestionsStackView.arrangedSubviews.index(of: button) {
+                return possibleReleases[indexOfRelease]
+            }
+        }
+
+        else if supportsStackView.arrangedSubviews.contains(button) {
+            let possibleReleases = module!.latestRelease.supports
+            if let indexOfRelease = supportsStackView.arrangedSubviews.index(of: button) {
+                return possibleReleases[indexOfRelease]
+            }
+        }
+
+        return nil
     }
 }
 

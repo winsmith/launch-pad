@@ -21,4 +21,8 @@ extension String {
     var digits: String {
         return components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
+
+    func contains(_ otherString: String) -> Bool {
+        return self.lowercased().range(of: otherString.lowercased()) != nil
+    }
 }

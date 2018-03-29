@@ -20,7 +20,7 @@ class BrowseViewController: NSViewController {
     private var filteredModules: [Module] {
         guard let filter = filter else { return modules }
         guard filter != "" else { return modules }
-        return self.modules.filter { $0.name.lowercased().range(of: filter.lowercased()) != nil }
+        return self.modules.filter { $0.name.contains(filter) || $0.latestRelease.authors?.joined(separator: " ").contains(filter) == true }
     }
 
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class BrowseViewController: NSViewController {
 
         let flowLayout = NSCollectionViewFlowLayout()
         flowLayout.itemSize = NSSize(width: 300.0, height: 60.0)
-        flowLayout.sectionInset = NSEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0)
+        flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0)
         flowLayout.minimumInteritemSpacing = 20.0
         flowLayout.minimumLineSpacing = 1.0
         collectionView.collectionViewLayout = flowLayout

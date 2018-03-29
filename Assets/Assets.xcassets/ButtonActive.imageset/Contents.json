@@ -2,7 +2,21 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ButtonActive.pdf"
+      "filename" : "ButtonActive.pdf",
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 100,
+          "height" : 8
+        },
+        "cap-insets" : {
+          "bottom" : 9,
+          "top" : 9,
+          "right" : 9,
+          "left" : 9
+        }
+      }
     }
   ],
   "info" : {

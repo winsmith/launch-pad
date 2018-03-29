@@ -1482,7 +1482,7 @@ Gw
         <scene sceneID="N6H-bX-jLS">
             <objects>
                 <viewController id="3uI-3E-YpQ" customClass="ModuleDetailViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="de3-KT-nxP">
+                    <view key="view" id="de3-KT-nxP">
                         <rect key="frame" x="0.0" y="0.0" width="735" height="614"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1502,16 +1502,16 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view translatesAutoresizingMaskIntoConstraints="NO" id="4He-cP-SEJ">
-                                            <rect key="frame" x="0.0" y="4" width="720" height="610"/>
+                                            <rect key="frame" x="0.0" y="-7" width="720" height="621"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6n3-9x-UDZ">
-                                                    <rect key="frame" x="60" y="40" width="600" height="530"/>
+                                                    <rect key="frame" x="60" y="40" width="600" height="541"/>
                                                     <subviews>
                                                         <customView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gBi-Pn-UAs">
-                                                            <rect key="frame" x="0.0" y="408" width="402" height="122"/>
+                                                            <rect key="frame" x="0.0" y="408" width="402" height="133"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xq3-f0-BBd">
-                                                                    <rect key="frame" x="-2" y="73" width="406" height="17"/>
+                                                                    <rect key="frame" x="-2" y="84" width="406" height="17"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Authors" id="cKq-jv-amQ">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1519,7 +1519,7 @@ Gw
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qoc-G7-0iT">
-                                                                    <rect key="frame" x="-2" y="91" width="406" height="31"/>
+                                                                    <rect key="frame" x="-2" y="102" width="406" height="31"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Title" id="04y-pj-16c">
                                                                         <font key="font" size="26" name=".AppleSystemUIFontBold"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1691,33 +1691,33 @@ Gw
                                                                     </customSpacing>
                                                                 </stackView>
                                                                 <stackView orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FGF-oJ-9A9">
-                                                                    <rect key="frame" x="0.0" y="44" width="402" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="44" width="402" height="32"/>
                                                                     <beginningViews>
                                                                         <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-JZ-AMf">
-                                                                            <rect key="frame" x="-6" y="-7" width="76" height="32"/>
-                                                                            <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c5o-Xj-P8N">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="118" height="32"/>
+                                                                            <buttonCell key="cell" type="bevel" title="Install" bezelStyle="rounded" image="Button" imagePosition="overlaps" alignment="center" alternateImage="ButtonActive" imageScaling="proportionallyDown" inset="2" id="c5o-Xj-P8N">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" metaFont="systemMedium" size="13"/>
                                                                             </buttonCell>
                                                                             <connections>
                                                                                 <action selector="install:" target="3uI-3E-YpQ" id="PRB-i1-3hu"/>
                                                                             </connections>
                                                                         </button>
                                                                         <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z67-am-HDN">
-                                                                            <rect key="frame" x="66" y="-7" width="93" height="32"/>
-                                                                            <buttonCell key="cell" type="push" title="Uninstall" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PvF-as-xAz">
+                                                                            <rect key="frame" x="126" y="0.0" width="118" height="32"/>
+                                                                            <buttonCell key="cell" type="bevel" title="Uninstall" bezelStyle="rounded" image="ButtonActive" imagePosition="overlaps" alignment="center" alternateImage="ButtonActive" imageScaling="proportionallyDown" inset="2" id="PvF-as-xAz">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" metaFont="systemMedium" size="13"/>
                                                                             </buttonCell>
                                                                             <connections>
                                                                                 <action selector="uninstall:" target="3uI-3E-YpQ" id="me6-Gj-feI"/>
                                                                             </connections>
                                                                         </button>
                                                                         <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vEH-LN-rfl">
-                                                                            <rect key="frame" x="155" y="-7" width="93" height="32"/>
-                                                                            <buttonCell key="cell" type="push" title="Upgrade" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GLf-m2-o8R">
+                                                                            <rect key="frame" x="252" y="0.0" width="118" height="32"/>
+                                                                            <buttonCell key="cell" type="bevel" title="Upgrade" bezelStyle="rounded" image="Button" imagePosition="overlaps" alignment="center" alternateImage="ButtonActive" imageScaling="proportionallyDown" inset="2" id="GLf-m2-o8R">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" metaFont="systemMedium" size="13"/>
                                                                             </buttonCell>
                                                                             <connections>
                                                                                 <action selector="upgrade:" target="3uI-3E-YpQ" id="KeK-XG-Lcv"/>
@@ -2184,6 +2184,8 @@ Gw
     </scenes>
     <resources>
         <image name="Box" width="123" height="103"/>
+        <image name="Button" width="118" height="26"/>
+        <image name="ButtonActive" width="118" height="26"/>
         <image name="Cloud" width="364" height="181"/>
         <image name="NSNetwork" width="32" height="32"/>
         <namedColor name="BackgroundColor">

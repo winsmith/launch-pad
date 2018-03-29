@@ -59,6 +59,28 @@ class ModuleDetailViewController: NSViewController {
     lazy var resourcesButtons: [NSButton] = { return [resourcesButton1, resourcesButton2, resourcesButton3, resourcesButton4,
                                                       resourcesButton5, resourcesBUtton6, resourcesButton7, resourcesButton8] }()
 
+    // MARK: - Setup
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        installButton.attributedTitle = attributedTitle("INSTALL", textColor: NSColor.white)
+        uninstallButton.attributedTitle = attributedTitle("UNINSTALL", textColor: NSColor.white)
+        upgradeButton.attributedTitle = attributedTitle("UPGRADE", textColor: NSColor.white)
+    }
+
+    func attributedTitle(_ title: String, textColor: NSColor) -> NSAttributedString {
+        let style = NSMutableParagraphStyle()
+        style.alignment = .center
+
+        let attributes =
+            [
+                NSAttributedStringKey.foregroundColor: textColor,
+                NSAttributedStringKey.font: NSFont.systemFont(ofSize: 13),
+                NSAttributedStringKey.paragraphStyle: style
+                ] as [NSAttributedStringKey : Any]
+
+        let attributedTitle = NSAttributedString(string: title, attributes: attributes)
+        return attributedTitle
+    }
     
     // MARK: - Updating
     func updateUI() {

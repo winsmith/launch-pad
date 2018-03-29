@@ -39,10 +39,15 @@ class ModuleDetailViewController: NSViewController {
     @IBOutlet weak var licenseLabel: NSTextField!
     @IBOutlet weak var abstractLabel: NSTextField!
     @IBOutlet weak var descriptionLabel: NSTextField!
-    @IBOutlet weak var dependenciesLabel: NSTextField!
-    @IBOutlet weak var suggestionsLabel: NSTextField!
-    @IBOutlet weak var recommendationsLabel: NSTextField!
-    @IBOutlet weak var supportLabel: NSTextField!
+    @IBOutlet weak var relatedModulesTitleLabel: NSTextField!
+    @IBOutlet weak var dependenciesStackView: NSStackView!
+    @IBOutlet weak var dependenciesContainer: NSStackView!
+    @IBOutlet weak var recommendationsStackView: NSStackView!
+    @IBOutlet weak var recommendationsContainer: NSStackView!
+    @IBOutlet weak var suggestionsStackView: NSStackView!
+    @IBOutlet weak var suggestionsContainer: NSStackView!
+    @IBOutlet weak var supportsStackView: NSStackView!
+    @IBOutlet weak var supportsContainer: NSStackView!
     @IBOutlet weak var debugLabel: NSTextField!
     @IBOutlet weak var debugContainer: NSView!
 
@@ -158,11 +163,49 @@ class ModuleDetailViewController: NSViewController {
             }
         }
 
-        // Dependencies
-        dependenciesLabel.stringValue = " - " + module.latestRelease.dependencies.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
-        suggestionsLabel.stringValue = " - " + module.latestRelease.suggestions.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
-        recommendationsLabel.stringValue = " - " + module.latestRelease.recommendations.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
-        supportLabel.stringValue = " - " + module.latestRelease.supports.map({ "\($0.name) \($0.version ?? "")" }).joined(separator: "\n - ")
+        // Related Modules
+        relatedModulesTitleLabel.isHidden = (
+            module.latestRelease.dependencies.isEmpty &&
+            module.latestRelease.recommendations.isEmpty &&
+            module.latestRelease.suggestions.isEmpty &&
+            module.latestRelease.supports.isEmpty
+        )
+
+        for arrangedSubview in dependenciesStackView.arrangedSubviews + recommendationsStackView.arrangedSubviews + suggestionsStackView.arrangedSubviews + supportsStackView.arrangedSubviews {
+            arrangedSubview.removeFromSuperview()
+        }
+
+        dependenciesContainer.isHidden = module.latestRelease.dependencies.isEmpty
+        for relationship in module.latestRelease.dependencies {
+            let button = NSButton.init(title: relationship.name, target: self, action: #selector(openRelationship(_:)))
+            button.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+            button.bezelStyle = .inline
+            dependenciesStackView.addArrangedSubview(button)
+        }
+
+        recommendationsContainer.isHidden = module.latestRelease.recommendations.isEmpty
+        for relationship in module.latestRelease.recommendations {
+            let button = NSButton.init(title: relationship.name, target: self, action: #selector(openRelationship(_:)))
+            button.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+            button.bezelStyle = .inline
+            recommendationsStackView.addArrangedSubview(button)
+        }
+
+        suggestionsContainer.isHidden = module.latestRelease.suggestions.isEmpty
+        for relationship in module.latestRelease.suggestions {
+            let button = NSButton.init(title: relationship.name, target: self, action: #selector(openRelationship(_:)))
+            button.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+            button.bezelStyle = .inline
+            suggestionsStackView.addArrangedSubview(button)
+        }
+
+        supportsContainer.isHidden = module.latestRelease.supports.isEmpty
+        for relationship in module.latestRelease.supports {
+            let button = NSButton.init(title: relationship.name, target: self, action: #selector(openRelationship(_:)))
+            button.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+            button.bezelStyle = .inline
+            supportsStackView.addArrangedSubview(button)
+        }
 
         // Screenshot
         if let resources = module.latestRelease.resources, let screenshot = resources["x_screenshot"], let screenshotURL = screenshot.urlValue() {
@@ -204,6 +247,45 @@ class ModuleDetailViewController: NSViewController {
         guard let resourceURLDict = module?.latestRelease.resources?[sender.title.lowercased()] else { return }
         guard let resourceURL = resourceURLDict.urlValue() else { return }
         NSWorkspace.shared.open(resourceURL)
+    }
+
+    @objc func openRelationship(_ sender: NSButton) {
+        let release = self.release(for: sender)
+        if let moduleForRelease = release?.module {
+            module = moduleForRelease
+        }
+    }
+
+    func release(for button: NSButton) -> Release? {
+        if dependenciesStackView.arrangedSubviews.contains(button) {
+            let possibleReleases = module!.latestRelease.dependencies
+            if let indexOfRelease = dependenciesStackView.arrangedSubviews.index(of: button) {
+                return possibleReleases[indexOfRelease]
+            }
+        }
+
+        else if recommendationsStackView.arrangedSubviews.contains(button) {
+            let possibleReleases = module!.latestRelease.recommendations
+            if let indexOfRelease = recommendationsStackView.arrangedSubviews.index(of: button) {
+                return possibleReleases[indexOfRelease]
+            }
+        }
+
+        else if suggestionsStackView.arrangedSubviews.contains(button) {
+            let possibleReleases = module!.latestRelease.suggestions
+            if let indexOfRelease = suggestionsStackView.arrangedSubviews.index(of: button) {
+                return possibleReleases[indexOfRelease]
+            }
+        }
+
+        else if supportsStackView.arrangedSubviews.contains(button) {
+            let possibleReleases = module!.latestRelease.supports
+            if let indexOfRelease = supportsStackView.arrangedSubviews.index(of: button) {
+                return possibleReleases[indexOfRelease]
+            }
+        }
+
+        return nil
     }
 }
 

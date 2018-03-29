@@ -20,7 +20,7 @@ class BrowseViewController: NSViewController {
     private var filteredModules: [Module] {
         guard let filter = filter else { return modules }
         guard filter != "" else { return modules }
-        return self.modules.filter { $0.name.lowercased().range(of: filter.lowercased()) != nil }
+        return self.modules.filter { $0.name.contains(filter) || $0.latestRelease.authors?.joined(separator: " ").contains(filter) == true }
     }
 
     override func viewDidLoad() {

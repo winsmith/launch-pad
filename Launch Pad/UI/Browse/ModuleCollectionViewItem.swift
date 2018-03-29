@@ -20,24 +20,29 @@ class ModuleCollectionViewItem: NSCollectionViewItem {
 
             versionLabel.stringValue = module?.releases.first?.version ?? ""
             authorLabel.stringValue = module?.releases.first?.authors?.joined(separator: ", ") ?? ""
+
+            updateColors()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.color(named: .BackgroundColor).cgColor
+        updateColors()
     }
 
     override var isSelected: Bool {
         didSet {
             view.wantsLayer = true
-
-            let lightColor = NSColor.color(named: .BackgroundColor)
-            let darkColor = NSColor.color(named: .DarkAccent)
-            view.layer?.backgroundColor = isSelected ? darkColor.cgColor : lightColor.cgColor
-            nameLabel.textColor = isSelected ? lightColor : darkColor
-            versionLabel.textColor = isSelected ? lightColor : darkColor
+            updateColors()
         }
+    }
+
+    private func updateColors() {
+        let lightColor = module?.installedRelease == nil ? NSColor.color(named: .BackgroundColor) : NSColor.color(named: .LightAccent)
+        let darkColor = NSColor.color(named: .DarkAccent)
+        view.layer?.backgroundColor = isSelected ? darkColor.cgColor : lightColor.cgColor
+        nameLabel.textColor = isSelected ? lightColor : darkColor
+        versionLabel.textColor = isSelected ? lightColor : darkColor
     }
 }

@@ -12,6 +12,7 @@ class InstallModulePreparationViewController: NSViewController {
     var releaseToInstall: Release?
     var kspInstallation: KSPInstallation?
     weak var delegate: InstallModulePreparationViewControllerDelegate?
+    private let byteFormatter = ByteCountFormatter()
 
     @IBOutlet weak var titleLabel: NSTextField!
     @IBOutlet weak var dependencyListLabel: NSTextField!
@@ -55,7 +56,10 @@ class InstallModulePreparationViewController: NSViewController {
         recommendationsListLabel.backgroundColor = installRecommendationsCheckBox.state == .on ? NSColor.color(named: .DrunkOnWhite) : NSColor.clear
         suggestionListLabel.backgroundColor = installSuggestionsCheckBox.state == .on ? NSColor.color(named: .DrunkOnWhite) : NSColor.clear
 
-        beginInstallationButton.title = "Begin Installation of \(releasesToInstall.count) Modules"
+        let downloadSizeBytes = releasesToInstall.reduce(0) { $0 + ($1.downloadSize ?? 0) }
+        let downloadSize = byteFormatter.string(fromByteCount: Int64(downloadSizeBytes))
+
+        beginInstallationButton.title = "Begin Installation of \(releasesToInstall.count) Modules (\(downloadSize))"
     }
 
     // MARK: - Actions

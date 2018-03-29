@@ -21,7 +21,7 @@ class ModuleDetailViewController: NSViewController {
         }
     }
     public var kspInstallation: KSPInstallation?
-    private var byteFormatter = ByteCountFormatter()
+    private let byteFormatter = ByteCountFormatter()
     private var installModuleCoordinator: InstallModuleCoordinator?
 
     // MARK: - Outlets

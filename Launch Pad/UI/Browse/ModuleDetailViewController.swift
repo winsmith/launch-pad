@@ -96,7 +96,7 @@ class ModuleDetailViewController: NSViewController {
             return
         }
 
-        if module.installedRelease == nil {
+        if !module.isInstalled {
             installButton.isHidden = false
             uninstallButton.isHidden = true
             upgradeButton.isHidden = true

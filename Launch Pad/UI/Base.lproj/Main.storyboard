@@ -1348,7 +1348,7 @@ Gw
         <!--Installed-->
         <scene sceneID="VhM-cG-tzO">
             <objects>
-                <viewController title="Installed" id="VGf-LM-Etz" sceneMemberID="viewController">
+                <viewController title="Installed" id="VGf-LM-Etz" customClass="InstalledViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cRj-kV-3Wd">
                         <rect key="frame" x="0.0" y="0.0" width="911" height="482"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1367,8 +1367,8 @@ Gw
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="BackgroundColor"/>
                                             <connections>
-                                                <outlet property="dataSource" destination="zM7-yp-aT5" id="9Hl-jR-kH9"/>
-                                                <outlet property="delegate" destination="zM7-yp-aT5" id="Z68-7I-9H1"/>
+                                                <outlet property="dataSource" destination="VGf-LM-Etz" id="Fdt-QZ-2q5"/>
+                                                <outlet property="delegate" destination="VGf-LM-Etz" id="l8l-dw-zKF"/>
                                             </connections>
                                         </collectionView>
                                     </subviews>
@@ -1388,6 +1388,9 @@ Gw
                             </scrollView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="tBj-lg-xNd">
                                 <rect key="frame" x="301" y="0.0" width="610" height="482"/>
+                                <connections>
+                                    <segue destination="3uI-3E-YpQ" kind="embed" id="Ezp-9p-85V"/>
+                                </connections>
                             </containerView>
                             <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="hpa-Ps-wfz">
                                 <rect key="frame" x="301" y="0.0" width="610" height="482"/>
@@ -1427,6 +1430,10 @@ Gw
                             <constraint firstItem="jaF-Ou-zl3" firstAttribute="width" relation="lessThanOrEqual" secondItem="cRj-kV-3Wd" secondAttribute="width" multiplier="0.5" id="v4b-2m-Fcz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="diX-vZ-DHZ" id="q0s-LY-LJ0"/>
+                        <outlet property="welcomeBox" destination="hpa-Ps-wfz" id="XTZ-ij-eKO"/>
+                    </connections>
                 </viewController>
                 <customObject id="hok-yD-C0m" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2327,4 +2334,7 @@ Gw
             <color red="0.32156862745098042" green="0.27450980392156865" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ezp-9p-85V"/>
+    </inferredMetricsTieBreakers>
 </document>

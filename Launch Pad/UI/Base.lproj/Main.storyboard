@@ -1475,14 +1475,14 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24l-wv-OpG">
-                                <rect key="frame" x="43" y="11" width="364" height="278"/>
+                                <rect key="frame" x="141" y="42" width="168" height="217"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kK-eF-0ZQ">
-                                        <rect key="frame" x="0.0" y="97" width="364" height="181"/>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Cloud" id="SaC-06-mla"/>
+                                        <rect key="frame" x="0.0" y="122" width="59" height="95"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Rocket" id="SaC-06-mla"/>
                                     </imageView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tuz-eB-2Vk">
-                                        <rect key="frame" x="-2" y="72" width="55" height="17"/>
+                                        <rect key="frame" x="-2" y="97" width="55" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Settings" id="eBx-XN-vAS">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1490,8 +1490,16 @@ Gw
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-uD-qR5">
+                                        <rect key="frame" x="-2" y="72" width="84" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CKAN Notice" id="K3B-A9-2np">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h2O-hL-UKQ">
                                         <rect key="frame" x="-2" y="47" width="92" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ablator Notice" id="K3B-A9-2np">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ablator Notice" id="bHm-xT-6mj">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1522,8 +1530,10 @@ Gw
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -2326,6 +2336,7 @@ Gw
         <image name="ButtonActive" width="118" height="26"/>
         <image name="Cloud" width="364" height="181"/>
         <image name="NSNetwork" width="32" height="32"/>
+        <image name="Rocket" width="59" height="95"/>
         <image name="SpaceCenter" width="432" height="162"/>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

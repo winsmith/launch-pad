@@ -17,7 +17,6 @@ class ModuleDetailViewController: NSViewController {
     public var module: Module? {
         didSet {
             guard module != oldValue else { return }
-            verticalScroller.floatValue = 0
             updateUI()
         }
     }
@@ -26,8 +25,6 @@ class ModuleDetailViewController: NSViewController {
     private var installModuleCoordinator: InstallModuleCoordinator?
 
     // MARK: - Outlets
-    @IBOutlet weak var verticalScroller: NSScroller!
-
     @IBOutlet weak var installButton: NSButton!
     @IBOutlet weak var uninstallButton: NSButton!
     @IBOutlet weak var upgradeButton: NSButton!
@@ -155,7 +152,6 @@ class ModuleDetailViewController: NSViewController {
                 guard error == nil, let data = data else { return }
                 DispatchQueue.main.async {
                     self.iconImageView.image = NSImage(data: data)
-                    self.verticalScroller.floatValue = 20
                 }
             }.resume()
         } else {

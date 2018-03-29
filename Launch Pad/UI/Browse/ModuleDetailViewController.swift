@@ -17,6 +17,7 @@ class ModuleDetailViewController: NSViewController {
     public var module: Module? {
         didSet {
             guard module != oldValue else { return }
+            verticalScroller.floatValue = 0
             updateUI()
         }
     }
@@ -25,6 +26,8 @@ class ModuleDetailViewController: NSViewController {
     private var installModuleCoordinator: InstallModuleCoordinator?
 
     // MARK: - Outlets
+    @IBOutlet weak var verticalScroller: NSScroller!
+
     @IBOutlet weak var installButton: NSButton!
     @IBOutlet weak var uninstallButton: NSButton!
     @IBOutlet weak var upgradeButton: NSButton!
@@ -93,8 +96,20 @@ class ModuleDetailViewController: NSViewController {
         minKSPVersionLabel.stringValue = module.latestRelease.kspVersionMin?.description ?? "–"
         maxKSPVersionLabel.stringValue = module.latestRelease.kspVersionMax?.description ?? "–"
         licenseLabel.stringValue = module.latestRelease.licenses?.joined(separator: ", ") ?? "–"
-        abstractLabel.stringValue = module.latestRelease.abstract ?? ""
-        descriptionLabel.stringValue = module.latestRelease.detailDescription ?? ""
+
+        if let abstract = module.latestRelease.abstract {
+            abstractLabel.stringValue = abstract
+            abstractLabel.isHidden = false
+        } else {
+            abstractLabel.isHidden = true
+        }
+
+        if let detailDescription = module.latestRelease.detailDescription {
+            descriptionLabel.stringValue = detailDescription
+            descriptionLabel.isHidden = false
+        } else {
+            descriptionLabel.isHidden = true
+        }
 
         if Settings.shouldDisplayDebugInformation {
             let jsonEncoder = JSONEncoder()
@@ -132,12 +147,20 @@ class ModuleDetailViewController: NSViewController {
 
         // Screenshot
         if let resources = module.latestRelease.resources, let screenshot = resources["x_screenshot"], let screenshotURL = screenshot.urlValue() {
+
+            iconImageView.image = NSImage(named: NSImage.Name(rawValue: "Box"))
+            self.iconImageView.isHidden = false
+
             URLSession.shared.dataTask(with: screenshotURL) { data, response, error in
                 guard error == nil, let data = data else { return }
-                DispatchQueue.main.async { self.iconImageView.image = NSImage(data: data) }
+                DispatchQueue.main.async {
+                    self.iconImageView.image = NSImage(data: data)
+                    self.verticalScroller.floatValue = 20
+                }
             }.resume()
         } else {
             iconImageView.image = NSImage(named: NSImage.Name(rawValue: "Box"))
+            iconImageView.isHidden = true
         }
     }
 

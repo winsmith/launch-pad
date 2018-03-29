@@ -1483,26 +1483,26 @@ Gw
             <objects>
                 <viewController id="3uI-3E-YpQ" customClass="ModuleDetailViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="de3-KT-nxP">
-                        <rect key="frame" x="0.0" y="0.0" width="720" height="772"/>
+                        <rect key="frame" x="0.0" y="0.0" width="720" height="614"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="JET-BZ-Pxg">
-                                <rect key="frame" x="0.0" y="0.0" width="720" height="772"/>
+                                <rect key="frame" x="0.0" y="0.0" width="720" height="614"/>
                                 <view key="contentView" id="XPe-ya-U54">
-                                    <rect key="frame" x="0.0" y="0.0" width="720" height="772"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="720" height="614"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <color key="borderColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 <color key="fillColor" name="BackgroundColor"/>
                             </box>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="mIu-yG-XMS">
-                                <rect key="frame" x="0.0" y="0.0" width="720" height="772"/>
+                                <rect key="frame" x="0.0" y="0.0" width="720" height="614"/>
                                 <clipView key="contentView" id="Is7-OT-pad">
-                                    <rect key="frame" x="0.0" y="0.0" width="720" height="772"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="720" height="614"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view translatesAutoresizingMaskIntoConstraints="NO" id="4He-cP-SEJ">
-                                            <rect key="frame" x="0.0" y="81" width="720" height="610"/>
+                                            <rect key="frame" x="0.0" y="2" width="720" height="610"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6n3-9x-UDZ">
                                                     <rect key="frame" x="60" y="40" width="600" height="530"/>
@@ -1768,8 +1768,8 @@ Gw
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oQG-1j-Wye">
-                                                            <rect key="frame" x="0.0" y="226" width="123" height="103"/>
+                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oQG-1j-Wye" customClass="ScaledHeightImageView" customModule="Launch_Pad" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="226" width="600" height="103"/>
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Box" id="aSw-Bk-Qbl"/>
                                                         </imageView>
                                                         <customView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pZe-H4-j8r">
@@ -2088,6 +2088,7 @@ Gw
                                                         </customView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="oQG-1j-Wye" firstAttribute="width" secondItem="6n3-9x-UDZ" secondAttribute="width" id="C1k-cw-SM7"/>
                                                         <constraint firstAttribute="width" constant="600" id="kee-By-lLI"/>
                                                     </constraints>
                                                     <visibilityPriorities>
@@ -2128,11 +2129,11 @@ Gw
                                     <constraint firstItem="4He-cP-SEJ" firstAttribute="centerX" secondItem="mIu-yG-XMS" secondAttribute="centerX" id="FSR-9a-zHR"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="2cF-qM-Xyf">
-                                    <rect key="frame" x="0.0" y="756" width="720" height="16"/>
+                                    <rect key="frame" x="0.0" y="598" width="720" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Gl2-nk-MsS">
-                                    <rect key="frame" x="704" y="0.0" width="16" height="772"/>
+                                    <rect key="frame" x="704" y="0.0" width="16" height="614"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -2177,11 +2178,12 @@ Gw
                         <outlet property="supportLabel" destination="UEa-Nv-HQU" id="SM3-OX-iSa"/>
                         <outlet property="uninstallButton" destination="z67-am-HDN" id="crI-9D-EZv"/>
                         <outlet property="upgradeButton" destination="vEH-LN-rfl" id="e30-al-TLG"/>
+                        <outlet property="verticalScroller" destination="Gl2-nk-MsS" id="fqi-Xv-dhI"/>
                     </connections>
                 </viewController>
                 <customObject id="rul-UC-Zib" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2613" y="118"/>
+            <point key="canvasLocation" x="2613" y="39"/>
         </scene>
     </scenes>
     <resources>

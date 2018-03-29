@@ -14,6 +14,7 @@
 		DC654993203326C50023111E /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654992203326C50023111E /* BrowseViewController.swift */; };
 		DC654999203338820023111E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC654998203338820023111E /* WebKit.framework */; };
 		DC84D02B204DBC65005CBDCD /* CKANFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC84D02A204DBC65005CBDCD /* CKANFile.swift */; };
+		DC95B57E206CE128001B80C9 /* ScaledHeightImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC95B57D206CE128001B80C9 /* ScaledHeightImageView.swift */; };
 		DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA392203865EB00C1E7BA /* MainViewController.swift */; };
 		DCADA397203868EC00C1E7BA /* WelcomeSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */; };
 		DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADA3A4203B297400C1E7BA /* ModuleCollectionViewItem.swift */; };
@@ -86,6 +87,7 @@
 		DC654998203338820023111E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DC65499A203338B80023111E /* Launch Pad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Launch Pad.entitlements"; sourceTree = "<group>"; };
 		DC84D02A204DBC65005CBDCD /* CKANFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKANFile.swift; sourceTree = "<group>"; };
+		DC95B57D206CE128001B80C9 /* ScaledHeightImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledHeightImageView.swift; sourceTree = "<group>"; };
 		DCADA390203786DB00C1E7BA /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		DCADA392203865EB00C1E7BA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DCADA396203868EC00C1E7BA /* WelcomeSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSheetViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DC95B57C206CE10B001B80C9 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				DC95B57D206CE128001B80C9 /* ScaledHeightImageView.swift */,
+			);
+			path = "UI Elements";
+			sourceTree = "<group>";
+		};
 		DCADA391203865BC00C1E7BA /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +197,7 @@
 				DCADA3942038663600C1E7BA /* Browse */,
 				DCD2D77D2067DCBB0009D5B8 /* Settings */,
 				DC4191B720559AE400BD6B39 /* InstallModule */,
+				DC95B57C206CE10B001B80C9 /* UI Elements */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -415,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCD8A32720502EBC0068CD4F /* Entry.swift in Sources */,
+				DC95B57E206CE128001B80C9 /* ScaledHeightImageView.swift in Sources */,
 				DCDD1648204B0AAC00A04672 /* CKANRepository.swift in Sources */,
 				DCD2D7812067DD450009D5B8 /* Settings.swift in Sources */,
 				DCD8A32A20502EBC0068CD4F /* Data+Serialization.swift in Sources */,

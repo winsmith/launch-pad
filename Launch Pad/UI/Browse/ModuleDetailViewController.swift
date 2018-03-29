@@ -44,6 +44,7 @@ class ModuleDetailViewController: NSViewController {
     @IBOutlet weak var recommendationsLabel: NSTextField!
     @IBOutlet weak var supportLabel: NSTextField!
     @IBOutlet weak var debugLabel: NSTextField!
+    @IBOutlet weak var debugContainer: NSView!
 
     // Resources
     @IBOutlet weak var resourcesStackView: NSStackView!
@@ -95,11 +96,15 @@ class ModuleDetailViewController: NSViewController {
         abstractLabel.stringValue = module.latestRelease.abstract ?? ""
         descriptionLabel.stringValue = module.latestRelease.detailDescription ?? ""
 
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.outputFormatting = .prettyPrinted
-        let debugData = try? jsonEncoder.encode(module.latestRelease.ckanFile)
-        debugLabel.stringValue = debugData != nil ? String(data: debugData!, encoding: .utf8)! : ""
-        debugLabel.isHidden = !Settings.shouldDisplayDebugInformation
+        if Settings.shouldDisplayDebugInformation {
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = .prettyPrinted
+            let debugData = try? jsonEncoder.encode(module.latestRelease.ckanFile)
+            debugLabel.stringValue = debugData != nil ? String(data: debugData!, encoding: .utf8)! : ""
+            debugContainer.isHidden = false
+        } else {
+            debugContainer.isHidden = true
+        }
 
         if let downloadSizeBytes = module.latestRelease.downloadSize {
             downloadSizeLabel.stringValue = byteFormatter.string(fromByteCount: Int64(downloadSizeBytes))

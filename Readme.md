@@ -2,9 +2,9 @@
 
 ![a cute animation of mods being downloaded, unpacked, and placed into Kerbal Space Program](docs/launchpad.gif)
 
-![A screenshot of the current state of the software](docs/screenshot.png)
-
 ## [Download Now](https://github.com/winsmith/launch-pad/releases)
+
+![A screenshot of the current state of the software](docs/screenshot.png)
 
 ## 🚀 What is this?
 

@@ -56,6 +56,7 @@ extension SettingsViewController: WelcomeSheetViewControllerDelegate {
 
         // Next Step
         appDelegate.ckanClient = CKANClient(kspInstallation: kspInstallation)
+        updateRepositoryViewController.ckanClient = appDelegate.ckanClient
         self.presentViewControllerAsSheet(updateRepositoryViewController)
     }
 }

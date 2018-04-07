@@ -33,6 +33,7 @@ class ModuleDetailViewController: NSViewController {
     @IBOutlet weak var moduleNameLabel: NSTextField!
     @IBOutlet weak var moduleVersionLabel: NSTextField!
     @IBOutlet weak var authorsLabel: NSTextField!
+    @IBOutlet weak var incompatibilityWarningLabel: NSTextField!
     @IBOutlet weak var downloadSizeLabel: NSTextField!
     @IBOutlet weak var maxKSPVersionLabel: NSTextField!
     @IBOutlet weak var minKSPVersionLabel: NSTextField!
@@ -95,6 +96,8 @@ class ModuleDetailViewController: NSViewController {
             upgradeButton.isHidden = true
             return
         }
+
+        incompatibilityWarningLabel.isHidden = isCompatibleWithLaunchPad(module.latestRelease)
 
         if !module.isInstalled {
             installButton.isHidden = false
@@ -223,6 +226,27 @@ class ModuleDetailViewController: NSViewController {
             iconImageView.image = NSImage(named: NSImage.Name(rawValue: "Box"))
             iconImageView.isHidden = true
         }
+    }
+
+    /// Check if the release contains installation directives we don't support yet.
+    private func isCompatibleWithLaunchPad(_ theRelease: Release) -> Bool {
+        for releaseDependency in theRelease.dependencies {
+            if !isCompatibleWithLaunchPad(releaseDependency) { return false }
+        }
+
+        for installationDirective in theRelease.ckanFile.install ?? [] {
+            // Unsupported directives:
+            // as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files
+
+            if installationDirective.as != nil { return false }
+            if installationDirective.filter != nil { return false }
+            if installationDirective.filter_regexp != nil { return false }
+            if installationDirective.include_only != nil { return false }
+            if installationDirective.include_only_regexp != nil { return false }
+            if installationDirective.find_matches_files != nil { return false }
+        }
+
+        return true
     }
 
     // MARK: - Actions

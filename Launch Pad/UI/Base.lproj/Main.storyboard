@@ -1578,13 +1578,13 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view translatesAutoresizingMaskIntoConstraints="NO" id="4He-cP-SEJ">
-                                            <rect key="frame" x="0.0" y="-42" width="720" height="990"/>
+                                            <rect key="frame" x="0.0" y="-96" width="720" height="1044"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6n3-9x-UDZ">
-                                                    <rect key="frame" x="60" y="40" width="600" height="910"/>
+                                                    <rect key="frame" x="60" y="40" width="600" height="964"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfT-D5-vQ3">
-                                                            <rect key="frame" x="0.0" y="847" width="77" height="63"/>
+                                                            <rect key="frame" x="0.0" y="901" width="77" height="63"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qoc-G7-0iT">
                                                                     <rect key="frame" x="-2" y="17" width="81" height="46"/>
@@ -1612,6 +1612,15 @@ Gw
                                                                 <real value="3.4028234663852886e+38"/>
                                                             </customSpacing>
                                                         </stackView>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="HSe-Ik-QgW">
+                                                            <rect key="frame" x="0.0" y="847" width="589" height="34"/>
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" drawsBackground="YES" id="ABg-Bc-17i">
+                                                                <font key="font" metaFont="system"/>
+                                                                <string key="title">Warning: This Release or one of its dependencies contains installation directives that are not yet supported by Launch Pad. The installation might fail silently</string>
+                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="LightAccent"/>
+                                                            </textFieldCell>
+                                                        </textField>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdV-83-hqw">
                                                             <rect key="frame" x="0.0" y="745" width="442" height="82"/>
                                                             <subviews>
@@ -1640,7 +1649,7 @@ Gw
                                                                         </button>
                                                                         <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vEH-LN-rfl">
                                                                             <rect key="frame" x="252" y="0.0" width="118" height="32"/>
-                                                                            <buttonCell key="cell" type="bevel" title="Upgrade" bezelStyle="rounded" image="Button" imagePosition="overlaps" alignment="center" alternateImage="ButtonActive" imageScaling="proportionallyDown" inset="2" id="GLf-m2-o8R">
+                                                                            <buttonCell key="cell" type="bevel" title="Upgrade" bezelStyle="rounded" image="Button" imagePosition="overlaps" alignment="center" alternateImage="ButtonActive" enabled="NO" imageScaling="proportionallyDown" inset="2" id="GLf-m2-o8R">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="systemMedium" size="13"/>
                                                                             </buttonCell>
@@ -2241,8 +2250,10 @@ Gw
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
                                                         <integer value="1000"/>
+                                                        <integer value="1000"/>
                                                     </visibilityPriorities>
                                                     <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
                                                         <real value="3.4028234663852886e+38"/>
@@ -2271,7 +2282,7 @@ Gw
                                     <rect key="frame" x="0.0" y="932" width="735" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.19047619047619047" horizontal="NO" id="Gl2-nk-MsS">
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.08333333333333337" horizontal="NO" id="Gl2-nk-MsS">
                                     <rect key="frame" x="719" y="0.0" width="16" height="948"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2298,6 +2309,7 @@ Gw
                         <outlet property="descriptionLabel" destination="eWn-gD-7Mu" id="8Tc-lh-D2X"/>
                         <outlet property="downloadSizeLabel" destination="5Q1-8d-E7K" id="Bin-g5-Ffv"/>
                         <outlet property="iconImageView" destination="oQG-1j-Wye" id="Tmg-bF-fLd"/>
+                        <outlet property="incompatibilityWarningLabel" destination="HSe-Ik-QgW" id="fvS-dL-4ML"/>
                         <outlet property="installButton" destination="Ube-JZ-AMf" id="ulX-Pe-AjK"/>
                         <outlet property="licenseLabel" destination="mB9-4b-tVr" id="v8w-0s-nN1"/>
                         <outlet property="maxKSPVersionLabel" destination="pVv-sx-W50" id="Aj7-7Z-mxD"/>
@@ -2342,6 +2354,9 @@ Gw
         </namedColor>
         <namedColor name="DarkAccent">
             <color red="0.32156862745098042" green="0.27450980392156865" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightAccent">
+            <color red="0.88235294117647056" green="0.83921568627450982" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

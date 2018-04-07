@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -1224,7 +1224,7 @@ Gw
         <!--Main View Controller-->
         <scene sceneID="eBe-1M-9VG">
             <objects>
-                <tabViewController selectedTabViewItemIndex="1" tabStyle="bottom" id="Vpq-Jf-SGX" customClass="MainViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="bottom" id="Vpq-Jf-SGX" customClass="MainViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="ey1-pX-3VV"/>
                         <tabViewItem identifier="" id="g6M-8F-hUP"/>
@@ -1235,7 +1235,6 @@ Gw
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
-                        <tabViewItems/>
                         <connections>
                             <outlet property="delegate" destination="Vpq-Jf-SGX" id="Qyd-qO-ArF"/>
                         </connections>

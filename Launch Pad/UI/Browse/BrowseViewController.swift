@@ -15,7 +15,7 @@ class BrowseViewController: NSViewController {
     private let appDelegate = NSApplication.shared.delegate as? AppDelegate
     private let notificationCenter = NotificationCenter.default
     internal var modules: [Module] = []
-    public var filter: String? { didSet { updateFilter() } }
+    public var filter: String? { didSet { updateData() } }
     internal var filteredModules: [Module] {
         guard let filter = filter else { return modules }
         guard filter != "" else { return modules }
@@ -30,6 +30,7 @@ class BrowseViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        updateData()
     }
 
     private func configureCollectionView() {
@@ -60,10 +61,6 @@ class BrowseViewController: NSViewController {
         if let moduleDetailViewController = destination as? ModuleDetailViewController {
             self.moduleDetailViewController = moduleDetailViewController
         }
-    }
-
-    func updateFilter() {
-        collectionView.reloadData()
     }
 }
 

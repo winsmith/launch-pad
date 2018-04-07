@@ -1399,7 +1399,7 @@ Gw
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4NY-bF-eW1">
                                             <rect key="frame" x="0.0" y="0.0" width="610" height="482"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SpaceCenter" id="414-FL-Lh2"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Rocket" id="414-FL-Lh2"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1446,18 +1446,46 @@ Gw
                         <rect key="frame" x="0.0" y="0.0" width="450" height="317"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="txs-kM-Jtg">
-                                <rect key="frame" x="197" y="150" width="56" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Updates" id="Dho-5u-hLe">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Rz-Gx-5iP">
+                                <rect key="frame" x="21" y="62" width="408" height="194"/>
+                                <subviews>
+                                    <imageView horizontalHuggingPriority="1" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ab2-wS-w9D">
+                                        <rect key="frame" x="0.0" y="91" width="408" height="103"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Box" id="g2N-1F-D0A"/>
+                                    </imageView>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jBU-F2-xGs">
+                                        <rect key="frame" x="81" y="54" width="247" height="17"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Updates will be added at a later version." id="YNJ-Q8-K8N">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BwK-rN-jVQ">
+                                        <rect key="frame" x="-2" y="0.0" width="412" height="34"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="To update the CKAN Repository data, click the &quot;Network&quot; Button in the toolbar." id="BX3-t4-aVC">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="txs-kM-Jtg" firstAttribute="centerY" secondItem="Ptl-ls-HIA" secondAttribute="centerY" id="Mr9-07-MVD"/>
-                            <constraint firstItem="txs-kM-Jtg" firstAttribute="centerX" secondItem="Ptl-ls-HIA" secondAttribute="centerX" id="kIu-tb-w1H"/>
+                            <constraint firstItem="6Rz-Gx-5iP" firstAttribute="centerX" secondItem="Ptl-ls-HIA" secondAttribute="centerX" id="ZOM-gA-Rxq"/>
+                            <constraint firstItem="6Rz-Gx-5iP" firstAttribute="centerY" secondItem="Ptl-ls-HIA" secondAttribute="centerY" id="lFU-Ip-24f"/>
+                            <constraint firstItem="6Rz-Gx-5iP" firstAttribute="width" relation="lessThanOrEqual" secondItem="Ptl-ls-HIA" secondAttribute="width" constant="-40" id="msE-9s-4Rx"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -1470,51 +1498,27 @@ Gw
             <objects>
                 <viewController title="Settings" id="9wZ-lg-smw" customClass="SettingsViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hfj-rb-bql">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="532"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24l-wv-OpG">
-                                <rect key="frame" x="141" y="42" width="168" height="217"/>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24l-wv-OpG">
+                                <rect key="frame" x="110" y="52" width="600" height="460"/>
                                 <subviews>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kK-eF-0ZQ">
-                                        <rect key="frame" x="0.0" y="122" width="59" height="95"/>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Rocket" id="SaC-06-mla"/>
+                                    <imageView horizontalHuggingPriority="1" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kK-eF-0ZQ">
+                                        <rect key="frame" x="0.0" y="298" width="600" height="162"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SpaceCenter" id="SaC-06-mla"/>
                                     </imageView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tuz-eB-2Vk">
-                                        <rect key="frame" x="-2" y="97" width="55" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Settings" id="eBx-XN-vAS">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-uD-qR5">
-                                        <rect key="frame" x="-2" y="72" width="84" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CKAN Notice" id="K3B-A9-2np">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h2O-hL-UKQ">
-                                        <rect key="frame" x="-2" y="47" width="92" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ablator Notice" id="bHm-xT-6mj">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yeT-5k-Umz">
-                                        <rect key="frame" x="-2" y="22" width="133" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Open Source Notices" id="qYk-cb-TFT">
-                                            <font key="font" metaFont="system"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yZM-dc-OG9">
+                                        <rect key="frame" x="-2" y="237" width="153" height="46"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Settings" id="9Iv-U3-RZq">
+                                            <font key="font" size="38" name=".AppleSystemUIFontBold"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PcF-0x-T1A">
-                                        <rect key="frame" x="-2" y="-2" width="172" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Show Debug Information" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qQj-9y-vz9">
+                                        <rect key="frame" x="-2" y="206" width="250" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Show Debug Information for Releases" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qQj-9y-vz9">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -1522,8 +1526,54 @@ Gw
                                             <action selector="toggleShowDebugInformation:" target="9wZ-lg-smw" id="vQ5-c9-lJA"/>
                                         </connections>
                                     </button>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dpv-rO-V5T">
+                                        <rect key="frame" x="-2" y="176" width="574" height="17"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Find new versions of this software and report bugs at https://github.com/winsmith/launch-pad" id="Amc-Ru-Arp">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ffp-xf-M0c">
+                                        <rect key="frame" x="-2" y="115" width="140" height="46"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Notices" id="DFo-qg-tbM">
+                                            <font key="font" size="38" name=".AppleSystemUIFontBold"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="o1e-YU-VmX">
+                                        <rect key="frame" x="-2" y="72" width="588" height="28"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Launch Pad uses the excellent CKAN Mod Metadata Repository as its data source. Find it at https://github.com/KSP-CKAN/CKAN" id="pIh-G8-olb">
+                                            <font key="font" metaFont="system" size="11"/>
+                                            <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Qdo-E8-ykl">
+                                        <rect key="frame" x="-2" y="29" width="578" height="28"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="bSn-W8-Xz2">
+                                            <font key="font" metaFont="system" size="11"/>
+                                            <string key="title">Launch Pad includes the ZIPFoundation library, which is released under the MIT license at https://github.com/weichsel/ZIPFoundation</string>
+                                            <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-QV-Kxg">
+                                        <rect key="frame" x="-2" y="0.0" width="497" height="14"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Launch Pad will soon be using Ablator to gradually introduce new features. Find it at ablator.io" id="ahL-Bg-MxG">
+                                            <font key="font" metaFont="system" size="11"/>
+                                            <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="ozA-SY-2OQ"/>
+                                </constraints>
                                 <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
@@ -1538,12 +1588,17 @@ Gw
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="24l-wv-OpG" firstAttribute="centerY" secondItem="hfj-rb-bql" secondAttribute="centerY" id="0GC-nP-FuJ"/>
-                            <constraint firstItem="24l-wv-OpG" firstAttribute="centerX" secondItem="hfj-rb-bql" secondAttribute="centerX" id="98Y-83-MDb"/>
+                            <constraint firstItem="24l-wv-OpG" firstAttribute="top" secondItem="hfj-rb-bql" secondAttribute="top" constant="20" id="PSR-NR-jd7"/>
+                            <constraint firstItem="24l-wv-OpG" firstAttribute="centerX" secondItem="hfj-rb-bql" secondAttribute="centerX" id="TwK-OD-Rwp"/>
+                            <constraint firstItem="24l-wv-OpG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hfj-rb-bql" secondAttribute="leading" constant="20" id="cKT-yC-I7l"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="24l-wv-OpG" secondAttribute="bottom" constant="20" id="dI3-nb-Tca"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="24l-wv-OpG" secondAttribute="trailing" constant="20" id="iiB-n3-zZA"/>
                         </constraints>
                     </view>
                     <connections>

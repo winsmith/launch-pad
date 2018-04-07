@@ -1498,18 +1498,26 @@ Gw
             <objects>
                 <viewController title="Settings" id="9wZ-lg-smw" customClass="SettingsViewController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hfj-rb-bql">
-                        <rect key="frame" x="0.0" y="0.0" width="820" height="532"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="615"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24l-wv-OpG">
-                                <rect key="frame" x="110" y="52" width="600" height="460"/>
+                                <rect key="frame" x="110" y="34" width="600" height="561"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="1" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kK-eF-0ZQ">
-                                        <rect key="frame" x="0.0" y="298" width="600" height="162"/>
+                                        <rect key="frame" x="0.0" y="399" width="600" height="162"/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SpaceCenter" id="SaC-06-mla"/>
                                     </imageView>
+                                    <textField horizontalHuggingPriority="1" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rkY-Ix-kPR">
+                                        <rect key="frame" x="-2" y="370" width="604" height="14"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Launch Pad Version 1a2" id="7wa-3i-ypf">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yZM-dc-OG9">
-                                        <rect key="frame" x="-2" y="237" width="153" height="46"/>
+                                        <rect key="frame" x="-2" y="309" width="153" height="46"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Settings" id="9Iv-U3-RZq">
                                             <font key="font" size="38" name=".AppleSystemUIFontBold"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1517,13 +1525,33 @@ Gw
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PcF-0x-T1A">
-                                        <rect key="frame" x="-2" y="206" width="250" height="18"/>
+                                        <rect key="frame" x="-2" y="278" width="250" height="18"/>
                                         <buttonCell key="cell" type="check" title="Show Debug Information for Releases" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qQj-9y-vz9">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="toggleShowDebugInformation:" target="9wZ-lg-smw" id="vQ5-c9-lJA"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7rZ-YU-3do">
+                                        <rect key="frame" x="-6" y="237" width="175" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Change KSP Directory" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uyG-n7-S73">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="changeKSPDirectory:" target="9wZ-lg-smw" id="Evk-Cg-Ja1"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TQa-Eq-ayE">
+                                        <rect key="frame" x="-6" y="201" width="185" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Update CKAN Metadata" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DU4-nZ-FOh">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="updateCKANMetadata:" target="9wZ-lg-smw" id="2TV-90-skG"/>
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dpv-rO-V5T">
@@ -1545,7 +1573,7 @@ Gw
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="o1e-YU-VmX">
                                         <rect key="frame" x="-2" y="72" width="588" height="28"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Launch Pad uses the excellent CKAN Mod Metadata Repository as its data source. Find it at https://github.com/KSP-CKAN/CKAN" id="pIh-G8-olb">
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -1553,7 +1581,7 @@ Gw
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Qdo-E8-ykl">
                                         <rect key="frame" x="-2" y="29" width="578" height="28"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="bSn-W8-Xz2">
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                             <string key="title">Launch Pad includes the ZIPFoundation library, which is released under the MIT license at https://github.com/weichsel/ZIPFoundation</string>
                                             <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1562,7 +1590,7 @@ Gw
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-QV-Kxg">
                                         <rect key="frame" x="-2" y="0.0" width="497" height="14"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Launch Pad will soon be using Ablator to gradually introduce new features. Find it at ablator.io" id="ahL-Bg-MxG">
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -1580,8 +1608,14 @@ Gw
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -2337,7 +2371,7 @@ Gw
                                     <rect key="frame" x="0.0" y="932" width="735" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.08333333333333337" horizontal="NO" id="Gl2-nk-MsS">
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.64583333333333326" horizontal="NO" id="Gl2-nk-MsS">
                                     <rect key="frame" x="719" y="0.0" width="16" height="948"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

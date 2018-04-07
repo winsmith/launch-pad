@@ -81,6 +81,4 @@ extension MainViewController: UpdateRepositoryViewControllerDelegate {
     func didFinishUpdating(_ sender: UpdateRepositoryViewController) {
         dismissViewController(sender)
     }
-
-
 }

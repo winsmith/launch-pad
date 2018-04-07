@@ -11,6 +11,7 @@
 		DC33CFC1203D89140034E465 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC33CFC0203D89140034E465 /* Colors.swift */; };
 		DC4191B62055856300BD6B39 /* String+Uppercased.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4191B52055856300BD6B39 /* String+Uppercased.swift */; };
 		DC4191B920559AFC00BD6B39 /* InstallModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4191B820559AFC00BD6B39 /* InstallModuleViewController.swift */; };
+		DC63C119206D36F7005280E0 /* InstalledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC63C118206D36F7005280E0 /* InstalledViewController.swift */; };
 		DC654993203326C50023111E /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC654992203326C50023111E /* BrowseViewController.swift */; };
 		DC654999203338820023111E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC654998203338820023111E /* WebKit.framework */; };
 		DC84D02B204DBC65005CBDCD /* CKANFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC84D02A204DBC65005CBDCD /* CKANFile.swift */; };
@@ -83,6 +84,7 @@
 		DC33CFC0203D89140034E465 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		DC4191B52055856300BD6B39 /* String+Uppercased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercased.swift"; sourceTree = "<group>"; };
 		DC4191B820559AFC00BD6B39 /* InstallModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallModuleViewController.swift; sourceTree = "<group>"; };
+		DC63C118206D36F7005280E0 /* InstalledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalledViewController.swift; sourceTree = "<group>"; };
 		DC654992203326C50023111E /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		DC654998203338820023111E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DC65499A203338B80023111E /* Launch Pad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Launch Pad.entitlements"; sourceTree = "<group>"; };
@@ -163,6 +165,14 @@
 			path = InstallModule;
 			sourceTree = "<group>";
 		};
+		DC63C117206D36CF005280E0 /* Installed */ = {
+			isa = PBXGroup;
+			children = (
+				DC63C118206D36F7005280E0 /* InstalledViewController.swift */,
+			);
+			path = Installed;
+			sourceTree = "<group>";
+		};
 		DC654996203327DF0023111E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +205,7 @@
 				DCADA3952038664400C1E7BA /* Main */,
 				DCD8A32C205067110068CD4F /* UpdateRepository */,
 				DCADA3942038663600C1E7BA /* Browse */,
+				DC63C117206D36CF005280E0 /* Installed */,
 				DCD2D77D2067DCBB0009D5B8 /* Settings */,
 				DC4191B720559AE400BD6B39 /* InstallModule */,
 				DC95B57C206CE10B001B80C9 /* UI Elements */,
@@ -440,6 +451,7 @@
 				DCD8A32820502EBC0068CD4F /* Data+Compression.swift in Sources */,
 				DCD2D7852067E2F20009D5B8 /* Logger.swift in Sources */,
 				DCADA393203865EB00C1E7BA /* MainViewController.swift in Sources */,
+				DC63C119206D36F7005280E0 /* InstalledViewController.swift in Sources */,
 				DC4191B920559AFC00BD6B39 /* InstallModuleViewController.swift in Sources */,
 				DCD2D7952068FF470009D5B8 /* MainWindowController.swift in Sources */,
 				DCDD164A204B0D5800A04672 /* KSPInstallation.swift in Sources */,

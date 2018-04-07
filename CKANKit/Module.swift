@@ -18,6 +18,7 @@ public class Module {
         guard let metadata = ckanRepository?.metadataManager.metadata(for: self) else { return nil }
         return releases.filter { $0.version == metadata.installedVersion }.first
     }
+    var isInstalled: Bool { return installedRelease != nil }
 
     internal weak var ckanRepository: CKANRepository?
 

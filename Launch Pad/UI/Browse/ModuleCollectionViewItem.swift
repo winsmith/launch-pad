@@ -39,7 +39,7 @@ class ModuleCollectionViewItem: NSCollectionViewItem {
     }
 
     private func updateColors() {
-        let lightColor = module?.installedRelease == nil ? NSColor.color(named: .BackgroundColor) : NSColor.color(named: .LightAccent)
+        let lightColor = module?.isInstalled == true ? NSColor.color(named: .LightAccent) : NSColor.color(named: .BackgroundColor) 
         let darkColor = NSColor.color(named: .DarkAccent)
         view.layer?.backgroundColor = isSelected ? darkColor.cgColor : lightColor.cgColor
         nameLabel.textColor = isSelected ? lightColor : darkColor

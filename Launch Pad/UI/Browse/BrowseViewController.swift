@@ -7,7 +7,6 @@
 //
 
 import AppKit
-import WebKit
 
 class BrowseViewController: NSViewController {
     @IBOutlet private weak var collectionView: NSCollectionView!
@@ -15,9 +14,9 @@ class BrowseViewController: NSViewController {
     private var moduleDetailViewController: ModuleDetailViewController?
     private let appDelegate = NSApplication.shared.delegate as? AppDelegate
     private let notificationCenter = NotificationCenter.default
-    private var modules: [Module] = []
-    public var filter: String? { didSet { updateFilter() } }
-    private var filteredModules: [Module] {
+    internal var modules: [Module] = []
+    public var filter: String? { didSet { updateData() } }
+    internal var filteredModules: [Module] {
         guard let filter = filter else { return modules }
         guard filter != "" else { return modules }
         return self.modules.filter { $0.name.contains(filter) || $0.latestRelease.authors?.joined(separator: " ").contains(filter) == true }
@@ -31,6 +30,7 @@ class BrowseViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        updateData()
     }
 
     private func configureCollectionView() {
@@ -61,10 +61,6 @@ class BrowseViewController: NSViewController {
         if let moduleDetailViewController = destination as? ModuleDetailViewController {
             self.moduleDetailViewController = moduleDetailViewController
         }
-    }
-
-    func updateFilter() {
-        collectionView.reloadData()
     }
 }
 

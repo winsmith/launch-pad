@@ -284,8 +284,7 @@ extension Release {
             fatalError()
         }
 
-        let todo = "as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files"
-        // TODO: as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files
+        // TODO: as
 
         var installedFiles = [URL]()
         for urlToCopy in urlsToCopy {
@@ -313,9 +312,11 @@ extension Release {
         if let file = installationDirective.file {
             urlsToCopy.append(tempDirectoryURL.appendingPathComponent(file))
         }
-
         // find: Locate the top-most directory which exactly matches the name specified.
         else if let findDirective = installationDirective.find {
+            let matches_files = installationDirective.find_matches_files == true
+            // TODO: check find_matches_files
+
             guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { return urlsToCopy }
             var mostFittingPath: String?
             var mostFittingPathDepth: Int = 99999
@@ -331,12 +332,39 @@ extension Release {
                 urlsToCopy.append(mostFittingPathURL)
             }
         }
-
         // find_regexp: Locate the top-most directory which matches the specified regular expression
         else if let find_regexp = installationDirective.find_regexp {
-            let todo = find_regexp
-            // TODO
+            // TODO: implement
+
+            let matches_files = installationDirective.find_matches_files == true
+            // TODO: check find_matches_files
             logger.log("Warning: skipping find_regexp installation directive because it is unsupported.")
+        }
+
+        // filter: A string, or list of strings, of file parts that should not be installed.
+        if let filter = installationDirective.filter {
+            // TODO
+            logger.log("Warning: skipping filter installation directive because it is unsupported.")
+        }
+
+        // filter_regexp: A string, or list of strings, which are treated as case-sensitive C# regular
+        // expressions which are matched against the full paths from the installing zip-file.
+        if let filter_regexp = installationDirective.filter_regexp {
+            // TODO
+            logger.log("Warning: skipping filter_regexp installation directive because it is unsupported.")
+        }
+
+        // include_only: A string, or list of strings, of file parts that should be installed
+        if let include_only = installationDirective.include_only {
+            // TODO
+            logger.log("Warning: skipping include_only installation directive because it is unsupported.")
+        }
+
+        // include_only_regexp: A string, or list of strings, which are treated as case-sensitive C# regular
+        // expressions which are matched against the full paths from the installing zip-file
+        if let include_only = installationDirective.include_only {
+            // TODO
+            logger.log("Warning: skipping include_only installation directive because it is unsupported.")
         }
 
         logger.log("Generated %@ source URLs.", "\(urlsToCopy.count)")

@@ -37,7 +37,7 @@ public class Release {
         guard let dependencies = ckanFile.depends else { return [] }
         guard let repository = module?.ckanRepository else { return [] }
 
-        return dependencies.flatMap { relationship in
+        return dependencies.compactMap { relationship in
             repository.latestReleaseSatifying(relationship)
         }
     }
@@ -46,7 +46,7 @@ public class Release {
         guard let suggestions = ckanFile.suggests else { return [] }
         guard let repository = module?.ckanRepository else { return [] }
 
-        return suggestions.flatMap { relationship in
+        return suggestions.compactMap { relationship in
             repository.latestReleaseSatifying(relationship)
         }
     }
@@ -55,7 +55,7 @@ public class Release {
         guard let recommendations = ckanFile.recommends else { return [] }
         guard let repository = module?.ckanRepository else { return [] }
 
-        return recommendations.flatMap { relationship in
+        return recommendations.compactMap { relationship in
             repository.latestReleaseSatifying(relationship)
         }
     }
@@ -64,7 +64,7 @@ public class Release {
         guard let supported = ckanFile.supports else { return [] }
         guard let repository = module?.ckanRepository else { return [] }
 
-        return supported.flatMap { relationship in
+        return supported.compactMap { relationship in
             repository.latestReleaseSatifying(relationship)
         }
     }

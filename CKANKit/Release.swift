@@ -352,8 +352,8 @@ extension Release {
 
         // filter: A string, or list of strings, of file parts that should not be installed.
         if let filter = installationDirective.filter {
-            // TODO
-            logger.log("Warning: skipping filter installation directive because it is unsupported.")
+            let allFilters = filter.arrayValue
+            urlsToCopy = urlsToCopy.filter { allFilters.contains($0.lastPathComponent) == false }
         }
 
         // filter_regexp: A string, or list of strings, which are treated as case-sensitive C# regular

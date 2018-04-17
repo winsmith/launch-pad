@@ -327,7 +327,7 @@ extension Release {
             while let element = directoryEnumerator.nextObject() as? String {
                 if element.hasSuffix(findDirective) && mostFittingPathDepth > directoryEnumerator.level {
                     var isDirectory: ObjCBool = false
-                    fileManager.fileExists(atPath: element, isDirectory: &isDirectory)
+                    fileManager.fileExists(atPath: tempDirectoryURL.appendingPathComponent(element).path, isDirectory: &isDirectory)
 
                     if isDirectory.boolValue || matches_files {
                         mostFittingPath = element
@@ -363,7 +363,7 @@ extension Release {
             while let element = directoryEnumerator.nextObject() as? String {
                 if element.range(of: find_regexp, options: .regularExpression) != nil && mostFittingPathDepth > directoryEnumerator.level {
                     var isDirectory: ObjCBool = false
-                    fileManager.fileExists(atPath: element, isDirectory: &isDirectory)
+                    fileManager.fileExists(atPath: tempDirectoryURL.appendingPathComponent(element).path, isDirectory: &isDirectory)
                     if isDirectory.boolValue || matches_files {
                         mostFittingPath = element
                         mostFittingPathDepth = directoryEnumerator.level
@@ -439,7 +439,7 @@ extension Release {
             logger.log("Destination URL is Game Root.")
             return kspInstallation.kspDirectory
         } else {
-            let destinationURL = kspInstallation.kspDirectory.appendingPathComponent(installationDirective.install_to)
+            let destinationURL = kspInstallation.kspDirectory.appendingPathComponent(installationDirective.install_to).appendingPathComponent(identifier)
             logger.log("Destination URL is %@.", destinationURL.path)
             return destinationURL
         }

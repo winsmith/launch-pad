@@ -245,9 +245,6 @@ class ModuleDetailViewController: NSViewController {
         }
 
         for installationDirective in theRelease.ckanFile.install ?? [] {
-            // Unsupported directives:
-            // as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files
-
             var subReasons: [String] = []
             if installationDirective.as != nil { subReasons.append("as") }
             if installationDirective.filter_regexp != nil { subReasons.append("filter_regexp") }

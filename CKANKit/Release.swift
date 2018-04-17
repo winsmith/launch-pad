@@ -310,7 +310,11 @@ extension Release {
 
         // file: The file or directory root that this directive pertains to
         if let file = installationDirective.file {
-            urlsToCopy.append(tempDirectoryURL.appendingPathComponent(file))
+            guard let directoryContents = try? fileManager.contentsOfDirectory(at: tempDirectoryURL.appendingPathComponent(file), includingPropertiesForKeys: nil, options: []) else {
+                logger.log("Error: Could not list contents of directory.")
+                fatalError()
+            }
+            urlsToCopy += directoryContents
         }
         // find: Locate the top-most directory which exactly matches the name specified.
         else if let findDirective = installationDirective.find {
@@ -329,7 +333,12 @@ extension Release {
             }
             if let mostFittingPath = mostFittingPath {
                 let mostFittingPathURL = tempDirectoryURL.appendingPathComponent(mostFittingPath)
-                urlsToCopy.append(mostFittingPathURL)
+
+                guard let directoryContents = try? fileManager.contentsOfDirectory(at: mostFittingPathURL, includingPropertiesForKeys: nil, options: []) else {
+                    logger.log("Error: Could not list contents of directory.")
+                    fatalError()
+                }
+                urlsToCopy += directoryContents
             }
         }
         // find_regexp: Locate the top-most directory which matches the specified regular expression

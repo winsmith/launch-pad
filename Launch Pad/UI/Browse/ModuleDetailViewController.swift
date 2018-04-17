@@ -34,6 +34,7 @@ class ModuleDetailViewController: NSViewController {
     @IBOutlet weak var moduleVersionLabel: NSTextField!
     @IBOutlet weak var authorsLabel: NSTextField!
     @IBOutlet weak var incompatibilityWarningLabel: NSTextField!
+    @IBOutlet weak var incompatibilityWarningLabelContainer: NSView!
     @IBOutlet weak var downloadSizeLabel: NSTextField!
     @IBOutlet weak var maxKSPVersionLabel: NSTextField!
     @IBOutlet weak var minKSPVersionLabel: NSTextField!
@@ -97,7 +98,9 @@ class ModuleDetailViewController: NSViewController {
             return
         }
 
-        incompatibilityWarningLabel.isHidden = isCompatibleWithLaunchPad(module.latestRelease)
+        let reasonsForIncompatibility = reasonsForInCompatibilityWithLaunchpad(module.latestRelease)
+        incompatibilityWarningLabel.isHidden = reasonsForIncompatibility.isEmpty
+        incompatibilityWarningLabel.stringValue = "Warning: This Release or one of its dependencies contains installation directives that are not yet supported by Launch Pad. The installation might fail silently. (The unsupported directives are: \(reasonsForIncompatibility.joined(separator: ", ")))"
 
         if !module.isInstalled {
             installButton.isHidden = false
@@ -230,23 +233,32 @@ class ModuleDetailViewController: NSViewController {
 
     /// Check if the release contains installation directives we don't support yet.
     private func isCompatibleWithLaunchPad(_ theRelease: Release) -> Bool {
+        return reasonsForInCompatibilityWithLaunchpad(theRelease).isEmpty == true
+    }
+
+    private func reasonsForInCompatibilityWithLaunchpad(_ theRelease: Release) -> [String] {
+        var reasons: [String] = []
+
         for releaseDependency in theRelease.dependencies {
-            if !isCompatibleWithLaunchPad(releaseDependency) { return false }
+            let subReasons = reasonsForInCompatibilityWithLaunchpad(releaseDependency)
+            reasons += subReasons.filter { !reasons.contains($0) }
         }
 
         for installationDirective in theRelease.ckanFile.install ?? [] {
             // Unsupported directives:
             // as, filter, filter_regexp, include_only, include_only_regexp, find_matches_files
 
-            if installationDirective.as != nil { return false }
-            if installationDirective.filter != nil { return false }
-            if installationDirective.filter_regexp != nil { return false }
-            if installationDirective.include_only != nil { return false }
-            if installationDirective.include_only_regexp != nil { return false }
-            if installationDirective.find_matches_files != nil { return false }
+            var subReasons: [String] = []
+            if installationDirective.as != nil { subReasons.append("as") }
+            if installationDirective.filter != nil { subReasons.append("filter") }
+            if installationDirective.filter_regexp != nil { subReasons.append("filter_regexp") }
+            if installationDirective.include_only != nil { subReasons.append("include_only") }
+            if installationDirective.include_only_regexp != nil { subReasons.append("include_only_regexp") }
+            if installationDirective.find_matches_files != nil { subReasons.append("find_matches_files") }
+            reasons += subReasons.filter { !reasons.contains($0) }
         }
 
-        return true
+        return reasons
     }
 
     // MARK: - Actions

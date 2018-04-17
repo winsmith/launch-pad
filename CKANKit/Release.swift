@@ -347,11 +347,33 @@ extension Release {
         }
         // find_regexp: Locate the top-most directory which matches the specified regular expression
         else if let find_regexp = installationDirective.find_regexp {
-            // TODO: implement
-
-            let matches_files = installationDirective.find_matches_files == true
             // TODO: check find_matches_files
-            logger.log("Warning: skipping find_regexp installation directive because it is unsupported.")
+            let matches_files = installationDirective.find_matches_files == false
+
+            guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { return urlsToCopy }
+            var mostFittingPath: String?
+            var mostFittingPathDepth: Int = 99999
+
+            while let element = directoryEnumerator.nextObject() as? String {
+                if element.range(of: find_regexp, options: .regularExpression) != nil && mostFittingPathDepth > directoryEnumerator.level {
+                    var isDirectory: ObjCBool = false
+                    fileManager.fileExists(atPath: element, isDirectory: &isDirectory)
+
+                    if isDirectory.boolValue || matches_files {
+                        mostFittingPath = element
+                        mostFittingPathDepth = directoryEnumerator.level
+                    }
+                }
+            }
+            if let mostFittingPath = mostFittingPath {
+                let mostFittingPathURL = tempDirectoryURL.appendingPathComponent(mostFittingPath)
+
+                guard let directoryContents = try? fileManager.contentsOfDirectory(at: mostFittingPathURL, includingPropertiesForKeys: nil, options: []) else {
+                    logger.log("Error: Could not list contents of directory.")
+                    fatalError()
+                }
+                urlsToCopy += directoryContents
+            }
         }
 
         // filter: A string, or list of strings, of file parts that should not be installed.

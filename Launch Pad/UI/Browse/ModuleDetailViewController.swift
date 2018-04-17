@@ -250,10 +250,10 @@ class ModuleDetailViewController: NSViewController {
 
             var subReasons: [String] = []
             if installationDirective.as != nil { subReasons.append("as") }
+            if installationDirective.find_regexp != nil { subReasons.append("find_regexp")}
             if installationDirective.filter_regexp != nil { subReasons.append("filter_regexp") }
             if installationDirective.include_only != nil { subReasons.append("include_only") }
             if installationDirective.include_only_regexp != nil { subReasons.append("include_only_regexp") }
-            if installationDirective.find_matches_files != nil { subReasons.append("find_matches_files") }
             reasons += subReasons.filter { !reasons.contains($0) }
         }
 

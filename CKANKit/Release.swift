@@ -318,8 +318,7 @@ extension Release {
         }
         // find: Locate the top-most directory which exactly matches the name specified.
         else if let findDirective = installationDirective.find {
-            let matches_files = installationDirective.find_matches_files == true
-            // TODO: check find_matches_files
+            let matches_files = installationDirective.find_matches_files ?? true
 
             guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { return urlsToCopy }
             var mostFittingPath: String?
@@ -327,8 +326,13 @@ extension Release {
 
             while let element = directoryEnumerator.nextObject() as? String {
                 if element.hasSuffix(findDirective) && mostFittingPathDepth > directoryEnumerator.level {
-                    mostFittingPath = element
-                    mostFittingPathDepth = directoryEnumerator.level
+                    var isDirectory: ObjCBool = false
+                    fileManager.fileExists(atPath: element, isDirectory: &isDirectory)
+
+                    if isDirectory.boolValue || matches_files {
+                        mostFittingPath = element
+                        mostFittingPathDepth = directoryEnumerator.level
+                    }
                 }
             }
             if let mostFittingPath = mostFittingPath {

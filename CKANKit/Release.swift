@@ -318,7 +318,7 @@ extension Release {
         }
         // find: Locate the top-most directory which exactly matches the name specified.
         else if let findDirective = installationDirective.find {
-            let matches_files = installationDirective.find_matches_files ?? true
+            let matches_files = installationDirective.find_matches_files ?? false
 
             guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { return urlsToCopy }
             var mostFittingPath: String?
@@ -338,17 +338,23 @@ extension Release {
             if let mostFittingPath = mostFittingPath {
                 let mostFittingPathURL = tempDirectoryURL.appendingPathComponent(mostFittingPath)
 
-                guard let directoryContents = try? fileManager.contentsOfDirectory(at: mostFittingPathURL, includingPropertiesForKeys: nil, options: []) else {
-                    logger.log("Error: Could not list contents of directory.")
-                    fatalError()
+                var isDirectory: ObjCBool = false
+                fileManager.fileExists(atPath: mostFittingPath, isDirectory: &isDirectory)
+                if isDirectory.boolValue {
+                    guard let directoryContents = try? fileManager.contentsOfDirectory(at: mostFittingPathURL, includingPropertiesForKeys: nil, options: []) else {
+                        logger.log("Error: Could not list contents of directory.")
+                        fatalError()
+                    }
+                    urlsToCopy += directoryContents
+                } else {
+                    urlsToCopy.append(mostFittingPathURL)
                 }
-                urlsToCopy += directoryContents
             }
         }
         // find_regexp: Locate the top-most directory which matches the specified regular expression
         else if let find_regexp = installationDirective.find_regexp {
             // TODO: check find_matches_files
-            let matches_files = installationDirective.find_matches_files == false
+            let matches_files = installationDirective.find_matches_files ?? false
 
             guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { return urlsToCopy }
             var mostFittingPath: String?
@@ -358,7 +364,6 @@ extension Release {
                 if element.range(of: find_regexp, options: .regularExpression) != nil && mostFittingPathDepth > directoryEnumerator.level {
                     var isDirectory: ObjCBool = false
                     fileManager.fileExists(atPath: element, isDirectory: &isDirectory)
-
                     if isDirectory.boolValue || matches_files {
                         mostFittingPath = element
                         mostFittingPathDepth = directoryEnumerator.level
@@ -368,11 +373,17 @@ extension Release {
             if let mostFittingPath = mostFittingPath {
                 let mostFittingPathURL = tempDirectoryURL.appendingPathComponent(mostFittingPath)
 
-                guard let directoryContents = try? fileManager.contentsOfDirectory(at: mostFittingPathURL, includingPropertiesForKeys: nil, options: []) else {
-                    logger.log("Error: Could not list contents of directory.")
-                    fatalError()
+                var isDirectory: ObjCBool = false
+                fileManager.fileExists(atPath: mostFittingPath, isDirectory: &isDirectory)
+                if isDirectory.boolValue {
+                    guard let directoryContents = try? fileManager.contentsOfDirectory(at: mostFittingPathURL, includingPropertiesForKeys: nil, options: []) else {
+                        logger.log("Error: Could not list contents of directory.")
+                        fatalError()
+                    }
+                    urlsToCopy += directoryContents
+                } else {
+                    urlsToCopy.append(mostFittingPathURL)
                 }
-                urlsToCopy += directoryContents
             }
         }
 
@@ -459,11 +470,12 @@ extension Release {
 
             do {
                 try fileManager.removeItem(at: fileURL)
-                module.ckanRepository?.metadataManager.deleteMetadata(for: module)
                 logger.log("Deleted file: %@", fileURL.path)
             } catch {
                 logger.log("Failed to delete file: %@", error.localizedDescription)
             }
         }
+
+        module.ckanRepository?.metadataManager.deleteMetadata(for: module)
     }
 }

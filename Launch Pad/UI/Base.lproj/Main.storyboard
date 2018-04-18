@@ -1534,16 +1534,47 @@ Gw
                                             <action selector="toggleShowDebugInformation:" target="9wZ-lg-smw" id="vQ5-c9-lJA"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7rZ-YU-3do">
-                                        <rect key="frame" x="-6" y="237" width="175" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Change KSP Directory" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uyG-n7-S73">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="changeKSPDirectory:" target="9wZ-lg-smw" id="Evk-Cg-Ja1"/>
-                                        </connections>
-                                    </button>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdV-BV-8NV">
+                                        <rect key="frame" x="0.0" y="244" width="407" height="21"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uYu-FM-msk">
+                                                <rect key="frame" x="-2" y="4" width="92" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="KSP Directory:" id="FUB-Su-u1x">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Am8-f2-YrR">
+                                                <rect key="frame" x="94" y="4" width="144" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="/Applications/etc/etc" id="rMy-xa-Tuc">
+                                                    <font key="font" metaFont="fixedUser" size="11"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7rZ-YU-3do">
+                                                <rect key="frame" x="238" y="-7" width="175" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Change KSP Directory" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uyG-n7-S73">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="changeKSPDirectory:" target="9wZ-lg-smw" id="Evk-Cg-Ja1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TQa-Eq-ayE">
                                         <rect key="frame" x="-6" y="201" width="185" height="32"/>
                                         <buttonCell key="cell" type="push" title="Update CKAN Metadata" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DU4-nZ-FOh">
@@ -1636,6 +1667,7 @@ Gw
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="kspDirectoryLabel" destination="Am8-f2-YrR" id="yWY-nZ-UAQ"/>
                         <outlet property="showDebugInformationCheckbox" destination="PcF-0x-T1A" id="o8Z-2l-jQx"/>
                     </connections>
                 </viewController>

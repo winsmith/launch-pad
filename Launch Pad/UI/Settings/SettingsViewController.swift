@@ -27,10 +27,16 @@ class SettingsViewController: NSViewController {
     }()
 
     @IBOutlet weak var showDebugInformationCheckbox: NSButton!
+    @IBOutlet weak var kspDirectoryLabel: NSTextField!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        updateUI()
+    }
+
+    func updateUI() {
         showDebugInformationCheckbox.state = Settings.shouldDisplayDebugInformation ? .on : .off
+        kspDirectoryLabel.stringValue = appDelegate.ckanClient?.kspInstallation.kspDirectory.path ?? "(not set)"
     }
 
     @IBAction func toggleShowDebugInformation(_ sender: NSButton) {
@@ -64,5 +70,6 @@ extension SettingsViewController: WelcomeSheetViewControllerDelegate {
 extension SettingsViewController: UpdateRepositoryViewControllerDelegate {
     func didFinishUpdating(_ sender: UpdateRepositoryViewController) {
         dismissViewController(sender)
+        updateUI()
     }
 }

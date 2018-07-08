@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC2C5E6F20626431008E5D05 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2C5E6E20626431008E5D05 /* Module.swift */; };
 		DC33CFC1203D89140034E465 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC33CFC0203D89140034E465 /* Colors.swift */; };
+		DC3E05E82087EAAD00F4FB80 /* CopyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E05E72087EAAD00F4FB80 /* CopyOperation.swift */; };
 		DC4191B62055856300BD6B39 /* String+Uppercased.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4191B52055856300BD6B39 /* String+Uppercased.swift */; };
 		DC4191B920559AFC00BD6B39 /* InstallModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4191B820559AFC00BD6B39 /* InstallModuleViewController.swift */; };
 		DC63C119206D36F7005280E0 /* InstalledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC63C118206D36F7005280E0 /* InstalledViewController.swift */; };
@@ -82,6 +83,7 @@
 /* Begin PBXFileReference section */
 		DC2C5E6E20626431008E5D05 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		DC33CFC0203D89140034E465 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		DC3E05E72087EAAD00F4FB80 /* CopyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyOperation.swift; sourceTree = "<group>"; };
 		DC4191B52055856300BD6B39 /* String+Uppercased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercased.swift"; sourceTree = "<group>"; };
 		DC4191B820559AFC00BD6B39 /* InstallModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallModuleViewController.swift; sourceTree = "<group>"; };
 		DC63C118206D36F7005280E0 /* InstalledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalledViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				DCD2D7862068713D0009D5B8 /* ModuleMetadata.swift */,
 				DCD773E72052AEC800F6F394 /* Release.swift */,
 				DCD773E92052BC1500F6F394 /* VersionNumber.swift */,
+				DC3E05E72087EAAD00F4FB80 /* CopyOperation.swift */,
 			);
 			path = CKANKit;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				DC95B57E206CE128001B80C9 /* ScaledHeightImageView.swift in Sources */,
 				DCDD1648204B0AAC00A04672 /* CKANRepository.swift in Sources */,
 				DCD2D7812067DD450009D5B8 /* Settings.swift in Sources */,
+				DC3E05E82087EAAD00F4FB80 /* CopyOperation.swift in Sources */,
 				DCD8A32A20502EBC0068CD4F /* Data+Serialization.swift in Sources */,
 				DCADA3A6203B297400C1E7BA /* ModuleCollectionViewItem.swift in Sources */,
 				DCD773EA2052BC1500F6F394 /* VersionNumber.swift in Sources */,

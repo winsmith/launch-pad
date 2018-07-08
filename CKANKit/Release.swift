@@ -279,7 +279,7 @@ extension Release {
     private func install(_ installation: CKANFile.InstallationDirective, toInstallation: KSPInstallation) -> [URL] {
         logger.log("Processing installation directive...")
 
-        let urlsToCopy = getSourceURLSFromInstallation(installation, withKSPInstallation: toInstallation)
+        let urlsToCopy = getCopyOperationsFromInstallation(installation, withKSPInstallation: toInstallation)
         guard let destinationURL = getDestinationURLFromInstallationDirective(installation, withKSPInstallation: toInstallation) else {
             fatalError()
         }
@@ -287,40 +287,50 @@ extension Release {
         // TODO: as
 
         var installedFiles = [URL]()
-        for urlToCopy in urlsToCopy {
-            do {
-                let finalDestinationURL = destinationURL.appendingPathComponent(urlToCopy.lastPathComponent)
-                logger.log("Creating all subdirectories of %@ ...", finalDestinationURL.path)
-                try fileManager.createParentDirectoryStructure(for: finalDestinationURL)
-                logger.log("Copying to %@ ...", finalDestinationURL.path)
-                try fileManager.moveItem(at: urlToCopy, to: finalDestinationURL)
-                logger.log("Copied to %@.", finalDestinationURL.path)
-                installedFiles.append(finalDestinationURL)
-            } catch {
-                logger.log("Failed to copy: %@", error.localizedDescription)
-            }
-        }
+//        for urlToCopy in urlsToCopy {
+//            do {
+//                let finalDestinationURL = destinationURL.appendingPathComponent(urlToCopy.lastPathComponent)
+//                logger.log("Creating all subdirectories of %@ ...", finalDestinationURL.path)
+//                try fileManager.createParentDirectoryStructure(for: finalDestinationURL)
+//                logger.log("Copying to %@ ...", finalDestinationURL.path)
+//                try fileManager.moveItem(at: urlToCopy, to: finalDestinationURL)
+//                logger.log("Copied to %@.", finalDestinationURL.path)
+//                installedFiles.append(finalDestinationURL)
+//            } catch {
+//                logger.log("Failed to copy: %@", error.localizedDescription)
+//            }
+//        }
 
         logger.log("Done processing installation directive.")
         return installedFiles
     }
 
-    private func getSourceURLSFromInstallation(_ installationDirective: CKANFile.InstallationDirective, withKSPInstallation kspInstallation: KSPInstallation) -> [URL] {
-        var urlsToCopy = [URL]()
+    private func getCopyOperationsFromInstallation(_ installationDirective: CKANFile.InstallationDirective, withKSPInstallation kspInstallation: KSPInstallation) -> [CopyOperation] {
+        var copyOperations = [CopyOperation]()
 
         // file: The file or directory root that this directive pertains to
-        if let file = installationDirective.file {
+        // The following is a labeled break, which allows us to break out if the if-statement
+        installationDirectiveChecker: if let file = installationDirective.file {
+            // TODO: directoryContents should be recursive
+            // fileManager.enumerator(atPath: tempDirectoryURL.path)
             guard let directoryContents = try? fileManager.contentsOfDirectory(at: tempDirectoryURL.appendingPathComponent(file), includingPropertiesForKeys: nil, options: []) else {
                 logger.log("Error: Could not list contents of directory.")
                 fatalError()
             }
-            urlsToCopy += directoryContents
+            guard let destinationURL = getDestinationURLFromInstallationDirective(installationDirective, withKSPInstallation: kspInstallation) else {
+                fatalError()
+            }
+            for directoryContent in directoryContents {
+                let copyOperation = CopyOperation(source: directoryContent, destination: destinationURL)
+                copyOperations.append(copyOperation)
+            }
         }
+
         // find: Locate the top-most directory which exactly matches the name specified.
         else if let findDirective = installationDirective.find {
             let matches_files = installationDirective.find_matches_files ?? false
 
-            guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { return urlsToCopy }
+            guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { break installationDirectiveChecker }
             var mostFittingPath: String?
             var mostFittingPathDepth: Int = 99999
 
@@ -340,14 +350,22 @@ extension Release {
 
                 var isDirectory: ObjCBool = false
                 fileManager.fileExists(atPath: mostFittingPath, isDirectory: &isDirectory)
+                // TODO: isDirectory.boolValue is always false, consider removing this distinction?
                 if isDirectory.boolValue {
                     guard let directoryContents = try? fileManager.contentsOfDirectory(at: mostFittingPathURL, includingPropertiesForKeys: nil, options: []) else {
                         logger.log("Error: Could not list contents of directory.")
                         fatalError()
                     }
-                    urlsToCopy += directoryContents
+                    guard let destinationURL = getDestinationURLFromInstallationDirective(installationDirective, withKSPInstallation: kspInstallation) else {
+                        fatalError()
+                    }
+                    for directoryContent in directoryContents {
+                        let copyOperation = CopyOperation(source: directoryContent, destination: destinationURL)
+                        copyOperations.append(copyOperation)
+                    }
                 } else {
-                    urlsToCopy.append(mostFittingPathURL)
+                    let copyOperation = CopyOperation(source: mostFittingPathURL, destination: getDestinationURLFromInstallationDirective(installationDirective, withKSPInstallation: kspInstallation)!)
+                    copyOperations.append(copyOperation)
                 }
             }
         }
@@ -356,7 +374,7 @@ extension Release {
             // TODO: check find_matches_files
             let matches_files = installationDirective.find_matches_files ?? false
 
-            guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { return urlsToCopy }
+            guard let directoryEnumerator = fileManager.enumerator(atPath: tempDirectoryURL.path) else { return copyOperations }
             var mostFittingPath: String?
             var mostFittingPathDepth: Int = 99999
 
@@ -380,9 +398,11 @@ extension Release {
                         logger.log("Error: Could not list contents of directory.")
                         fatalError()
                     }
-                    urlsToCopy += directoryContents
+                    // copyOperations += directoryContents
+                    fatalError("Not Implemented")
                 } else {
-                    urlsToCopy.append(mostFittingPathURL)
+                    let copyOperation = CopyOperation(source: mostFittingPathURL, destination: getDestinationURLFromInstallationDirective(installationDirective, withKSPInstallation: kspInstallation)!)
+                    copyOperations.append(copyOperation)
                 }
             }
         }
@@ -390,7 +410,7 @@ extension Release {
         // filter: A string, or list of strings, of file parts that should not be installed.
         if let filter = installationDirective.filter {
             let allFilters = filter.arrayValue
-            urlsToCopy = urlsToCopy.filter { allFilters.contains($0.lastPathComponent) == false }
+            // copyOperations = copyOperations.filter { allFilters.contains($0.lastPathComponent) == false }
         }
 
         // filter_regexp: A string, or list of strings, which are treated as case-sensitive C# regular
@@ -413,11 +433,11 @@ extension Release {
             logger.log("Warning: skipping include_only installation directive because it is unsupported.")
         }
 
-        logger.log("Generated %@ source URLs.", "\(urlsToCopy.count)")
-        for urlToCopy in urlsToCopy {
-            logger.log(" - %@", urlToCopy.path)
+        logger.log("Generated %@ source URLs.", "\(copyOperations.count)")
+        for urlToCopy in copyOperations {
+            logger.log(" - %@", urlToCopy.description)
         }
-        return urlsToCopy
+        return copyOperations
     }
 
     private func getDestinationURLFromInstallationDirective(_ installationDirective: CKANFile.InstallationDirective, withKSPInstallation kspInstallation: KSPInstallation) -> URL? {

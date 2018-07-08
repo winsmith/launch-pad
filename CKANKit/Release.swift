@@ -410,7 +410,7 @@ extension Release {
         // filter: A string, or list of strings, of file parts that should not be installed.
         if let filter = installationDirective.filter {
             let allFilters = filter.arrayValue
-            // copyOperations = copyOperations.filter { allFilters.contains($0.lastPathComponent) == false }
+            copyOperations = copyOperations.filter { allFilters.contains($0.source.lastPathComponent) == false }
         }
 
         // filter_regexp: A string, or list of strings, which are treated as case-sensitive C# regular
@@ -422,8 +422,8 @@ extension Release {
 
         // include_only: A string, or list of strings, of file parts that should be installed
         if let include_only = installationDirective.include_only {
-            // TODO
-            logger.log("Warning: skipping include_only installation directive because it is unsupported.")
+            let allInclude_only = include_only.arrayValue
+            copyOperations = copyOperations.filter { allInclude_only.contains($0.source.lastPathComponent) == true }
         }
 
         // include_only_regexp: A string, or list of strings, which are treated as case-sensitive C# regular

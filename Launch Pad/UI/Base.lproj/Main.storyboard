@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
-        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -689,7 +686,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MainWindowController" customModule="Launch_Pad" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Launch Pad" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" titleVisibility="hidden" id="IQv-IB-iLA">
+                    <window key="window" title="Launch Pad" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="285"/>
@@ -836,7 +833,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OCb-nE-rIE">
-                                                <rect key="frame" x="-2" y="42" width="136" height="68"/>
+                                                <rect key="frame" x="-2" y="42" width="140" height="68"/>
                                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Installing this module will also install the following dependencies:" id="ath-7x-hf0">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -844,7 +841,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rIe-Ay-bBe">
-                                                <rect key="frame" x="0.0" y="0.0" width="99" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="136" height="34"/>
                                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="&lt;List of Dependencies&gt;" drawsBackground="YES" id="JNQ-ra-reo">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -875,7 +872,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7Gb-Vy-Yru">
-                                                <rect key="frame" x="-2" y="47" width="170" height="68"/>
+                                                <rect key="frame" x="-2" y="47" width="181" height="68"/>
                                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="These mods are are recommended for use with the mod you are installing, but not required," id="3oV-vg-2vp">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -926,7 +923,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AWS-Zj-bfO">
-                                                <rect key="frame" x="-2" y="64" width="112" height="51"/>
+                                                <rect key="frame" x="-2" y="64" width="137" height="51"/>
                                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="The Mod Authors suggest also installing these:" id="XAi-lC-CuS">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -944,7 +941,7 @@
                                                 </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="eUm-OW-4C5">
-                                                <rect key="frame" x="0.0" y="0.0" width="86" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="34"/>
                                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="&lt;List of suggestions&gt;" drawsBackground="YES" id="dPt-Rp-Yqz">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1129,7 +1126,7 @@ Gw
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7HC-0U-abN">
-                                        <rect key="frame" x="-2" y="150" width="393" height="34"/>
+                                        <rect key="frame" x="-2" y="150" width="414" height="34"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Before we can start properly, please tell Launch Pad where your installation of Kerbal Space Program is located." id="PBR-f0-bwh">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1137,7 +1134,7 @@ Gw
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QkX-yQ-dJ0">
-                                        <rect key="frame" x="-2" y="108" width="360" height="34"/>
+                                        <rect key="frame" x="-2" y="108" width="414" height="34"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="The &quot;Kerbal Space Program&quot; folder is probably inside your &quot;Applications&quot; folder." id="oI5-ex-Kif">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1164,7 +1161,7 @@ Gw
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eHl-xX-dT4">
                                         <rect key="frame" x="-2" y="29" width="37" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="XFR-AK-6I6">
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Label" id="XFR-AK-6I6">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1283,11 +1280,11 @@ Gw
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="fWc-vb-UFX"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="g9d-7i-gjN">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="g9d-7i-gjN">
                                     <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="PHE-yN-84f">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="PHE-yN-84f">
                                     <rect key="frame" x="433" y="1" width="16" height="278"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1376,11 +1373,11 @@ Gw
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="iNK-qe-X61"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="TVG-CP-3kB">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="TVG-CP-3kB">
                                     <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="sgO-Yy-rbR">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="sgO-Yy-rbR">
                                     <rect key="frame" x="283" y="1" width="16" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1447,14 +1444,14 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Rz-Gx-5iP">
-                                <rect key="frame" x="21" y="62" width="408" height="194"/>
+                                <rect key="frame" x="20" y="62" width="410" height="194"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="1" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ab2-wS-w9D">
-                                        <rect key="frame" x="0.0" y="91" width="408" height="103"/>
+                                        <rect key="frame" x="0.0" y="91" width="410" height="103"/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Box" id="g2N-1F-D0A"/>
                                     </imageView>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jBU-F2-xGs">
-                                        <rect key="frame" x="81" y="54" width="247" height="17"/>
+                                        <rect key="frame" x="82" y="54" width="247" height="17"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Updates will be added at a later version." id="YNJ-Q8-K8N">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1462,7 +1459,7 @@ Gw
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BwK-rN-jVQ">
-                                        <rect key="frame" x="-2" y="0.0" width="412" height="34"/>
+                                        <rect key="frame" x="-2" y="0.0" width="414" height="34"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="To update the CKAN Repository data, click the &quot;Network&quot; Button in the toolbar." id="BX3-t4-aVC">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1571,7 +1568,7 @@ Gw
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="o1e-YU-VmX">
-                                        <rect key="frame" x="-2" y="72" width="588" height="28"/>
+                                        <rect key="frame" x="-2" y="72" width="604" height="28"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Launch Pad uses the excellent CKAN Mod Metadata Repository as its data source. Find it at https://github.com/KSP-CKAN/CKAN" id="pIh-G8-olb">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1579,7 +1576,7 @@ Gw
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Qdo-E8-ykl">
-                                        <rect key="frame" x="-2" y="29" width="578" height="28"/>
+                                        <rect key="frame" x="-2" y="29" width="604" height="28"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="bSn-W8-Xz2">
                                             <font key="font" metaFont="smallSystem"/>
                                             <string key="title">Launch Pad includes the ZIPFoundation library, which is released under the MIT license at https://github.com/weichsel/ZIPFoundation</string>
@@ -1667,13 +1664,13 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view translatesAutoresizingMaskIntoConstraints="NO" id="4He-cP-SEJ">
-                                            <rect key="frame" x="0.0" y="-96" width="720" height="1044"/>
+                                            <rect key="frame" x="0.0" y="-90" width="720" height="1038"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6n3-9x-UDZ">
-                                                    <rect key="frame" x="60" y="40" width="600" height="964"/>
+                                                    <rect key="frame" x="60" y="40" width="600" height="958"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfT-D5-vQ3">
-                                                            <rect key="frame" x="0.0" y="901" width="77" height="63"/>
+                                                            <rect key="frame" x="0.0" y="895" width="77" height="63"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qoc-G7-0iT">
                                                                     <rect key="frame" x="-2" y="17" width="81" height="46"/>
@@ -1702,7 +1699,7 @@ Gw
                                                             </customSpacing>
                                                         </stackView>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="HSe-Ik-QgW">
-                                                            <rect key="frame" x="0.0" y="847" width="589" height="34"/>
+                                                            <rect key="frame" x="0.0" y="841" width="600" height="34"/>
                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" drawsBackground="YES" id="ABg-Bc-17i">
                                                                 <font key="font" metaFont="system"/>
                                                                 <string key="title">Warning: This Release or one of its dependencies contains installation directives that are not yet supported by Launch Pad. The installation might fail silently</string>
@@ -1711,13 +1708,13 @@ Gw
                                                             </textFieldCell>
                                                         </textField>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdV-83-hqw">
-                                                            <rect key="frame" x="0.0" y="745" width="442" height="82"/>
+                                                            <rect key="frame" x="0.0" y="745" width="442" height="76"/>
                                                             <subviews>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FGF-oJ-9A9">
-                                                                    <rect key="frame" x="0.0" y="50" width="370" height="32"/>
+                                                                    <rect key="frame" x="0.0" y="50" width="370" height="26"/>
                                                                     <subviews>
                                                                         <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-JZ-AMf">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="118" height="32"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="118" height="26"/>
                                                                             <buttonCell key="cell" type="bevel" title="Install" bezelStyle="rounded" image="Button" imagePosition="overlaps" alignment="center" alternateImage="ButtonActive" imageScaling="proportionallyDown" inset="2" id="c5o-Xj-P8N">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="systemMedium" size="13"/>
@@ -1727,7 +1724,7 @@ Gw
                                                                             </connections>
                                                                         </button>
                                                                         <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="z67-am-HDN">
-                                                                            <rect key="frame" x="126" y="0.0" width="118" height="32"/>
+                                                                            <rect key="frame" x="126" y="0.0" width="118" height="26"/>
                                                                             <buttonCell key="cell" type="bevel" title="Uninstall" bezelStyle="rounded" image="ButtonActive" imagePosition="overlaps" alignment="center" alternateImage="ButtonActive" imageScaling="proportionallyDown" inset="2" id="PvF-as-xAz">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="systemMedium" size="13"/>
@@ -1737,7 +1734,7 @@ Gw
                                                                             </connections>
                                                                         </button>
                                                                         <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vEH-LN-rfl">
-                                                                            <rect key="frame" x="252" y="0.0" width="118" height="32"/>
+                                                                            <rect key="frame" x="252" y="0.0" width="118" height="26"/>
                                                                             <buttonCell key="cell" type="bevel" title="Upgrade" bezelStyle="rounded" image="Button" imagePosition="overlaps" alignment="center" alternateImage="ButtonActive" enabled="NO" imageScaling="proportionallyDown" inset="2" id="GLf-m2-o8R">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="systemMedium" size="13"/>
@@ -2367,11 +2364,11 @@ Gw
                                         <constraint firstAttribute="trailing" secondItem="4He-cP-SEJ" secondAttribute="trailing" constant="15" id="yxB-hc-Y4d"/>
                                     </constraints>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="2cF-qM-Xyf">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="2cF-qM-Xyf">
                                     <rect key="frame" x="0.0" y="932" width="735" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.64583333333333326" horizontal="NO" id="Gl2-nk-MsS">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Gl2-nk-MsS">
                                     <rect key="frame" x="719" y="0.0" width="16" height="948"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

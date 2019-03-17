@@ -160,7 +160,11 @@ extension CKANRepository {
                         newModulesDict[release.identifier] = module
                     }
                 } catch let error {
-                    fatalError(error.localizedDescription)
+                    if error is DecodingError {
+                        print("Cannot Decode \(fileURL), skipping...")
+                    } else {
+                        fatalError(error.localizedDescription)
+                    }
                 }
             }
             progress?.completedUnitCount += 1

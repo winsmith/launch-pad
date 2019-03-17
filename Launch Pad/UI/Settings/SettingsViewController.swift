@@ -9,6 +9,8 @@
 import Cocoa
 
 class SettingsViewController: NSViewController {
+    @IBOutlet weak var versionLabel: NSTextField!
+    
     private let currentInstallationKey = "launchpadCurrentInstallation"
     var appDelegate: AppDelegate { return NSApplication.shared.delegate as! AppDelegate }
 
@@ -31,6 +33,14 @@ class SettingsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showDebugInformationCheckbox.state = Settings.shouldDisplayDebugInformation ? .on : .off
+    }
+
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        let appName = Bundle.main.infoDictionary!["CFBundleName"] as? String ?? "Launch Pad"
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "n/a"
+        let build = Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? ""
+        versionLabel.stringValue = "\(appName) Version \(appVersion) \(build)"
     }
 
     @IBAction func toggleShowDebugInformation(_ sender: NSButton) {

@@ -1634,6 +1634,7 @@ Gw
                     </view>
                     <connections>
                         <outlet property="showDebugInformationCheckbox" destination="PcF-0x-T1A" id="o8Z-2l-jQx"/>
+                        <outlet property="versionLabel" destination="rkY-Ix-kPR" id="khx-pj-EPx"/>
                     </connections>
                 </viewController>
                 <customObject id="pEO-8n-1db" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

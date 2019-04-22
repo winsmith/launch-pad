@@ -15,6 +15,18 @@
           "green" : "0xFF"
         }
       }
+    },
+    {
+      "idiom" : "universal",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "color" : {
+        "reference" : "controlBackgroundColor"
+      }
     }
   ]
 }

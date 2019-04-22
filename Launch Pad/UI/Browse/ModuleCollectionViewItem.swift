@@ -44,5 +44,6 @@ class ModuleCollectionViewItem: NSCollectionViewItem {
         view.layer?.backgroundColor = isSelected ? darkColor.cgColor : lightColor.cgColor
         nameLabel.textColor = isSelected ? lightColor : darkColor
         versionLabel.textColor = isSelected ? lightColor : darkColor
+        authorLabel.textColor = isSelected ? lightColor : darkColor
     }
 }
